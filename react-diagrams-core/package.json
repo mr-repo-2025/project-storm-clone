@@ -1,0 +1,51 @@
+{
+	"name": "@projectstorm/react-diagrams-core",
+	"version": "7.0.3",
+	"author": "dylanvorster",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/projectstorm/react-diagrams.git"
+	},
+	"scripts": {
+		"clean": "rimraf ./dist",
+		"build": "webpack build ",
+		"build:es": "../../node_modules/.bin/tsc",
+		"build:prod": "NODE_ENV=production ../../node_modules/.bin/webpack && NODE_ENV=production  ../../node_modules/.bin/tsc"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+	,
+	"keywords": [
+		"web",
+		"diagram",
+		"diagrams",
+		"react",
+		"typescript",
+		"flowchart",
+		"simple",
+		"links",
+		"nodes"
+	],
+	"main": "./dist/index.umd.js",
+	"module": "./dist/index.js",
+	"typings": "./dist/@types/index",
+	"dependencies": {
+		"@emotion/styled": "^11.11.0",
+		"@projectstorm/geometry":  "workspace:*",
+		"@projectstorm/react-canvas-core": "workspace:*",
+		"lodash": "^4.17.21",
+		"react": "^18.2.0",
+		"resize-observer-polyfill": "^1.5.1"
+		
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.22",
+		"@types/lodash": "^4.14.200",
+		"webpack": "^5.88.2",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^4.15.1",
+		"webpack-node-externals": "^3.0.0"
+	}
+}

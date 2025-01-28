@@ -1,0 +1,22 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"outDir": "dist",
+		"rootDir": "src",
+		"declarationDir": "dist/@types",
+		"tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+	},
+	"include": ["./src"],
+	"references": [
+		{
+			"path": "../geometry"
+		},
+		{
+			"path": "../react-canvas-core"
+		},
+		{
+			"path": "../react-diagrams-defaults"
+		}
+	]
+}
