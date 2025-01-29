@@ -1,4 +1,3 @@
 *
-!dist/**/*
 !package.json
 dist/tsconfig.tsbuildinfo
