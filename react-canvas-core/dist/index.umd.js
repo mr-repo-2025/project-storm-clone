@@ -1630,13 +1630,14 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { className: "worktable", style: this.getTransformStyle() }, this.props.children),
-            this.props.layer.getOptions().isSvg ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children));
-        // if (this.props.layer.getOptions().isSvg) {
-        // 	return <S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>;
-        // }
-        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>
+        // return <>{!this.props.layer.getOptions().isSvg?<S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>:<S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>}</>
+        if (this.props.layer.getOptions().isWorktable) {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        }
+        if (this.props.layer.getOptions().isSvg) {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
+        }
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
     }
 }
 
