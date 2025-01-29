@@ -1630,10 +1630,13 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
-        if (this.props.layer.getOptions().isSvg) {
-            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
-        }
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { className: "worktable", style: this.getTransformStyle() }, this.props.children),
+            this.props.layer.getOptions().isSvg ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children));
+        // if (this.props.layer.getOptions().isSvg) {
+        // 	return <S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>;
+        // }
+        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>
     }
 }
 
@@ -2081,10 +2084,7 @@ class PeformanceWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         return !lodash_isEqual__WEBPACK_IMPORTED_MODULE_1___default()(this.props.serialized, nextProps.serialized);
     }
     render() {
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'nodos_1' }, this.props.children()),
-            " ",
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'nodos_2' }, " ")));
+        return this.props.children();
     }
 }
 

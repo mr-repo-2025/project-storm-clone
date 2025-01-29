@@ -9,5 +9,5 @@ export interface PeformanceWidgetState {
 }
 export declare class PeformanceWidget extends React.Component<PeformanceWidgetProps, PeformanceWidgetState> {
     shouldComponentUpdate(nextProps: Readonly<PeformanceWidgetProps>, nextState: Readonly<PeformanceWidgetState>, nextContext: any): boolean;
-    render(): React.JSX.Element;
+    render(): JSX.Element;
 }

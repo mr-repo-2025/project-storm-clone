@@ -13,10 +13,7 @@ export class PeformanceWidget extends React.Component {
         return !_isEqual(this.props.serialized, nextProps.serialized);
     }
     render() {
-        return (React.createElement(React.Fragment, null,
-            React.createElement("div", { className: 'nodos_1' }, this.props.children()),
-            " ",
-            React.createElement("div", { className: 'nodos_2' }, " ")));
+        return this.props.children();
     }
 }
 //# sourceMappingURL=PeformanceWidget.js.map
