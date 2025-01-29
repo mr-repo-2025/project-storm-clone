@@ -49,7 +49,7 @@ export class TransformLayerWidget extends React.Component {
     }
     render() {
         // return <>{!this.props.layer.getOptions().isSvg?<S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>:<S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>}</>
-        if (this.props.layer.getOptions().isWorktable) {
+        if (!this.props.layer.getOptions().isSvg) {
             return React.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
         }
         if (this.props.layer.getOptions().isSvg) {

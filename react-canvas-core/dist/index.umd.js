@@ -1631,7 +1631,7 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
     }
     render() {
         // return <>{!this.props.layer.getOptions().isSvg?<S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>:<S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>}</>
-        if (this.props.layer.getOptions().isWorktable) {
+        if (!this.props.layer.getOptions().isSvg) {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
         }
         if (this.props.layer.getOptions().isSvg) {
