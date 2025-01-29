@@ -48,14 +48,12 @@ export class TransformLayerWidget extends React.Component {
         return {};
     }
     render() {
-        // return <>{!this.props.layer.getOptions().isSvg?<S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>:<S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>}</>
-        if (!this.props.layer.getOptions().isSvg) {
-            return React.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
-        }
-        if (this.props.layer.getOptions().isSvg) {
-            return React.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
-        }
-        return React.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        // if (this.props.layer.getOptions().isSvg) {
+        // 	return <S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>;
+        // }
+        return React.createElement(S.DivLayer, { style: this.getTransformStyle() },
+            this.props.layer.getOptions().isSvg ? React.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children) : React.createElement(React.Fragment, null),
+            this.props.children);
     }
 }
 //# sourceMappingURL=TransformLayerWidget.js.map
