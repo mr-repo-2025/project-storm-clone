@@ -16,7 +16,6 @@ export type BaseEntityType = 'node' | 'link' | 'port' | 'point';
 export interface BaseEntityOptions {
     id?: string;
     locked?: boolean;
-    isWorktable?: boolean;
 }
 export type BaseEntityGenerics = {
     LISTENER: BaseEntityListener;

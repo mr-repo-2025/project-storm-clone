@@ -22,5 +22,5 @@ export declare class PathFindingLinkWidget extends React.Component<PathFindingLi
     componentDidMount(): void;
     componentWillUnmount(): void;
     generateLink(path: string, id: string | number): JSX.Element;
-    render(): any;
+    render(): React.JSX.Element;
 }

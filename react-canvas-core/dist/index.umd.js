@@ -1612,13 +1612,12 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
     getTransform() {
         const model = this.props.layer.getParent();
         return `
-			translates(
+			translate(
 				${model.getOffsetX()}px,
 				${model.getOffsetY()}px)
-			scales(
+			scale(
 				${model.getZoomLevel() / 100.0}
 			)
-			
   	`;
     }
     getTransformStyle() {
@@ -1630,12 +1629,10 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
-        // if (this.props.layer.getOptions().isSvg) {
-        // 	return <S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>;
-        // }
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() },
-            this.props.layer.getOptions().isSvg ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null),
-            this.props.children);
+        if (this.props.layer.getOptions().isSvg) {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
+        }
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
     }
 }
 

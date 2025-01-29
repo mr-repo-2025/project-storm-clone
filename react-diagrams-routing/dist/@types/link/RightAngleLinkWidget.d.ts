@@ -31,5 +31,5 @@ export declare class RightAngleLinkWidget extends React.Component<RightAngleLink
     draggingEvent(event: MouseEvent, index: number): void;
     handleMove: any;
     handleUp: any;
-    render(): any;
+    render(): React.JSX.Element;
 }

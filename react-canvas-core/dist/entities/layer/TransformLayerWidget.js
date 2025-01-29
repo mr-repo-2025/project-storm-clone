@@ -30,13 +30,12 @@ export class TransformLayerWidget extends React.Component {
     getTransform() {
         const model = this.props.layer.getParent();
         return `
-			translates(
+			translate(
 				${model.getOffsetX()}px,
 				${model.getOffsetY()}px)
-			scales(
+			scale(
 				${model.getZoomLevel() / 100.0}
 			)
-			
   	`;
     }
     getTransformStyle() {
@@ -48,12 +47,10 @@ export class TransformLayerWidget extends React.Component {
         return {};
     }
     render() {
-        // if (this.props.layer.getOptions().isSvg) {
-        // 	return <S.SvgLayer style={this.getTransformStyle()}>{this.props.children}</S.SvgLayer>;
-        // }
-        return React.createElement(S.DivLayer, { style: this.getTransformStyle() },
-            this.props.layer.getOptions().isSvg ? React.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children) : React.createElement(React.Fragment, null),
-            this.props.children);
+        if (this.props.layer.getOptions().isSvg) {
+            return React.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
+        }
+        return React.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
     }
 }
 //# sourceMappingURL=TransformLayerWidget.js.map
