@@ -53,6 +53,7 @@ export class CanvasWidget extends React.Component {
     render() {
         const engine = this.props.engine;
         const model = engine.getModel();
+        console.log('model.getLayers()', model.getLayers());
         return (React.createElement(S.Canvas, { className: this.props.className, ref: this.ref, onWheel: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onMouseDown: (event) => {
@@ -67,20 +68,13 @@ export class CanvasWidget extends React.Component {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
-            } }, model.getLayers().map((layer) => {
-            if (layer.getIsWorktable() === true)
-                return ( //nodos
-                React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
-                    React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })));
-            if (layer.getIsWorktable() === false)
-                return ( //links
-                React.createElement(TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
-                    React.createElement(SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })));
-            if (layer.getIsWorktable() === false)
-                return ( //nodos
-                React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
-                    React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })));
-        })));
+            } },
+            React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
+                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })),
+            React.createElement(TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
+                React.createElement(SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })),
+            React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
+                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() }))));
     }
 }
 //# sourceMappingURL=CanvasWidget.js.map
