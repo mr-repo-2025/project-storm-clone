@@ -1644,10 +1644,16 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
+        if (this.props.layer.getOptions().isWorktable) {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        }
         if (this.props.layer.getOptions().isSvg) {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        if (!this.props.layer.getOptions().isWorktable) {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        }
+        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
     }
 }
 
