@@ -1445,10 +1445,11 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
-            } }, model.getLayers().map((layer) => {
-            return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: layer, key: layer.getID() },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: layer, engine: this.props.engine, key: layer.getID() })));
-        })));
+            } },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() }))));
     }
 }
 
