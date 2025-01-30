@@ -7,6 +7,7 @@ import { DeserializeEvent } from '../../core-models/BaseEntity';
 export interface LayerModelOptions extends BaseModelOptions {
     isSvg?: boolean;
     transformed?: boolean;
+    isWorktable?: boolean;
 }
 export interface LayerModelGenerics extends BaseModelGenerics {
     OPTIONS: LayerModelOptions;
@@ -19,6 +20,7 @@ export declare abstract class LayerModel<G extends LayerModelGenerics = LayerMod
         [id: string]: G['CHILDREN'];
     };
     protected repaintEnabled: boolean;
+    protected isWorktable: boolean;
     constructor(options?: G['OPTIONS']);
     /**
      * This is used for deserialization
@@ -27,6 +29,7 @@ export declare abstract class LayerModel<G extends LayerModelGenerics = LayerMod
     deserialize(event: DeserializeEvent<this>): void;
     serialize(): {
         isSvg: boolean;
+        isWorktable: boolean;
         transformed: boolean;
         models: {
             [x: string]: {
@@ -51,6 +54,7 @@ export declare abstract class LayerModel<G extends LayerModelGenerics = LayerMod
     getModels(): {
         [id: string]: G["CHILDREN"];
     };
+    getIsWorktable(): boolean;
     getModel(id: string): G["CHILDREN"];
     removeModel(id: string | G['CHILDREN']): boolean;
 }

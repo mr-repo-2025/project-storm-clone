@@ -46,6 +46,7 @@ export declare class CanvasModel<G extends CanvasModelGenerics = CanvasModelGene
         gridSize: number;
         layers: {
             isSvg: boolean;
+            isWorktable: boolean;
             transformed: boolean;
             models: {
                 [x: string]: {

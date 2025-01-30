@@ -6,11 +6,13 @@ export class LayerModel extends BaseModel {
     constructor(options = {}) {
         super(options);
         this.models = {};
+        this.isWorktable = false;
         this.repaintEnabled = true;
     }
     deserialize(event) {
         super.deserialize(event);
         this.options.isSvg = !!event.data.isSvg;
+        this.options.isWorktable = !!event.data.isWorktable;
         this.options.transformed = !!event.data.transformed;
         _forEach(event.data.models, (model) => {
             const modelOb = this.getChildModelFactoryBank(event.engine).getFactory(model.type).generateModel({
@@ -21,7 +23,7 @@ export class LayerModel extends BaseModel {
         });
     }
     serialize() {
-        return Object.assign(Object.assign({}, super.serialize()), { isSvg: this.options.isSvg, transformed: this.options.transformed, models: _mapValues(this.models, (model) => {
+        return Object.assign(Object.assign({}, super.serialize()), { isSvg: this.options.isSvg, isWorktable: this.options.isWorktable, transformed: this.options.transformed, models: _mapValues(this.models, (model) => {
                 return model.serialize();
             }) });
     }
@@ -48,6 +50,9 @@ export class LayerModel extends BaseModel {
     }
     getModels() {
         return this.models;
+    }
+    getIsWorktable() {
+        return this.options.isWorktable;
     }
     getModel(id) {
         return this.models[id];
