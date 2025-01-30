@@ -7,12 +7,10 @@ import { LinkModel } from '../entities/link/LinkModel';
 import { NodeModel } from '../entities/node/NodeModel';
 import { CanvasModel } from '@projectstorm/react-canvas-core';
 import { NodeLayerModel } from '../entities/node-layer/NodeLayerModel';
-import { NodeWLayerModel } from '../entities/node-layer/NodeWLayerModel';
 import { LinkLayerModel } from '../entities/link-layer/LinkLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new NodeWLayerModel());
         this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeLayerModel());
     }
@@ -22,9 +20,6 @@ export class DiagramModel extends CanvasModel {
     }
     addLayer(layer) {
         super.addLayer(layer);
-        if (layer instanceof NodeWLayerModel) {
-            this.activeNodeLayer = layer;
-        }
         if (layer instanceof NodeLayerModel) {
             this.activeNodeLayer = layer;
         }
@@ -47,7 +42,6 @@ export class DiagramModel extends CanvasModel {
             const layers = this.getNodeLayers();
             if (layers.length === 0) {
                 this.addLayer(new NodeLayerModel());
-                this.addLayer(new NodeWLayerModel());
             }
             else {
                 this.activeNodeLayer = layers[0];

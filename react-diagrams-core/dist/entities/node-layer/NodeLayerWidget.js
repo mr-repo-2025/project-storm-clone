@@ -3,9 +3,13 @@ import _map from 'lodash/map';
 import { NodeWidget } from '../node/NodeWidget';
 export class NodeLayerWidget extends React.Component {
     render() {
-        let node1;
-        return (React.createElement("div", { className: 'worktable_ms' }, _map(this.props.layer.getNodes(), (node) => {
-            return React.createElement(NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
+        return (React.createElement(React.Fragment, null, _map(this.props.layer.getNodes(), (node) => {
+            if (node.isWorktable) {
+                return React.createElement(NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
+            }
+            else {
+                return React.createElement(NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
+            }
         })));
     }
 }

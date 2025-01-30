@@ -9,10 +9,16 @@ export class NodeModel extends BasePositionModel {
         this.ports = {};
         this.width = 0;
         this.height = 0;
-        this.worktable = false;
+        this.isWorktable = false;
     }
     getBoundingBox() {
         return Rectangle.fromPointAndSize(this.getPosition(), this.width, this.height);
+    }
+    getIsWorktable() {
+        return this.isWorktable;
+    }
+    setIsWorktable(value) {
+        this.isWorktable = value;
     }
     setPosition(x, y) {
         const old = this.position;
