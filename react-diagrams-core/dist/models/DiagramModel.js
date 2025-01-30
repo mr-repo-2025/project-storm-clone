@@ -13,6 +13,7 @@ export class DiagramModel extends CanvasModel {
         super(options);
         this.addLayer(new NodeLayerModel());
         this.addLayer(new LinkLayerModel());
+        this.addLayer(new NodeLayerModel());
     }
     deserialize(event) {
         this.layers = [];

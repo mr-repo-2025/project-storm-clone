@@ -998,12 +998,7 @@ __webpack_require__.r(__webpack_exports__);
 class NodeLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     render() {
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, lodash_map__WEBPACK_IMPORTED_MODULE_1___default()(this.props.layer.getNodes(), (node) => {
-            if (node.isWorktable && this.props.layer.isWorktable) {
-                return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_node_NodeWidget__WEBPACK_IMPORTED_MODULE_2__.NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
-            }
-            else {
-                return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_node_NodeWidget__WEBPACK_IMPORTED_MODULE_2__.NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
-            }
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_node_NodeWidget__WEBPACK_IMPORTED_MODULE_2__.NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
         })));
     }
 }
@@ -1475,6 +1470,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         super(options);
         this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
         this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
+        this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
     }
     deserialize(event) {
         this.layers = [];
