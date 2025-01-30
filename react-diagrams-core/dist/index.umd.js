@@ -1470,7 +1470,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         super(options);
         this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
         this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
-        this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
+        // this.addLayer(new NodeLayerModel());
     }
     deserialize(event) {
         this.layers = [];
