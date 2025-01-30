@@ -69,12 +69,10 @@ export class CanvasWidget extends React.Component {
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             } },
-            React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() + 1 },
-                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() + 1 })),
-            React.createElement(TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
-                React.createElement(SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })),
             React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
-                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() }))));
+                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })),
+            React.createElement(TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
+                React.createElement(SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() }))));
     }
 }
 //# sourceMappingURL=CanvasWidget.js.map
