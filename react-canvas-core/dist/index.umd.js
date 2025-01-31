@@ -1447,6 +1447,8 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             } },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[2], key: model.getLayers()[0].getID() },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[2], engine: this.props.engine, key: model.getLayers()[2].getID() })),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
@@ -1642,10 +1644,6 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         if (this.props.layer.getOptions().isSvg) {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
-        // if (!this.props.layer.getOptions().isWorktable && this.props.layer.getOptions().isSvg===false) {
-        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
-        // }
-        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
     }
 }
 
