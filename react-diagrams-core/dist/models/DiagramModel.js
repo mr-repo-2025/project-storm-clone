@@ -11,9 +11,8 @@ import { LinkLayerModel } from '../entities/link-layer/LinkLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new NodeLayerModel());
         this.addLayer(new LinkLayerModel());
-        // this.addLayer(new NodeLayerModel());
+        this.addLayer(new NodeLayerModel());
     }
     deserialize(event) {
         this.layers = [];

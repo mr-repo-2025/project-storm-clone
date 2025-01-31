@@ -5,8 +5,7 @@ export class NodeLayerModel extends LayerModel {
         super({
             type: 'diagram-nodes',
             isSvg: false,
-            transformed: true,
-            isWorktable: false
+            transformed: true
         });
     }
     addModel(model) {

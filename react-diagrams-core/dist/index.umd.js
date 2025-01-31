@@ -951,8 +951,7 @@ class NodeLayerModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_M
         super({
             type: 'diagram-nodes',
             isSvg: false,
-            transformed: true,
-            isWorktable: false
+            transformed: true
         });
     }
     addModel(model) {
@@ -1037,16 +1036,9 @@ class NodeModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE
         this.ports = {};
         this.width = 0;
         this.height = 0;
-        this.isWorktable = false;
     }
     getBoundingBox() {
         return _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__.Rectangle.fromPointAndSize(this.getPosition(), this.width, this.height);
-    }
-    getIsWorktable() {
-        return this.isWorktable;
-    }
-    setIsWorktable(value) {
-        this.isWorktable = value;
     }
     setPosition(x, y) {
         const old = this.position;
@@ -1468,9 +1460,8 @@ __webpack_require__.r(__webpack_exports__);
 class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__.CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
         this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
-        // this.addLayer(new NodeLayerModel());
+        this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
     }
     deserialize(event) {
         this.layers = [];

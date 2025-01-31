@@ -16,11 +16,8 @@ export declare class NodeModel<G extends NodeModelGenerics = NodeModelGenerics> 
     };
     width: number;
     height: number;
-    isWorktable: boolean;
     constructor(options: G['OPTIONS']);
     getBoundingBox(): Rectangle;
-    getIsWorktable(): boolean;
-    setIsWorktable(value: boolean): void;
     setPosition(point: Point): void;
     setPosition(x: number, y: number): void;
     deserialize(event: DeserializeEvent<this>): void;
