@@ -1431,7 +1431,6 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     render() {
         const engine = this.props.engine;
         const model = engine.getModel();
-        console.log('model.getLayers()', model.getLayers());
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.Canvas, { className: this.props.className, ref: this.ref, onWheel: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onMouseDown: (event) => {
@@ -1446,13 +1445,10 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
-            } },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[2], key: 'new_wt' },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[2], engine: this.props.engine, key: 'new_wt' })),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() }))));
+            } }, model.getLayers().map((layer) => {
+            return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: layer, key: layer.getID() },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: layer, engine: this.props.engine, key: layer.getID() })));
+        })));
     }
 }
 
@@ -1484,13 +1480,11 @@ class LayerModel extends _core_models_BaseModel__WEBPACK_IMPORTED_MODULE_0__.Bas
     constructor(options = {}) {
         super(options);
         this.models = {};
-        this.isWorktable = false;
         this.repaintEnabled = true;
     }
     deserialize(event) {
         super.deserialize(event);
         this.options.isSvg = !!event.data.isSvg;
-        this.options.isWorktable = !!event.data.isWorktable;
         this.options.transformed = !!event.data.transformed;
         lodash_forEach__WEBPACK_IMPORTED_MODULE_2___default()(event.data.models, (model) => {
             const modelOb = this.getChildModelFactoryBank(event.engine).getFactory(model.type).generateModel({
@@ -1501,7 +1495,7 @@ class LayerModel extends _core_models_BaseModel__WEBPACK_IMPORTED_MODULE_0__.Bas
         });
     }
     serialize() {
-        return Object.assign(Object.assign({}, super.serialize()), { isSvg: this.options.isSvg, isWorktable: this.options.isWorktable, transformed: this.options.transformed, models: lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default()(this.models, (model) => {
+        return Object.assign(Object.assign({}, super.serialize()), { isSvg: this.options.isSvg, transformed: this.options.transformed, models: lodash_mapValues__WEBPACK_IMPORTED_MODULE_3___default()(this.models, (model) => {
                 return model.serialize();
             }) });
     }
@@ -1528,9 +1522,6 @@ class LayerModel extends _core_models_BaseModel__WEBPACK_IMPORTED_MODULE_0__.Bas
     }
     getModels() {
         return this.models;
-    }
-    getIsWorktable() {
-        return this.options.isWorktable;
     }
     getModel(id) {
         return this.models[id];
@@ -1638,12 +1629,10 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
-        if (this.props.layer.getOptions().isWorktable && this.props.layer.getOptions().isSvg === false) {
-            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
-        }
         if (this.props.layer.getOptions().isSvg) {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
     }
 }
 
