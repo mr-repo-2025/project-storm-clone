@@ -7,6 +7,7 @@ import { DeserializeEvent } from '../../core-models/BaseEntity';
 export interface LayerModelOptions extends BaseModelOptions {
     isSvg?: boolean;
     transformed?: boolean;
+    isWorktable?: boolean;
 }
 export interface LayerModelGenerics extends BaseModelGenerics {
     OPTIONS: LayerModelOptions;
@@ -27,6 +28,7 @@ export declare abstract class LayerModel<G extends LayerModelGenerics = LayerMod
     deserialize(event: DeserializeEvent<this>): void;
     serialize(): {
         isSvg: boolean;
+        isWorktable: boolean;
         transformed: boolean;
         models: {
             [x: string]: {
