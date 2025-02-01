@@ -1449,20 +1449,12 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             } },
-            Object.values(model.getLayers()[1].getModels()).map((nodos) => {
-                if (nodos.getOptions().nodeWorktable === true) {
-                    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' })));
-                }
-            }),
+            Object.values(model.getLayers()[1].getModels()).some(r => r.getOptions().nodeWorktable === true) && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' }))),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })),
-            Object.values(model.getLayers()[1].getModels()).map((nodos) => {
-                if (nodos.getOptions().nodeWorktable === false) {
-                    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })));
-                }
-            })));
+            Object.values(model.getLayers()[1].getModels()).some(r => r.getOptions().nodeWorktable === false) && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })))));
     }
 }
 
@@ -1644,17 +1636,17 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
+        console.log('this.props.children  AAA ', this.props.children);
+        // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children ==='new_workt') {
+        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
+        // }
         if (this.props.layer.getOptions().isSvg) {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
-        console.log('control children', this.props.children);
-        // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children?.key ==='new_workt') {
-        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
-        // }
         // if (this.props.layer.getOptions().isWorktable === false ) {
-        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
-        // }
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        // }
+        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
     }
 }
 

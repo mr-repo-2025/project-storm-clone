@@ -47,17 +47,17 @@ export class TransformLayerWidget extends React.Component {
         return {};
     }
     render() {
+        console.log('this.props.children  AAA ', this.props.children);
+        // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children ==='new_workt') {
+        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
+        // }
         if (this.props.layer.getOptions().isSvg) {
             return React.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
-        console.log('control children', this.props.children);
-        // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children?.key ==='new_workt') {
-        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
-        // }
         // if (this.props.layer.getOptions().isWorktable === false ) {
-        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
-        // }
         return React.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        // }
+        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
     }
 }
 //# sourceMappingURL=TransformLayerWidget.js.map
