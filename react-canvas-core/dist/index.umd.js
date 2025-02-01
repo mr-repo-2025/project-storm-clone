@@ -1429,6 +1429,7 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         this.registerCanvas();
     }
     render() {
+        var _a, _b;
         const engine = this.props.engine;
         const model = engine.getModel();
         console.log('model.getLayers() BB', model.getLayers());
@@ -1447,17 +1448,14 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             } },
-            model.getLayers()[1].getOptions().isWorktable === true && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null)),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' })),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })),
+            ((_a = model.getLayers()[1].getOptions()) === null || _a === void 0 ? void 0 : _a.isWorktable) === true && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' })))),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })),
-            model.getLayers().map((layer) => {
-                return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: layer, key: layer.getID() },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: layer, engine: this.props.engine, key: layer.getID() })));
-            })));
+            ((_b = model.getLayers()[1].getOptions()) === null || _b === void 0 ? void 0 : _b.isWorktable) === false && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' }))))));
     }
 }
 
@@ -1643,13 +1641,13 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
         console.log('control children', this.props.children);
-        if (this.props.layer.getOptions().isWorktable === true) {
-            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
-        }
-        if (this.props.layer.getOptions().isWorktable === false) {
-            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
-        }
-        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
+        // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children?.key ==='new_workt') {
+        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
+        // }
+        // if (this.props.layer.getOptions().isWorktable === false ) {
+        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
+        // }
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
     }
 }
 
