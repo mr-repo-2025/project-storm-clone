@@ -574,11 +574,13 @@ class BaseEntity extends _core_BaseObserver__WEBPACK_IMPORTED_MODULE_2__.BaseObs
     deserialize(event) {
         this.options.id = event.data.id;
         this.options.locked = event.data.locked;
+        this.options.nodeWorktable = event.data.nodeWorktable;
     }
     serialize() {
         return {
             id: this.options.id,
-            locked: this.options.locked
+            locked: this.options.locked,
+            nodeWorktable: this.options.nodeWorktable
         };
     }
     fireEvent(event, k) {
@@ -1429,7 +1431,6 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         this.registerCanvas();
     }
     render() {
-        var _a, _b;
         const engine = this.props.engine;
         const model = engine.getModel();
         console.log('model.getLayers() BB', model.getLayers());
@@ -1448,14 +1449,20 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             } },
-            ((_a = model.getLayers()[1].getOptions()) === null || _a === void 0 ? void 0 : _a.isWorktable) === true && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' })))),
+            Object.values(model.getLayers()[1].getModels()).map((nodos) => {
+                if (nodos.getOptions().nodeWorktable === true) {
+                    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' })));
+                }
+            }),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })),
-            ((_b = model.getLayers()[1].getOptions()) === null || _b === void 0 ? void 0 : _b.isWorktable) === false && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' }))))));
+            Object.values(model.getLayers()[1].getModels()).map((nodos) => {
+                if (nodos.getOptions().nodeWorktable === false) {
+                    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_TransformLayerWidget__WEBPACK_IMPORTED_MODULE_1__.TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layer_SmartLayerWidget__WEBPACK_IMPORTED_MODULE_3__.SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: model.getLayers()[1].getID() })));
+                }
+            })));
     }
 }
 

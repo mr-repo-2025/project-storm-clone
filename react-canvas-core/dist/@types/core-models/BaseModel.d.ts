@@ -30,6 +30,7 @@ export declare class BaseModel<G extends BaseModelGenerics = BaseModelGenerics> 
         extras: any;
         id: string;
         locked: boolean;
+        nodeWorktable: boolean;
     };
     deserialize(event: DeserializeEvent<this>): void;
     getType(): string;
