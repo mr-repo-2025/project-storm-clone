@@ -57,7 +57,9 @@ export class DiagramModel extends CanvasModel {
             else {
                 this.activeNodeLayer = layers[0];
             }
+            console.log('layers abbs', layers);
         }
+        console.log('layers this.activeNodeLayer', this.activeNodeLayer);
         return this.activeNodeLayer;
     }
     getActiveLinkLayer() {

@@ -1616,7 +1616,9 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
             else {
                 this.activeNodeLayer = layers[0];
             }
+            console.log('layers abbs', layers);
         }
+        console.log('layers this.activeNodeLayer', this.activeNodeLayer);
         return this.activeNodeLayer;
     }
     getActiveLinkLayer() {
