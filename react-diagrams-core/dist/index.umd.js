@@ -896,6 +896,51 @@ class PointModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
+/***/ "./dist/entities/node-layer-w/NodeWLayerModel.js":
+/*!*******************************************************!*\
+  !*** ./dist/entities/node-layer-w/NodeWLayerModel.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NodeWLayerModel: () => (/* binding */ NodeWLayerModel)
+/* harmony export */ });
+/* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-canvas-core */ "@projectstorm/react-canvas-core");
+/* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_NodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node/NodeModel */ "./dist/entities/node/NodeModel.js");
+
+
+class NodeWLayerModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_0__.LayerModel {
+    constructor() {
+        super({
+            type: 'diagram-nodes-w',
+            isSvg: false,
+            transformed: true
+        });
+    }
+    addModel(model) {
+        if (!(model instanceof _node_NodeModel__WEBPACK_IMPORTED_MODULE_1__.NodeModel)) {
+            throw new Error('Can only add nodes to this layer');
+        }
+        model.registerListener({
+            entityRemoved: () => {
+                this.getParent().removeNode(model);
+            }
+        });
+        super.addModel(model);
+    }
+    getChildModelFactoryBank(engine) {
+        return engine.getNodeFactories();
+    }
+    getNodes() {
+        return this.getModels();
+    }
+}
+
+
+/***/ }),
+
 /***/ "./dist/entities/node-layer/NodeLayerFactory.js":
 /*!******************************************************!*\
   !*** ./dist/entities/node-layer/NodeLayerFactory.js ***!
@@ -1446,7 +1491,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @projectstorm/react-canvas-core */ "@projectstorm/react-canvas-core");
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entities/node-layer/NodeLayerModel */ "./dist/entities/node-layer/NodeLayerModel.js");
-/* harmony import */ var _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../entities/link-layer/LinkLayerModel */ "./dist/entities/link-layer/LinkLayerModel.js");
+/* harmony import */ var _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../entities/node-layer-w/NodeWLayerModel */ "./dist/entities/node-layer-w/NodeWLayerModel.js");
+/* harmony import */ var _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../entities/link-layer/LinkLayerModel */ "./dist/entities/link-layer/LinkLayerModel.js");
+
 
 
 
@@ -1460,8 +1507,9 @@ __webpack_require__.r(__webpack_exports__);
 class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__.CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
+        this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel());
         this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
+        this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());
     }
     deserialize(event) {
         this.layers = [];
@@ -1472,13 +1520,21 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         if (layer instanceof _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel) {
             this.activeNodeLayer = layer;
         }
-        if (layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel) {
+        if (layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel) {
             this.activeLinkLayer = layer;
+        }
+        if (layer instanceof _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel) {
+            this.activeNodeWLayer = layer;
         }
     }
     getLinkLayers() {
         return lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(this.layers, (layer) => {
-            return layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel;
+            return layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel;
+        });
+    }
+    getNodeWLayers() {
+        return lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(this.layers, (layer) => {
+            return layer instanceof _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel;
         });
     }
     getNodeLayers() {
@@ -1488,9 +1544,10 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
     }
     getActiveNodeLayer() {
         if (!this.activeNodeLayer) {
-            const layers = this.getNodeLayers();
+            const layers = [...this.getNodeLayers(), ...this.getNodeWLayers()];
             if (layers.length === 0) {
                 this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
+                this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());
             }
             else {
                 this.activeNodeLayer = layers[0];
@@ -1502,7 +1559,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         if (!this.activeLinkLayer) {
             const layers = this.getLinkLayers();
             if (layers.length === 0) {
-                this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
+                this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel());
             }
             else {
                 this.activeLinkLayer = layers[0];

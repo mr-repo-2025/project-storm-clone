@@ -7,12 +7,14 @@ import { LinkModel } from '../entities/link/LinkModel';
 import { NodeModel } from '../entities/node/NodeModel';
 import { CanvasModel } from '@projectstorm/react-canvas-core';
 import { NodeLayerModel } from '../entities/node-layer/NodeLayerModel';
+import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 import { LinkLayerModel } from '../entities/link-layer/LinkLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
         this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeLayerModel());
+        this.addLayer(new NodeWLayerModel());
     }
     deserialize(event) {
         this.layers = [];
@@ -26,10 +28,18 @@ export class DiagramModel extends CanvasModel {
         if (layer instanceof LinkLayerModel) {
             this.activeLinkLayer = layer;
         }
+        if (layer instanceof NodeWLayerModel) {
+            this.activeNodeWLayer = layer;
+        }
     }
     getLinkLayers() {
         return _filter(this.layers, (layer) => {
             return layer instanceof LinkLayerModel;
+        });
+    }
+    getNodeWLayers() {
+        return _filter(this.layers, (layer) => {
+            return layer instanceof NodeWLayerModel;
         });
     }
     getNodeLayers() {
@@ -39,9 +49,10 @@ export class DiagramModel extends CanvasModel {
     }
     getActiveNodeLayer() {
         if (!this.activeNodeLayer) {
-            const layers = this.getNodeLayers();
+            const layers = [...this.getNodeLayers(), ...this.getNodeWLayers()];
             if (layers.length === 0) {
                 this.addLayer(new NodeLayerModel());
+                this.addLayer(new NodeWLayerModel());
             }
             else {
                 this.activeNodeLayer = layers[0];
