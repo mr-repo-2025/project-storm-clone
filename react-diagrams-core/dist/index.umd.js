@@ -896,6 +896,41 @@ class PointModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
+/***/ "./dist/entities/node-layer-w/NodeWLayerFactory.js":
+/*!*********************************************************!*\
+  !*** ./dist/entities/node-layer-w/NodeWLayerFactory.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NodeWLayerFactory: () => (/* binding */ NodeWLayerFactory)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @projectstorm/react-canvas-core */ "@projectstorm/react-canvas-core");
+/* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _NodeWLayerModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NodeWLayerModel */ "./dist/entities/node-layer-w/NodeWLayerModel.js");
+/* harmony import */ var _NodeWLayerWidget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NodeWLayerWidget */ "./dist/entities/node-layer-w/NodeWLayerWidget.js");
+
+
+
+
+class NodeWLayerFactory extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__.AbstractReactFactory {
+    constructor() {
+        super('diagram-nodes');
+    }
+    generateModel(event) {
+        return new _NodeWLayerModel__WEBPACK_IMPORTED_MODULE_2__.NodeWLayerModel();
+    }
+    generateReactWidget(event) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NodeWLayerWidget__WEBPACK_IMPORTED_MODULE_3__.NodeWLayerWidget, { layer: event.model, engine: this.engine });
+    }
+}
+
+
+/***/ }),
+
 /***/ "./dist/entities/node-layer-w/NodeWLayerModel.js":
 /*!*******************************************************!*\
   !*** ./dist/entities/node-layer-w/NodeWLayerModel.js ***!
@@ -935,6 +970,35 @@ class NodeWLayerModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_
     }
     getNodes() {
         return this.getModels();
+    }
+}
+
+
+/***/ }),
+
+/***/ "./dist/entities/node-layer-w/NodeWLayerWidget.js":
+/*!********************************************************!*\
+  !*** ./dist/entities/node-layer-w/NodeWLayerWidget.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NodeWLayerWidget: () => (/* binding */ NodeWLayerWidget)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/map */ "lodash/map");
+/* harmony import */ var lodash_map__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_map__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_NodeWidget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node/NodeWidget */ "./dist/entities/node/NodeWidget.js");
+
+
+
+class NodeWLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+    render() {
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, lodash_map__WEBPACK_IMPORTED_MODULE_1___default()(this.props.layer.getNodes(), (node) => {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_node_NodeWidget__WEBPACK_IMPORTED_MODULE_2__.NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
+        })));
     }
 }
 
@@ -2061,11 +2125,11 @@ var __webpack_exports__ = {};
   \***********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   DefaultDiagramState: () => (/* reexport safe */ _states_DefaultDiagramState__WEBPACK_IMPORTED_MODULE_15__.DefaultDiagramState),
-/* harmony export */   DiagramEngine: () => (/* reexport safe */ _DiagramEngine__WEBPACK_IMPORTED_MODULE_18__.DiagramEngine),
+/* harmony export */   DefaultDiagramState: () => (/* reexport safe */ _states_DefaultDiagramState__WEBPACK_IMPORTED_MODULE_18__.DefaultDiagramState),
+/* harmony export */   DiagramEngine: () => (/* reexport safe */ _DiagramEngine__WEBPACK_IMPORTED_MODULE_21__.DiagramEngine),
 /* harmony export */   DiagramModel: () => (/* reexport safe */ _models_DiagramModel__WEBPACK_IMPORTED_MODULE_0__.DiagramModel),
-/* harmony export */   DragDiagramItemsState: () => (/* reexport safe */ _states_DragDiagramItemsState__WEBPACK_IMPORTED_MODULE_16__.DragDiagramItemsState),
-/* harmony export */   DragNewLinkState: () => (/* reexport safe */ _states_DragNewLinkState__WEBPACK_IMPORTED_MODULE_17__.DragNewLinkState),
+/* harmony export */   DragDiagramItemsState: () => (/* reexport safe */ _states_DragDiagramItemsState__WEBPACK_IMPORTED_MODULE_19__.DragDiagramItemsState),
+/* harmony export */   DragNewLinkState: () => (/* reexport safe */ _states_DragNewLinkState__WEBPACK_IMPORTED_MODULE_20__.DragNewLinkState),
 /* harmony export */   LabelModel: () => (/* reexport safe */ _entities_label_LabelModel__WEBPACK_IMPORTED_MODULE_1__.LabelModel),
 /* harmony export */   LinkLayerFactory: () => (/* reexport safe */ _entities_link_layer_LinkLayerFactory__WEBPACK_IMPORTED_MODULE_7__.LinkLayerFactory),
 /* harmony export */   LinkLayerModel: () => (/* reexport safe */ _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_5__.LinkLayerModel),
@@ -2075,12 +2139,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   NodeLayerFactory: () => (/* reexport safe */ _entities_node_layer_NodeLayerFactory__WEBPACK_IMPORTED_MODULE_10__.NodeLayerFactory),
 /* harmony export */   NodeLayerModel: () => (/* reexport safe */ _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel),
 /* harmony export */   NodeLayerWidget: () => (/* reexport safe */ _entities_node_layer_NodeLayerWidget__WEBPACK_IMPORTED_MODULE_9__.NodeLayerWidget),
-/* harmony export */   NodeModel: () => (/* reexport safe */ _entities_node_NodeModel__WEBPACK_IMPORTED_MODULE_11__.NodeModel),
-/* harmony export */   NodeWidget: () => (/* reexport safe */ _entities_node_NodeWidget__WEBPACK_IMPORTED_MODULE_12__.NodeWidget),
+/* harmony export */   NodeModel: () => (/* reexport safe */ _entities_node_NodeModel__WEBPACK_IMPORTED_MODULE_14__.NodeModel),
+/* harmony export */   NodeWLayerFactory: () => (/* reexport safe */ _entities_node_layer_w_NodeWLayerFactory__WEBPACK_IMPORTED_MODULE_13__.NodeWLayerFactory),
+/* harmony export */   NodeWLayerModel: () => (/* reexport safe */ _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_11__.NodeWLayerModel),
+/* harmony export */   NodeWLayerWidget: () => (/* reexport safe */ _entities_node_layer_w_NodeWLayerWidget__WEBPACK_IMPORTED_MODULE_12__.NodeWLayerWidget),
+/* harmony export */   NodeWidget: () => (/* reexport safe */ _entities_node_NodeWidget__WEBPACK_IMPORTED_MODULE_15__.NodeWidget),
 /* harmony export */   PointModel: () => (/* reexport safe */ _entities_link_PointModel__WEBPACK_IMPORTED_MODULE_3__.PointModel),
-/* harmony export */   PortModel: () => (/* reexport safe */ _entities_port_PortModel__WEBPACK_IMPORTED_MODULE_13__.PortModel),
-/* harmony export */   PortModelAlignment: () => (/* reexport safe */ _entities_port_PortModel__WEBPACK_IMPORTED_MODULE_13__.PortModelAlignment),
-/* harmony export */   PortWidget: () => (/* reexport safe */ _entities_port_PortWidget__WEBPACK_IMPORTED_MODULE_14__.PortWidget)
+/* harmony export */   PortModel: () => (/* reexport safe */ _entities_port_PortModel__WEBPACK_IMPORTED_MODULE_16__.PortModel),
+/* harmony export */   PortModelAlignment: () => (/* reexport safe */ _entities_port_PortModel__WEBPACK_IMPORTED_MODULE_16__.PortModelAlignment),
+/* harmony export */   PortWidget: () => (/* reexport safe */ _entities_port_PortWidget__WEBPACK_IMPORTED_MODULE_17__.PortWidget)
 /* harmony export */ });
 /* harmony import */ var _models_DiagramModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/DiagramModel */ "./dist/models/DiagramModel.js");
 /* harmony import */ var _entities_label_LabelModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entities/label/LabelModel */ "./dist/entities/label/LabelModel.js");
@@ -2093,14 +2160,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./entities/node-layer/NodeLayerModel */ "./dist/entities/node-layer/NodeLayerModel.js");
 /* harmony import */ var _entities_node_layer_NodeLayerWidget__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./entities/node-layer/NodeLayerWidget */ "./dist/entities/node-layer/NodeLayerWidget.js");
 /* harmony import */ var _entities_node_layer_NodeLayerFactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./entities/node-layer/NodeLayerFactory */ "./dist/entities/node-layer/NodeLayerFactory.js");
-/* harmony import */ var _entities_node_NodeModel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./entities/node/NodeModel */ "./dist/entities/node/NodeModel.js");
-/* harmony import */ var _entities_node_NodeWidget__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./entities/node/NodeWidget */ "./dist/entities/node/NodeWidget.js");
-/* harmony import */ var _entities_port_PortModel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./entities/port/PortModel */ "./dist/entities/port/PortModel.js");
-/* harmony import */ var _entities_port_PortWidget__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./entities/port/PortWidget */ "./dist/entities/port/PortWidget.js");
-/* harmony import */ var _states_DefaultDiagramState__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./states/DefaultDiagramState */ "./dist/states/DefaultDiagramState.js");
-/* harmony import */ var _states_DragDiagramItemsState__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./states/DragDiagramItemsState */ "./dist/states/DragDiagramItemsState.js");
-/* harmony import */ var _states_DragNewLinkState__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./states/DragNewLinkState */ "./dist/states/DragNewLinkState.js");
-/* harmony import */ var _DiagramEngine__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./DiagramEngine */ "./dist/DiagramEngine.js");
+/* harmony import */ var _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./entities/node-layer-w/NodeWLayerModel */ "./dist/entities/node-layer-w/NodeWLayerModel.js");
+/* harmony import */ var _entities_node_layer_w_NodeWLayerWidget__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./entities/node-layer-w/NodeWLayerWidget */ "./dist/entities/node-layer-w/NodeWLayerWidget.js");
+/* harmony import */ var _entities_node_layer_w_NodeWLayerFactory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./entities/node-layer-w/NodeWLayerFactory */ "./dist/entities/node-layer-w/NodeWLayerFactory.js");
+/* harmony import */ var _entities_node_NodeModel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./entities/node/NodeModel */ "./dist/entities/node/NodeModel.js");
+/* harmony import */ var _entities_node_NodeWidget__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./entities/node/NodeWidget */ "./dist/entities/node/NodeWidget.js");
+/* harmony import */ var _entities_port_PortModel__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./entities/port/PortModel */ "./dist/entities/port/PortModel.js");
+/* harmony import */ var _entities_port_PortWidget__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./entities/port/PortWidget */ "./dist/entities/port/PortWidget.js");
+/* harmony import */ var _states_DefaultDiagramState__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./states/DefaultDiagramState */ "./dist/states/DefaultDiagramState.js");
+/* harmony import */ var _states_DragDiagramItemsState__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./states/DragDiagramItemsState */ "./dist/states/DragDiagramItemsState.js");
+/* harmony import */ var _states_DragNewLinkState__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./states/DragNewLinkState */ "./dist/states/DragNewLinkState.js");
+/* harmony import */ var _DiagramEngine__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./DiagramEngine */ "./dist/DiagramEngine.js");
+
+
+
 
 
 
