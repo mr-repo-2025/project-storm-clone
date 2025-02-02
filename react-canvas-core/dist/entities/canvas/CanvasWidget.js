@@ -69,8 +69,8 @@ export class CanvasWidget extends React.Component {
             }, onTouchMove: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             } },
-            Object.values(model.getLayers()[1].getModels()).some(r => r.getOptions().nodeWorktable === true) && (React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
-                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' }))),
+            React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: 'new_workt' },
+                React.createElement(SmartLayerWidget, { layer: model.getLayers()[1], engine: this.props.engine, key: 'new_workt' })),
             React.createElement(TransformLayerWidget, { layer: model.getLayers()[0], key: model.getLayers()[0].getID() },
                 React.createElement(SmartLayerWidget, { layer: model.getLayers()[0], engine: this.props.engine, key: model.getLayers()[0].getID() })),
             Object.values(model.getLayers()[1].getModels()).some(r => r.getOptions().nodeWorktable === false) && (React.createElement(TransformLayerWidget, { layer: model.getLayers()[1], key: model.getLayers()[1].getID() },
