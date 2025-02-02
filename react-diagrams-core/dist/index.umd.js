@@ -1619,7 +1619,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         return this.activeNodeLayer;
     }
     getActiveNodeWLayer() {
-        if (!this.activeNodeLayer) {
+        if (!this.activeNodeWLayer) {
             const layers = this.getNodeWLayers();
             if (layers.length === 0) {
                 this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());

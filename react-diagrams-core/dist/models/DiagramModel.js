@@ -60,7 +60,7 @@ export class DiagramModel extends CanvasModel {
         return this.activeNodeLayer;
     }
     getActiveNodeWLayer() {
-        if (!this.activeNodeLayer) {
+        if (!this.activeNodeWLayer) {
             const layers = this.getNodeWLayers();
             if (layers.length === 0) {
                 this.addLayer(new NodeWLayerModel());
