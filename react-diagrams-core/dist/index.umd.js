@@ -1608,18 +1608,27 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
     }
     getActiveNodeLayer() {
         if (!this.activeNodeLayer) {
-            const layers = [...this.getNodeLayers(), ...this.getNodeWLayers()];
+            const layers = this.getNodeLayers();
             if (layers.length === 0) {
                 this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
-                this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());
             }
             else {
                 this.activeNodeLayer = layers[0];
             }
-            console.log('layers abbs', layers);
         }
-        console.log('layers this.activeNodeLayer', this.activeNodeLayer);
         return this.activeNodeLayer;
+    }
+    getActiveNodeWLayer() {
+        if (!this.activeNodeLayer) {
+            const layers = this.getNodeWLayers();
+            if (layers.length === 0) {
+                this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());
+            }
+            else {
+                this.activeNodeWLayer = layers[0];
+            }
+            return this.activeNodeWLayer;
+        }
     }
     getActiveLinkLayer() {
         if (!this.activeLinkLayer) {
@@ -1634,7 +1643,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         return this.activeLinkLayer;
     }
     getNode(node) {
-        for (const layer of this.getNodeLayers()) {
+        for (const layer of [...this.getNodeLayers(), ...this.getNodeWLayers()]) {
             const model = layer.getModel(node);
             if (model) {
                 return model;
@@ -1669,7 +1678,12 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         return link;
     }
     addNode(node) {
-        this.getActiveNodeLayer().addModel(node);
+        if (node.getOptions().type === 'work-table') {
+            this.getActiveNodeWLayer().addModel(node);
+        }
+        if (node.getOptions().type !== 'work-table') {
+            this.getActiveNodeLayer().addModel(node);
+        }
         this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
         return node;
     }

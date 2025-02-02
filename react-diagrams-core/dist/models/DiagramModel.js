@@ -49,18 +49,27 @@ export class DiagramModel extends CanvasModel {
     }
     getActiveNodeLayer() {
         if (!this.activeNodeLayer) {
-            const layers = [...this.getNodeLayers(), ...this.getNodeWLayers()];
+            const layers = this.getNodeLayers();
             if (layers.length === 0) {
                 this.addLayer(new NodeLayerModel());
-                this.addLayer(new NodeWLayerModel());
             }
             else {
                 this.activeNodeLayer = layers[0];
             }
-            console.log('layers abbs', layers);
         }
-        console.log('layers this.activeNodeLayer', this.activeNodeLayer);
         return this.activeNodeLayer;
+    }
+    getActiveNodeWLayer() {
+        if (!this.activeNodeLayer) {
+            const layers = this.getNodeWLayers();
+            if (layers.length === 0) {
+                this.addLayer(new NodeWLayerModel());
+            }
+            else {
+                this.activeNodeWLayer = layers[0];
+            }
+            return this.activeNodeWLayer;
+        }
     }
     getActiveLinkLayer() {
         if (!this.activeLinkLayer) {
@@ -75,7 +84,7 @@ export class DiagramModel extends CanvasModel {
         return this.activeLinkLayer;
     }
     getNode(node) {
-        for (const layer of this.getNodeLayers()) {
+        for (const layer of [...this.getNodeLayers(), ...this.getNodeWLayers()]) {
             const model = layer.getModel(node);
             if (model) {
                 return model;
@@ -110,7 +119,12 @@ export class DiagramModel extends CanvasModel {
         return link;
     }
     addNode(node) {
-        this.getActiveNodeLayer().addModel(node);
+        if (node.getOptions().type === 'work-table') {
+            this.getActiveNodeWLayer().addModel(node);
+        }
+        if (node.getOptions().type !== 'work-table') {
+            this.getActiveNodeLayer().addModel(node);
+        }
         this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
         return node;
     }

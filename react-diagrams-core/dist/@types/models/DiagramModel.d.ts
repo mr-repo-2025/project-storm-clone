@@ -28,6 +28,7 @@ export declare class DiagramModel<G extends DiagramModelGenerics = DiagramModelG
     getNodeWLayers(): NodeWLayerModel[];
     getNodeLayers(): NodeLayerModel[];
     getActiveNodeLayer(): NodeLayerModel;
+    getActiveNodeWLayer(): NodeWLayerModel;
     getActiveLinkLayer(): LinkLayerModel;
     getNode(node: string): NodeModel;
     getLink(link: string): LinkModel;
