@@ -27,7 +27,7 @@ export declare class BasePositionModel<G extends BasePositionModelGenerics = Bas
         extras: any;
         id: string;
         locked: boolean;
-        nodeWorktable: boolean;
+        isWorktable: boolean;
     };
     getPosition(): Point;
     getX(): number;

@@ -55,7 +55,7 @@ export declare class CanvasModel<G extends CanvasModelGenerics = CanvasModelGene
                     extras: any;
                     id: string;
                     locked: boolean;
-                    nodeWorktable: boolean;
+                    isWorktable: boolean;
                 };
             };
             type: string;
@@ -63,11 +63,10 @@ export declare class CanvasModel<G extends CanvasModelGenerics = CanvasModelGene
             extras: any;
             id: string;
             locked: boolean;
-            nodeWorktable: boolean;
         }[];
         id: string;
         locked: boolean;
-        nodeWorktable: boolean;
+        isWorktable: boolean;
     };
     setZoomLevel(zoom: number): void;
     setOffset(offsetX: number, offsetY: number): void;

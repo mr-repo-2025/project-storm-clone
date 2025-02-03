@@ -16,7 +16,7 @@ export type BaseEntityType = 'node' | 'link' | 'port' | 'point';
 export interface BaseEntityOptions {
     id?: string;
     locked?: boolean;
-    nodeWorktable?: boolean;
+    isWorktable?: boolean;
 }
 export type BaseEntityGenerics = {
     LISTENER: BaseEntityListener;
@@ -44,7 +44,7 @@ export declare class BaseEntity<T extends BaseEntityGenerics = BaseEntityGeneric
     serialize(): {
         id: string;
         locked: boolean;
-        nodeWorktable: boolean;
+        isWorktable: boolean;
     };
     fireEvent<L extends Partial<BaseEntityEvent> & object>(event: L, k: keyof T['LISTENER']): void;
     isLocked(): boolean;

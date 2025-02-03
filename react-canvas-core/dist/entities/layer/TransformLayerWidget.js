@@ -47,7 +47,7 @@ export class TransformLayerWidget extends React.Component {
         return {};
     }
     render() {
-        console.log('this.props.children  AAA ', this.props.children);
+        // console.log('this.props.children  AAA ',this.props.layer.getOptions());
         // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children ==='new_workt') {
         // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
         // }

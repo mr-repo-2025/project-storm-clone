@@ -37,7 +37,7 @@ export declare abstract class LayerModel<G extends LayerModelGenerics = LayerMod
                 extras: any;
                 id: string;
                 locked: boolean;
-                nodeWorktable: boolean;
+                isWorktable: boolean;
             };
         };
         type: string;
@@ -45,7 +45,6 @@ export declare abstract class LayerModel<G extends LayerModelGenerics = LayerMod
         extras: any;
         id: string;
         locked: boolean;
-        nodeWorktable: boolean;
     };
     isRepaintEnabled(): boolean;
     allowRepaint(allow?: boolean): void;
