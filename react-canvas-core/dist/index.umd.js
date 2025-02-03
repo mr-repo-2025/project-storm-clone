@@ -1433,7 +1433,6 @@ class CanvasWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     render() {
         const engine = this.props.engine;
         const model = engine.getModel();
-        console.log('model.getLayers() BB', model.getLayers());
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.Canvas, { className: this.props.className, ref: this.ref, onWheel: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onMouseDown: (event) => {
@@ -1637,17 +1636,10 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
         return {};
     }
     render() {
-        // console.log('this.props.children  AAA ',this.props.layer.getOptions());
-        // if (this.props.layer.getOptions().isWorktable === true &&  this.props.children ==='new_workt') {
-        // 	return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
-        // }
         if (this.props.layer.getOptions().isSvg) {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
         }
-        // if (this.props.layer.getOptions().isWorktable === false ) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
-        // }
-        // return <S.DivLayer style={this.getTransformStyle()}>{this.props.children}</S.DivLayer>;
     }
 }
 

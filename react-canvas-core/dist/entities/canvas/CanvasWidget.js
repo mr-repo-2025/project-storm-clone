@@ -53,7 +53,6 @@ export class CanvasWidget extends React.Component {
     render() {
         const engine = this.props.engine;
         const model = engine.getModel();
-        console.log('model.getLayers() BB', model.getLayers());
         return (React.createElement(S.Canvas, { className: this.props.className, ref: this.ref, onWheel: (event) => {
                 this.props.engine.getActionEventBus().fireAction({ event });
             }, onMouseDown: (event) => {

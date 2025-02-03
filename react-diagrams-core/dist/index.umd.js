@@ -996,7 +996,6 @@ __webpack_require__.r(__webpack_exports__);
 
 class NodeWLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     render() {
-        console.log("Rendering CustomNodeLayerWidget", this.props.layer.getModels());
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, lodash_map__WEBPACK_IMPORTED_MODULE_1___default()(this.props.layer.getNodes(), (node) => {
             return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_node_NodeWidget__WEBPACK_IMPORTED_MODULE_2__.NodeWidget, { key: node.getID(), diagramEngine: this.props.engine, node: node });
         })));
