@@ -918,7 +918,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class NodeWLayerFactory extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__.AbstractReactFactory {
     constructor() {
-        super('diagram-nodes');
+        super('diagram-nodes-w');
     }
     generateModel(event) {
         return new _NodeWLayerModel__WEBPACK_IMPORTED_MODULE_2__.NodeWLayerModel();

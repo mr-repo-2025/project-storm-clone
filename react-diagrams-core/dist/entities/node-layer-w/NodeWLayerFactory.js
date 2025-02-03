@@ -4,7 +4,7 @@ import { NodeWLayerModel } from './NodeWLayerModel';
 import { NodeWLayerWidget } from './NodeWLayerWidget';
 export class NodeWLayerFactory extends AbstractReactFactory {
     constructor() {
-        super('diagram-nodes');
+        super('diagram-nodes-w');
     }
     generateModel(event) {
         return new NodeWLayerModel();
