@@ -956,7 +956,7 @@ class NodeWLayerModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_
     }
     addModel(model) {
         if (!(model instanceof _node_NodeModel__WEBPACK_IMPORTED_MODULE_1__.NodeModel)) {
-            throw new Error('Can only add nodes to this layer');
+            throw new Error('Can only add nodes to this layer ');
         }
         model.registerListener({
             entityRemoved: () => {
@@ -1635,6 +1635,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
             }
         }
     }
+    //  un comentario 
     addAll(...models) {
         lodash_forEach__WEBPACK_IMPORTED_MODULE_2___default()(models, (model) => {
             if (model instanceof _entities_link_LinkModel__WEBPACK_IMPORTED_MODULE_5__.LinkModel) {

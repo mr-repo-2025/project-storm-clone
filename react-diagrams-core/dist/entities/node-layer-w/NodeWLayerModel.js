@@ -10,7 +10,7 @@ export class NodeWLayerModel extends LayerModel {
     }
     addModel(model) {
         if (!(model instanceof NodeModel)) {
-            throw new Error('Can only add nodes to this layer');
+            throw new Error('Can only add nodes to this layer ');
         }
         model.registerListener({
             entityRemoved: () => {

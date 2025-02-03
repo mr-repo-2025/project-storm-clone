@@ -77,6 +77,7 @@ export class DiagramModel extends CanvasModel {
             }
         }
     }
+    //  un comentario 
     addAll(...models) {
         _forEach(models, (model) => {
             if (model instanceof LinkModel) {
