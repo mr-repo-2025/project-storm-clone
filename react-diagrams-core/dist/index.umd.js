@@ -1555,9 +1555,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @projectstorm/react-canvas-core */ "@projectstorm/react-canvas-core");
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entities/node-layer/NodeLayerModel */ "./dist/entities/node-layer/NodeLayerModel.js");
-/* harmony import */ var _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../entities/node-layer-w/NodeWLayerModel */ "./dist/entities/node-layer-w/NodeWLayerModel.js");
-/* harmony import */ var _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../entities/link-layer/LinkLayerModel */ "./dist/entities/link-layer/LinkLayerModel.js");
-
+/* harmony import */ var _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../entities/link-layer/LinkLayerModel */ "./dist/entities/link-layer/LinkLayerModel.js");
 
 
 
@@ -1571,9 +1569,8 @@ __webpack_require__.r(__webpack_exports__);
 class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__.CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel());
+        this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
         this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
-        this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());
     }
     deserialize(event) {
         this.layers = [];
@@ -1584,21 +1581,13 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         if (layer instanceof _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel) {
             this.activeNodeLayer = layer;
         }
-        if (layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel) {
+        if (layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel) {
             this.activeLinkLayer = layer;
-        }
-        if (layer instanceof _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel) {
-            this.activeNodeWLayer = layer;
         }
     }
     getLinkLayers() {
         return lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(this.layers, (layer) => {
-            return layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel;
-        });
-    }
-    getNodeWLayers() {
-        return lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(this.layers, (layer) => {
-            return layer instanceof _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel;
+            return layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel;
         });
     }
     getNodeLayers() {
@@ -1618,23 +1607,11 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         }
         return this.activeNodeLayer;
     }
-    getActiveNodeWLayer() {
-        if (!this.activeNodeWLayer) {
-            const layers = this.getNodeWLayers();
-            if (layers.length === 0) {
-                this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_9__.NodeWLayerModel());
-            }
-            else {
-                this.activeNodeWLayer = layers[0];
-            }
-            return this.activeNodeWLayer;
-        }
-    }
     getActiveLinkLayer() {
         if (!this.activeLinkLayer) {
             const layers = this.getLinkLayers();
             if (layers.length === 0) {
-                this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_10__.LinkLayerModel());
+                this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
             }
             else {
                 this.activeLinkLayer = layers[0];
@@ -1643,7 +1620,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         return this.activeLinkLayer;
     }
     getNode(node) {
-        for (const layer of [...this.getNodeLayers(), ...this.getNodeWLayers()]) {
+        for (const layer of this.getNodeLayers()) {
             const model = layer.getModel(node);
             if (model) {
                 return model;
@@ -1678,12 +1655,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         return link;
     }
     addNode(node) {
-        if (node.getOptions().type === 'work-table') {
-            this.getActiveNodeWLayer().addModel(node);
-        }
-        if (node.getOptions().type !== 'work-table') {
-            this.getActiveNodeLayer().addModel(node);
-        }
+        this.getActiveNodeLayer().addModel(node);
         this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
         return node;
     }

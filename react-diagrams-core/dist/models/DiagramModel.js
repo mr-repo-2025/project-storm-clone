@@ -7,14 +7,12 @@ import { LinkModel } from '../entities/link/LinkModel';
 import { NodeModel } from '../entities/node/NodeModel';
 import { CanvasModel } from '@projectstorm/react-canvas-core';
 import { NodeLayerModel } from '../entities/node-layer/NodeLayerModel';
-import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 import { LinkLayerModel } from '../entities/link-layer/LinkLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
         this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeLayerModel());
-        this.addLayer(new NodeWLayerModel());
     }
     deserialize(event) {
         this.layers = [];
@@ -28,18 +26,10 @@ export class DiagramModel extends CanvasModel {
         if (layer instanceof LinkLayerModel) {
             this.activeLinkLayer = layer;
         }
-        if (layer instanceof NodeWLayerModel) {
-            this.activeNodeWLayer = layer;
-        }
     }
     getLinkLayers() {
         return _filter(this.layers, (layer) => {
             return layer instanceof LinkLayerModel;
-        });
-    }
-    getNodeWLayers() {
-        return _filter(this.layers, (layer) => {
-            return layer instanceof NodeWLayerModel;
         });
     }
     getNodeLayers() {
@@ -59,18 +49,6 @@ export class DiagramModel extends CanvasModel {
         }
         return this.activeNodeLayer;
     }
-    getActiveNodeWLayer() {
-        if (!this.activeNodeWLayer) {
-            const layers = this.getNodeWLayers();
-            if (layers.length === 0) {
-                this.addLayer(new NodeWLayerModel());
-            }
-            else {
-                this.activeNodeWLayer = layers[0];
-            }
-            return this.activeNodeWLayer;
-        }
-    }
     getActiveLinkLayer() {
         if (!this.activeLinkLayer) {
             const layers = this.getLinkLayers();
@@ -84,7 +62,7 @@ export class DiagramModel extends CanvasModel {
         return this.activeLinkLayer;
     }
     getNode(node) {
-        for (const layer of [...this.getNodeLayers(), ...this.getNodeWLayers()]) {
+        for (const layer of this.getNodeLayers()) {
             const model = layer.getModel(node);
             if (model) {
                 return model;
@@ -119,12 +97,7 @@ export class DiagramModel extends CanvasModel {
         return link;
     }
     addNode(node) {
-        if (node.getOptions().type === 'work-table') {
-            this.getActiveNodeWLayer().addModel(node);
-        }
-        if (node.getOptions().type !== 'work-table') {
-            this.getActiveNodeLayer().addModel(node);
-        }
+        this.getActiveNodeLayer().addModel(node);
         this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
         return node;
     }
