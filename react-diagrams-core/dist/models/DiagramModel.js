@@ -8,11 +8,13 @@ import { NodeModel } from '../entities/node/NodeModel';
 import { CanvasModel } from '@projectstorm/react-canvas-core';
 import { NodeLayerModel } from '../entities/node-layer/NodeLayerModel';
 import { LinkLayerModel } from '../entities/link-layer/LinkLayerModel';
+import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
         this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeLayerModel());
+        this.addLayer(new NodeWLayerModel());
     }
     deserialize(event) {
         this.layers = [];
@@ -35,6 +37,11 @@ export class DiagramModel extends CanvasModel {
     getNodeLayers() {
         return _filter(this.layers, (layer) => {
             return layer instanceof NodeLayerModel;
+        });
+    }
+    getNodeWLayers() {
+        return _filter(this.layers, (layer) => {
+            return layer instanceof NodeWLayerModel;
         });
     }
     getActiveNodeLayer() {
@@ -63,6 +70,14 @@ export class DiagramModel extends CanvasModel {
     }
     getNode(node) {
         for (const layer of this.getNodeLayers()) {
+            const model = layer.getModel(node);
+            if (model) {
+                return model;
+            }
+        }
+    }
+    getNodeW(node) {
+        for (const layer of this.getNodeWLayers()) {
             const model = layer.getModel(node);
             if (model) {
                 return model;
@@ -124,7 +139,7 @@ export class DiagramModel extends CanvasModel {
         });
     }
     getNodes() {
-        return _flatMap(this.getNodeLayers(), (layer) => {
+        return _flatMap([...this.getNodeLayers(), ...this.getNodeWLayers()], (layer) => {
             return _values(layer.getModels());
         });
     }

@@ -3,6 +3,7 @@ import { NodeModel } from '../entities/node/NodeModel';
 import { BaseEntityEvent, BaseEntityListener, BaseModel, CanvasModel, CanvasModelGenerics, LayerModel, DeserializeEvent } from '@projectstorm/react-canvas-core';
 import { NodeLayerModel } from '../entities/node-layer/NodeLayerModel';
 import { LinkLayerModel } from '../entities/link-layer/LinkLayerModel';
+import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 export interface DiagramListener extends BaseEntityListener {
     nodesUpdated?(event: BaseEntityEvent & {
         node: NodeModel;
@@ -24,9 +25,11 @@ export declare class DiagramModel<G extends DiagramModelGenerics = DiagramModelG
     addLayer(layer: LayerModel): void;
     getLinkLayers(): LinkLayerModel[];
     getNodeLayers(): NodeLayerModel[];
+    getNodeWLayers(): NodeWLayerModel[];
     getActiveNodeLayer(): NodeLayerModel;
     getActiveLinkLayer(): LinkLayerModel;
     getNode(node: string): NodeModel;
+    getNodeW(node: string): NodeModel;
     getLink(link: string): LinkModel;
     addAll(...models: BaseModel[]): BaseModel[];
     addLink(link: LinkModel): LinkModel;

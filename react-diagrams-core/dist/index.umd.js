@@ -1556,6 +1556,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entities/node-layer/NodeLayerModel */ "./dist/entities/node-layer/NodeLayerModel.js");
 /* harmony import */ var _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../entities/link-layer/LinkLayerModel */ "./dist/entities/link-layer/LinkLayerModel.js");
+/* harmony import */ var _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../entities/node-layer-w/NodeWLayerModel */ "./dist/entities/node-layer-w/NodeWLayerModel.js");
+
 
 
 
@@ -1571,6 +1573,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         super(options);
         this.addLayer(new _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel());
         this.addLayer(new _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel());
+        this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_10__.NodeWLayerModel());
     }
     deserialize(event) {
         this.layers = [];
@@ -1593,6 +1596,11 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
     getNodeLayers() {
         return lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(this.layers, (layer) => {
             return layer instanceof _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel;
+        });
+    }
+    getNodeWLayers() {
+        return lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(this.layers, (layer) => {
+            return layer instanceof _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_10__.NodeWLayerModel;
         });
     }
     getActiveNodeLayer() {
@@ -1621,6 +1629,14 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
     }
     getNode(node) {
         for (const layer of this.getNodeLayers()) {
+            const model = layer.getModel(node);
+            if (model) {
+                return model;
+            }
+        }
+    }
+    getNodeW(node) {
+        for (const layer of this.getNodeWLayers()) {
             const model = layer.getModel(node);
             if (model) {
                 return model;
@@ -1682,7 +1698,7 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         });
     }
     getNodes() {
-        return lodash_flatMap__WEBPACK_IMPORTED_MODULE_1___default()(this.getNodeLayers(), (layer) => {
+        return lodash_flatMap__WEBPACK_IMPORTED_MODULE_1___default()([...this.getNodeLayers(), ...this.getNodeWLayers()], (layer) => {
             return lodash_values__WEBPACK_IMPORTED_MODULE_4___default()(layer.getModels());
         });
     }
