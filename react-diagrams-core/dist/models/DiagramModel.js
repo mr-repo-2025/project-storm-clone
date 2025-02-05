@@ -56,6 +56,18 @@ export class DiagramModel extends CanvasModel {
         }
         return this.activeNodeLayer;
     }
+    getActiveNodeWLayer() {
+        if (!this.activeNodeWLayer) {
+            const layers = this.getNodeWLayers();
+            if (layers.length === 0) {
+                this.addLayer(new NodeWLayerModel());
+            }
+            else {
+                this.activeNodeWLayer = layers[0];
+            }
+        }
+        return this.activeNodeWLayer;
+    }
     getActiveLinkLayer() {
         if (!this.activeLinkLayer) {
             const layers = this.getLinkLayers();
@@ -114,6 +126,11 @@ export class DiagramModel extends CanvasModel {
     }
     addNode(node) {
         this.getActiveNodeLayer().addModel(node);
+        this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
+        return node;
+    }
+    addNodeW(node) {
+        this.getActiveNodeWLayer().addModel(node);
         this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
         return node;
     }

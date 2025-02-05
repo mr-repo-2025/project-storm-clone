@@ -19,6 +19,7 @@ export interface DiagramModelGenerics extends CanvasModelGenerics {
 }
 export declare class DiagramModel<G extends DiagramModelGenerics = DiagramModelGenerics> extends CanvasModel<G> {
     protected activeNodeLayer: NodeLayerModel;
+    protected activeNodeWLayer: NodeWLayerModel;
     protected activeLinkLayer: LinkLayerModel;
     constructor(options?: G['OPTIONS']);
     deserialize(event: DeserializeEvent<this>): void;
@@ -27,6 +28,7 @@ export declare class DiagramModel<G extends DiagramModelGenerics = DiagramModelG
     getNodeLayers(): NodeLayerModel[];
     getNodeWLayers(): NodeWLayerModel[];
     getActiveNodeLayer(): NodeLayerModel;
+    getActiveNodeWLayer(): NodeWLayerModel;
     getActiveLinkLayer(): LinkLayerModel;
     getNode(node: string): NodeModel;
     getNodeW(node: string): NodeModel;
@@ -34,6 +36,7 @@ export declare class DiagramModel<G extends DiagramModelGenerics = DiagramModelG
     addAll(...models: BaseModel[]): BaseModel[];
     addLink(link: LinkModel): LinkModel;
     addNode(node: NodeModel): NodeModel;
+    addNodeW(node: NodeModel): NodeModel;
     removeLink(link: LinkModel): void;
     removeNode(node: NodeModel): void;
     getLinks(): LinkModel[];

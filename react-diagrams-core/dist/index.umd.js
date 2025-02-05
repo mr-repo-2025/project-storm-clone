@@ -1615,6 +1615,18 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         }
         return this.activeNodeLayer;
     }
+    getActiveNodeWLayer() {
+        if (!this.activeNodeWLayer) {
+            const layers = this.getNodeWLayers();
+            if (layers.length === 0) {
+                this.addLayer(new _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_10__.NodeWLayerModel());
+            }
+            else {
+                this.activeNodeWLayer = layers[0];
+            }
+        }
+        return this.activeNodeWLayer;
+    }
     getActiveLinkLayer() {
         if (!this.activeLinkLayer) {
             const layers = this.getLinkLayers();
@@ -1673,6 +1685,11 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
     }
     addNode(node) {
         this.getActiveNodeLayer().addModel(node);
+        this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
+        return node;
+    }
+    addNodeW(node) {
+        this.getActiveNodeWLayer().addModel(node);
         this.fireEvent({ node, isCreated: true }, 'nodesUpdated');
         return node;
     }
