@@ -25,6 +25,9 @@ export class DiagramModel extends CanvasModel {
         if (layer instanceof NodeLayerModel) {
             this.activeNodeLayer = layer;
         }
+        if (layer instanceof NodeWLayerModel) {
+            this.activeNodeWLayer = layer;
+        }
         if (layer instanceof LinkLayerModel) {
             this.activeLinkLayer = layer;
         }
@@ -144,6 +147,14 @@ export class DiagramModel extends CanvasModel {
     }
     removeNode(node) {
         const removed = _some(this.getNodeLayers(), (layer) => {
+            return layer.removeModel(node);
+        });
+        if (removed) {
+            this.fireEvent({ node, isCreated: false }, 'nodesUpdated');
+        }
+    }
+    removeNodeW(node) {
+        const removed = _some(this.getNodeWLayers(), (layer) => {
             return layer.removeModel(node);
         });
         if (removed) {

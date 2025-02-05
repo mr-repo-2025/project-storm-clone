@@ -39,6 +39,7 @@ export declare class DiagramModel<G extends DiagramModelGenerics = DiagramModelG
     addNodeW(node: NodeModel): NodeModel;
     removeLink(link: LinkModel): void;
     removeNode(node: NodeModel): void;
+    removeNodeW(node: NodeModel): void;
     getLinks(): LinkModel[];
     getNodes(): NodeModel[];
 }

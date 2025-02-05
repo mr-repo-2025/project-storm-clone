@@ -1584,6 +1584,9 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
         if (layer instanceof _entities_node_layer_NodeLayerModel__WEBPACK_IMPORTED_MODULE_8__.NodeLayerModel) {
             this.activeNodeLayer = layer;
         }
+        if (layer instanceof _entities_node_layer_w_NodeWLayerModel__WEBPACK_IMPORTED_MODULE_10__.NodeWLayerModel) {
+            this.activeNodeWLayer = layer;
+        }
         if (layer instanceof _entities_link_layer_LinkLayerModel__WEBPACK_IMPORTED_MODULE_9__.LinkLayerModel) {
             this.activeLinkLayer = layer;
         }
@@ -1703,6 +1706,14 @@ class DiagramModel extends _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MOD
     }
     removeNode(node) {
         const removed = lodash_some__WEBPACK_IMPORTED_MODULE_3___default()(this.getNodeLayers(), (layer) => {
+            return layer.removeModel(node);
+        });
+        if (removed) {
+            this.fireEvent({ node, isCreated: false }, 'nodesUpdated');
+        }
+    }
+    removeNodeW(node) {
+        const removed = lodash_some__WEBPACK_IMPORTED_MODULE_3___default()(this.getNodeWLayers(), (layer) => {
             return layer.removeModel(node);
         });
         if (removed) {
