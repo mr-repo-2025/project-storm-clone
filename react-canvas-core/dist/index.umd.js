@@ -574,7 +574,6 @@ class BaseEntity extends _core_BaseObserver__WEBPACK_IMPORTED_MODULE_2__.BaseObs
     deserialize(event) {
         this.options.id = event.data.id;
         this.options.locked = event.data.locked;
-        this.options.isWorktable = event.data.isWorktable;
     }
     serialize() {
         return {
@@ -1637,9 +1636,9 @@ class TransformLayerWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component 
     }
     render() {
         if (this.props.layer.getOptions().isSvg) {
-            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { style: this.getTransformStyle() }, this.props.children);
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.SvgLayer, { className: 'svg_layer', style: this.getTransformStyle() }, this.props.children);
         }
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { style: this.getTransformStyle() }, this.props.children);
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(S.DivLayer, { className: 'node_layer', style: this.getTransformStyle() }, this.props.children);
     }
 }
 

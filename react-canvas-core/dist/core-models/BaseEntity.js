@@ -33,7 +33,6 @@ export class BaseEntity extends BaseObserver {
     deserialize(event) {
         this.options.id = event.data.id;
         this.options.locked = event.data.locked;
-        this.options.isWorktable = event.data.isWorktable;
     }
     serialize() {
         return {

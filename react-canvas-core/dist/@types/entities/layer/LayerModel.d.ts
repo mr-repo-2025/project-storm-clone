@@ -7,7 +7,6 @@ import { DeserializeEvent } from '../../core-models/BaseEntity';
 export interface LayerModelOptions extends BaseModelOptions {
     isSvg?: boolean;
     transformed?: boolean;
-    isWorktable?: boolean;
 }
 export interface LayerModelGenerics extends BaseModelGenerics {
     OPTIONS: LayerModelOptions;
