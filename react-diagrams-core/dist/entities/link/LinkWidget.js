@@ -66,12 +66,12 @@ export class LinkWidget extends React.Component {
     render() {
         const { link } = this.props;
         // only draw the link when we have reported positions
-        if (link.getSourcePort() && !link.getSourcePort().reportedPosition) {
-            return null;
-        }
-        if (link.getTargetPort() && !link.getTargetPort().reportedPosition) {
-            return null;
-        }
+        // if (link.getSourcePort() && !link.getSourcePort().reportedPosition) {
+        // 	return null;
+        // }
+        // if (link.getTargetPort() && !link.getTargetPort().reportedPosition) {
+        // 	return null;
+        // }
         //generate links
         return (React.createElement(PeformanceWidget, { model: this.props.link, serialized: this.props.link.serialize() }, () => {
             return (React.createElement("g", { "data-linkid": this.props.link.getID() },
