@@ -1,3 +1,4 @@
+dist
 .DS_Store
 .idea
 .out
@@ -6,3 +7,8 @@
 node_modules
 tsconfig.tsbuildinfo
 .vscode
+packages/geometry/node_modules
+packages/react-canvas-core/node_modules
+packages/react-diagrams/node_modules
+packages/react-diagrams-core/node_modules
+packages/react-diagrams-defaults/node_modules
