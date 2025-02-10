@@ -15,9 +15,11 @@ var S;
 		}
 	`;
     const selected = css `
-		stroke-dasharray: 10, 2;
-		animation: ${S.Keyframes} 1s linear infinite;
+		 stroke: #c9c9c9;
 	`;
+    //se elimina animacion 
+    // animation: ${Keyframes} 1s linear infinite;
+    // stroke-dasharray: 10, 2;
     S.Path = styled.path `
 		${(p) => p.selected && selected};
 		fill: none;

@@ -156,9 +156,11 @@ var S;
 		}
 	`;
     const selected = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.css) `
-		stroke-dasharray: 10, 2;
-		animation: ${S.Keyframes} 1s linear infinite;
+		 stroke: #c9c9c9;
 	`;
+    //se elimina animacion 
+    // animation: ${Keyframes} 1s linear infinite;
+    // stroke-dasharray: 10, 2;
     S.Path = (_emotion_styled__WEBPACK_IMPORTED_MODULE_3___default().path) `
 		${(p) => p.selected && selected};
 		fill: none;
@@ -203,7 +205,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class DefaultLinkModel extends _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__.LinkModel {
     constructor(options = {}) {
-        super(Object.assign({ type: 'default', width: options.width || 3, color: options.color || 'gray', selectedColor: options.selectedColor || 'rgb(0,192,255)', curvyness: 50 }, options));
+        super(Object.assign({ type: 'default', width: options.width || 3, color: options.color || 'gray', selectedColor: options.selectedColor || 'rgb(0,192,255)', curvyness: 1 }, options));
     }
     calculateControlOffset(port) {
         if (port.getOptions().alignment === _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__.PortModelAlignment.RIGHT) {
