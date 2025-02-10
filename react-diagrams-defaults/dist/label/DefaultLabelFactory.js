@@ -1,39 +1,19 @@
-"use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DefaultLabelFactory = void 0;
-var React = require("react");
-var DefaultLabelModel_1 = require("./DefaultLabelModel");
-var DefaultLabelWidget_1 = require("./DefaultLabelWidget");
-var react_canvas_core_1 = require("@projectstorm/react-canvas-core");
+import * as React from 'react';
+import { DefaultLabelModel } from './DefaultLabelModel';
+import { DefaultLabelWidget } from './DefaultLabelWidget';
+import { AbstractReactFactory } from '@projectstorm/react-canvas-core';
 /**
  * @author Dylan Vorster
  */
-var DefaultLabelFactory = /** @class */ (function (_super) {
-    __extends(DefaultLabelFactory, _super);
-    function DefaultLabelFactory() {
-        return _super.call(this, 'default') || this;
+export class DefaultLabelFactory extends AbstractReactFactory {
+    constructor() {
+        super('default');
     }
-    DefaultLabelFactory.prototype.generateReactWidget = function (event) {
-        return <DefaultLabelWidget_1.DefaultLabelWidget model={event.model}/>;
-    };
-    DefaultLabelFactory.prototype.generateModel = function (event) {
-        return new DefaultLabelModel_1.DefaultLabelModel();
-    };
-    return DefaultLabelFactory;
-}(react_canvas_core_1.AbstractReactFactory));
-exports.DefaultLabelFactory = DefaultLabelFactory;
+    generateReactWidget(event) {
+        return React.createElement(DefaultLabelWidget, { model: event.model });
+    }
+    generateModel(event) {
+        return new DefaultLabelModel();
+    }
+}
+//# sourceMappingURL=DefaultLabelFactory.js.map

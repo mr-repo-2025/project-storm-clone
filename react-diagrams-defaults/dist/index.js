@@ -1,30 +1,15 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./label/DefaultLabelFactory"), exports);
-__exportStar(require("./label/DefaultLabelModel"), exports);
-__exportStar(require("./label/DefaultLabelWidget"), exports);
-__exportStar(require("./link/DefaultLinkFactory"), exports);
-__exportStar(require("./link/DefaultLinkModel"), exports);
-__exportStar(require("./link/DefaultLinkWidget"), exports);
-__exportStar(require("./link/DefaultLinkSegmentWidget"), exports);
-__exportStar(require("./link/DefaultLinkPointWidget"), exports);
-__exportStar(require("./node/DefaultNodeFactory"), exports);
-__exportStar(require("./node/DefaultNodeModel"), exports);
-__exportStar(require("./node/DefaultNodeWidget"), exports);
-__exportStar(require("./port/DefaultPortFactory"), exports);
-__exportStar(require("./port/DefaultPortLabelWidget"), exports);
-__exportStar(require("./port/DefaultPortModel"), exports);
+export * from './label/DefaultLabelFactory';
+export * from './label/DefaultLabelModel';
+export * from './label/DefaultLabelWidget';
+export * from './link/DefaultLinkFactory';
+export * from './link/DefaultLinkModel';
+export * from './link/DefaultLinkWidget';
+export * from './link/DefaultLinkSegmentWidget';
+export * from './link/DefaultLinkPointWidget';
+export * from './node/DefaultNodeFactory';
+export * from './node/DefaultNodeModel';
+export * from './node/DefaultNodeWidget';
+export * from './port/DefaultPortFactory';
+export * from './port/DefaultPortLabelWidget';
+export * from './port/DefaultPortModel';
+//# sourceMappingURL=index.js.map
