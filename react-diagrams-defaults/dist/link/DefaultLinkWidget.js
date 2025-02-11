@@ -3,6 +3,31 @@ import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { DefaultLinkPointWidget } from './DefaultLinkPointWidget';
 import { DefaultLinkSegmentWidget } from './DefaultLinkSegmentWidget';
+import arrowLink from '../assets/images/link-arrow.svg';
+const CustomLinkArrowWidget = (props) => {
+    const { point, previousPoint, path, points } = props;
+    const angle = 270 +
+        (Math.atan2(point.getPosition().y - previousPoint.getPosition().y, point.getPosition().x - previousPoint.getPosition().x) *
+            180) /
+            Math.PI;
+    var distancer = { x: 0, y: 0 };
+    for (let j = 0; j < points.length - 1; j++) {
+        distancer = calculate(points[j], points[j + 1]);
+    }
+    return (React.createElement("g", { className: "arrow", transform: 'translate(' + (distancer.x) + ', ' + (distancer.y) + ')' },
+        React.createElement("g", { style: { transform: 'rotate(' + angle + 'deg)' } },
+            React.createElement("g", { transform: 'translate(-10, -15)' },
+                React.createElement("image", { width: "20", height: "20", xlinkHref: arrowLink, clipPath: "url(#t)" })))));
+};
+const calculate = (point1, point2) => {
+    const dx = point2.position.x - point1.position.x;
+    const dy = point2.position.y - point1.position.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const midX = (point1.position.x + point2.position.x) / 2;
+    const midY = (point1.position.y + point2.position.y) / 2;
+    // setDistance(dist);
+    return { x: midX, y: midY };
+};
 export const DefaultLinkWidget = (props) => {
     const [selected, setSelected] = React.useState(false);
     const refPaths = useRef([]);
@@ -42,6 +67,9 @@ export const DefaultLinkWidget = (props) => {
     const generateLink = (path, extraProps, id) => {
         return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps }));
     };
+    const generateArrow = (point, previousPoint, points) => {
+        return (React.createElement(CustomLinkArrowWidget, { key: point.getID(), point: point, points: points, previousPoint: previousPoint, colorSelected: props.link.getOptions().selectedColor, color: props.link.getOptions().color }));
+    };
     const points = props.link.getPoints();
     const paths = [];
     refPaths.current = []; // Reset the refPaths for the current render
@@ -73,7 +101,10 @@ export const DefaultLinkWidget = (props) => {
             for (let i = 1; i < points.length - 1; i++) {
                 paths.push(generatePoint(points[i]));
             }
-            if (props.link.getTargetPort() == null) {
+            if (props.link.getTargetPort() !== null) {
+                paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
+            }
+            else {
                 paths.push(generatePoint(points[points.length - 1]));
             }
         }

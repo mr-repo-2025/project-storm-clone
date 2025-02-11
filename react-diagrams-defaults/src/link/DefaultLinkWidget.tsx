@@ -4,6 +4,7 @@ import { MouseEvent, useEffect, useRef } from 'react';
 import { DefaultLinkModel } from './DefaultLinkModel';
 import { DefaultLinkPointWidget } from './DefaultLinkPointWidget';
 import { DefaultLinkSegmentWidget } from './DefaultLinkSegmentWidget';
+import arrowLink from '../assets/images/link-arrow.svg'
 
 export interface DefaultLinkProps {
 	link: DefaultLinkModel;
@@ -12,6 +13,53 @@ export interface DefaultLinkProps {
 	renderPoints?: boolean;
 	selected?: (event: MouseEvent) => any;
 }
+
+
+const CustomLinkArrowWidget = (props) => {
+	const { point, previousPoint,path,points } = props;
+ 
+	const angle =
+		270 +
+		(Math.atan2(
+			point.getPosition().y - previousPoint.getPosition().y,
+			point.getPosition().x - previousPoint.getPosition().x
+		) *
+			180) /
+			Math.PI;
+ 
+		var distancer = {x:0, y:0} ;
+		for (let j = 0; j < points.length - 1; j++) {
+			distancer = calculate(points[j], points[j + 1]) ;
+		}
+	   
+	return (
+		<g className="arrow" transform={'translate(' + (distancer.x)  + ', ' + (distancer.y) + ')'}>
+		   	<g style={{ transform: 'rotate(' + angle + 'deg)' }}>
+				<g transform={'translate(-10, -15)'}>
+				<image
+					width="20"
+					height="20"
+					xlinkHref={arrowLink}
+					clipPath="url(#t)"
+					/>
+				</g>
+			</g>
+		</g> 
+		
+	);
+};
+
+
+const calculate = (point1 , point2) => {
+    const dx = point2.position.x - point1.position.x;
+    const dy = point2.position.y - point1.position.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const midX = (point1.position.x + point2.position.x) / 2;
+    const midY = (point1.position.y + point2.position.y) / 2;
+
+    // setDistance(dist);
+   return { x: midX, y: midY };
+ };
 
 export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 	const [selected, setSelected] = React.useState(false);
@@ -78,6 +126,20 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 		);
 	};
 
+	const generateArrow = (point, previousPoint,points) => {
+		
+		return (
+			<CustomLinkArrowWidget
+				key={point.getID()}
+				point={point}
+				points={points}
+				previousPoint={previousPoint}
+				colorSelected={props.link.getOptions().selectedColor}
+				color={props.link.getOptions().color}
+			/>
+		);
+	}
+
 	const points = props.link.getPoints();
 	const paths = [];
 	refPaths.current = []; // Reset the refPaths for the current render
@@ -122,7 +184,9 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 				paths.push(generatePoint(points[i]));
 			}
 
-			if (props.link.getTargetPort() == null) {
+			if (props.link.getTargetPort() !== null) {
+				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
+			} else {
 				paths.push(generatePoint(points[points.length - 1]));
 			}
 		}
