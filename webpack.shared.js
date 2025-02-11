@@ -21,7 +21,8 @@ module.exports = (directory) => {
 					enforce: 'pre',
 					test: /\.js$/,
 					loader: 'source-map-loader'
-				}
+				},
+					{ test: /\\.(png|jp(e*)g|svg|gif)$/, use: ['file-loader'], }
 			]
 		},
 		resolve: {

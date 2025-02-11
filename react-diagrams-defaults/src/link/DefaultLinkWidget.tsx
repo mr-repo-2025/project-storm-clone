@@ -4,8 +4,8 @@ import { MouseEvent, useEffect, useRef } from 'react';
 import { DefaultLinkModel } from './DefaultLinkModel';
 import { DefaultLinkPointWidget } from './DefaultLinkPointWidget';
 import { DefaultLinkSegmentWidget } from './DefaultLinkSegmentWidget';
-import arrowLink from '../assets/images/link-arrow.svg'
-
+ 
+ 
 export interface DefaultLinkProps {
 	link: DefaultLinkModel;
 	diagramEngine: DiagramEngine;
@@ -17,7 +17,6 @@ export interface DefaultLinkProps {
 
 const CustomLinkArrowWidget = (props) => {
 	const { point, previousPoint,path,points } = props;
- 
 	const angle =
 		270 +
 		(Math.atan2(
@@ -36,11 +35,11 @@ const CustomLinkArrowWidget = (props) => {
 		<g className="arrow" transform={'translate(' + (distancer.x)  + ', ' + (distancer.y) + ')'}>
 		   	<g style={{ transform: 'rotate(' + angle + 'deg)' }}>
 				<g transform={'translate(-10, -15)'}>
-				<image
-					width="20"
-					height="20"
-					xlinkHref={arrowLink}
-					clipPath="url(#t)"
+				<polygon
+						points="0,10 8,30 -8,30"
+						fill={props.color}
+						data-id={point.getID()}
+						data-linkid={point.getLink().getID()}
 					/>
 				</g>
 			</g>

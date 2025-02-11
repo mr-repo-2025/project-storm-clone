@@ -3,7 +3,6 @@ import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { DefaultLinkPointWidget } from './DefaultLinkPointWidget';
 import { DefaultLinkSegmentWidget } from './DefaultLinkSegmentWidget';
-import arrowLink from '../assets/images/link-arrow.svg';
 const CustomLinkArrowWidget = (props) => {
     const { point, previousPoint, path, points } = props;
     const angle = 270 +
@@ -17,7 +16,7 @@ const CustomLinkArrowWidget = (props) => {
     return (React.createElement("g", { className: "arrow", transform: 'translate(' + (distancer.x) + ', ' + (distancer.y) + ')' },
         React.createElement("g", { style: { transform: 'rotate(' + angle + 'deg)' } },
             React.createElement("g", { transform: 'translate(-10, -15)' },
-                React.createElement("image", { width: "20", height: "20", xlinkHref: arrowLink, clipPath: "url(#t)" })))));
+                React.createElement("polygon", { points: "0,10 8,30 -8,30", fill: props.color, "data-id": point.getID(), "data-linkid": point.getLink().getID() })))));
 };
 const calculate = (point1, point2) => {
     const dx = point2.position.x - point1.position.x;

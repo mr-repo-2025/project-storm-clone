@@ -11,7 +11,7 @@ export * from './link/DefaultLinkPointWidget';
 export * from './node/DefaultNodeFactory';
 export * from './node/DefaultNodeModel';
 export * from './node/DefaultNodeWidget';
-
+ 
 export * from './port/DefaultPortFactory';
 export * from './port/DefaultPortLabelWidget';
 export * from './port/DefaultPortModel';
