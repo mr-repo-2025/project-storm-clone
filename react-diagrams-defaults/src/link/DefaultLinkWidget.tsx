@@ -35,12 +35,7 @@ const CustomLinkArrowWidget = (props) => {
 		<g className="arrow" transform={'translate(' + (distancer.x)  + ', ' + (distancer.y) + ')'}>
 		   	<g style={{ transform: 'rotate(' + angle + 'deg)' }}>
 				<g transform={'translate(-10, -15)'}>
-				<polygon
-						points="0,10 8,30 -8,30"
-						fill={props.color}
-						data-id={point.getID()}
-						data-linkid={point.getLink().getID()}
-					/>
+				<path d="M4.14645 4.85355C4.34171 5.04882 4.65829 5.04882 4.85355 4.85355L8.03553 1.67157C8.2308 1.47631 8.2308 1.15973 8.03553 0.964466C7.84027 0.769204 7.52369 0.769204 7.32843 0.964466L4.5 3.79289L1.67157 0.964466C1.47631 0.769204 1.15973 0.769204 0.964466 0.964466C0.769204 1.15973 0.769204 1.47631 0.964466 1.67157L4.14645 4.85355ZM4 3.5V4.5H5V3.5H4Z" fill="#ACACAC" />
 				</g>
 			</g>
 		</g> 
