@@ -15,9 +15,10 @@ export class LabelWidget extends React.Component {
     constructor(props) {
         super(props);
         this.findPathAndRelativePositionToRenderLabel = (index) => {
+            var _a;
             // an array to hold all path lengths, making sure we hit the DOM only once to fetch this information
             const link = this.props.label.getParent();
-            const lengths = link.getRenderedPath().map((path) => path.getTotalLength());
+            const lengths = ((_a = link.getRenderedPath()) === null || _a === void 0 ? void 0 : _a.map((path) => path === null || path === void 0 ? void 0 : path.getTotalLength())) || [];
             // calculate the point where we want to display the label
             let labelPosition = lengths.reduce((previousValue, currentValue) => previousValue + currentValue, 0) *
                 (index / (link.getLabels().length + 1));
