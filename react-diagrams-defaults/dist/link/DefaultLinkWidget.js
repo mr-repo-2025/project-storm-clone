@@ -15,8 +15,8 @@ const CustomLinkArrowWidget = (props) => {
     }
     return (React.createElement("g", { className: "arrow", transform: 'translate(' + (distancer.x) + ', ' + (distancer.y) + ')' },
         React.createElement("g", { style: { transform: 'rotate(' + angle + 'deg)' } },
-            React.createElement("g", { transform: 'translate(-10, -15)' },
-                React.createElement("path", { d: "M4.14645 4.85355C4.34171 5.04882 4.65829 5.04882 4.85355 4.85355L8.03553 1.67157C8.2308 1.47631 8.2308 1.15973 8.03553 0.964466C7.84027 0.769204 7.52369 0.769204 7.32843 0.964466L4.5 3.79289L1.67157 0.964466C1.47631 0.769204 1.15973 0.769204 0.964466 0.964466C0.769204 1.15973 0.769204 1.47631 0.964466 1.67157L4.14645 4.85355ZM4 3.5V4.5H5V3.5H4Z", fill: "#ACACAC" })))));
+            React.createElement("g", { transform: 'translate(-10, 0)' },
+                React.createElement("path", { d: "M8.58779 10.6148C9.09159 11.1284 9.90841 11.1284 10.4122 10.6148L18.6221 2.24512C19.126 1.73152 19.126 0.898812 18.6221 0.385203C18.1183 -0.128401 17.3015 -0.128401 16.7977 0.385203C16.7977 0.385203 10.4122 7.78405 9.5 7.82489C8.58779 7.86574 2.20227 0.385203 2.20227 0.385203C1.69848 -0.128401 0.881658 -0.128401 0.377851 0.385203C-0.12595 0.898812 -0.12595 1.73152 0.377851 2.24512L8.58779 10.6148Z", fill: "#ACACAC" })))));
 };
 const calculate = (point1, point2) => {
     const dx = point2.position.x - point1.position.x;
@@ -87,14 +87,11 @@ export const DefaultLinkWidget = (props) => {
         paths.push(generatePoint(points[i]));
     }
     if (props.link.getTargetPort() !== null) {
-        console.log('entrando a arrow');
         paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
     }
     else {
-        console.log('entrando a points');
         paths.push(generatePoint(points[points.length - 1]));
     }
-    console.log('paths', paths);
     return React.createElement("g", { "data-default-link-test": props.link.getOptions().testName }, paths);
 };
 //# sourceMappingURL=DefaultLinkWidget.js.map
