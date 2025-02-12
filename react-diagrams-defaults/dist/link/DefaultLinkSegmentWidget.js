@@ -25,11 +25,9 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 this.props.onSelection(false);
             }, onMouseEnter: () => {
                 this.props.onSelection(true);
-            } }, this.props.extras), { ref: null, 'data-linkid': this.props.link.getID(), strokeOpacity: this.props.selected ? 0.1 : 0, strokeWidth: 20, fill: 'none', onContextMenu: (e) => {
+            } }, this.props.extras), { ref: null, 'data-linkid': this.props.link.getID(), strokeOpacity: this.props.selected ? 0.1 : 0, strokeWidth: 20, fill: 'none', onDoubleClick: (e) => {
                 if (!this.props.link.isLocked()) {
-                    // event.preventDefault();
-                    // this.props.link.remove();
-                    displayTooltip(e, this.props);
+                    this.props.link.remove();
                 }
             } }));
         return (React.createElement("g", null,

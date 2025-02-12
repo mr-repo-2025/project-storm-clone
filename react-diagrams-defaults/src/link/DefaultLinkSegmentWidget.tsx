@@ -60,13 +60,18 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			strokeOpacity: this.props.selected ? 0.1 : 0,
 			strokeWidth: 20,
 			fill: 'none',
-			onContextMenu: (e) => {
+			onDoubleClick : (e) => {
 				if (!this.props.link.isLocked()) {
-					// event.preventDefault();
-					// this.props.link.remove();
-					displayTooltip(e,this.props);
+					this.props.link.remove();
 				}
-			}
+			},
+			// onContextMenu: (e) => {
+			// 	if (!this.props.link.isLocked()) {
+			// 		e.preventDefault();
+			// 		// this.props.link.remove();
+			// 		displayTooltip(e,this.props);
+			// 	}
+			// }
 		});
 
 		return (
