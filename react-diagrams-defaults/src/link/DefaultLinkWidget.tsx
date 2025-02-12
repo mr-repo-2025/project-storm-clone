@@ -173,7 +173,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 			);
 		}
 
-		if (renderPoints()) {
+		 
 			for (let i = 1; i < points.length - 1; i++) {
 				paths.push(generatePoint(points[i]));
 			}
@@ -184,12 +184,8 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 			} else {
 				paths.push(generatePoint(points[points.length - 1]));
 			}
-		}else{
-			if (props.link.getTargetPort() !== null) {
-				console.log('entrando a arrow');
-				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
-			} 
-		}
+		 
+		
 	}
 
 	return <g data-default-link-test={props.link.getOptions().testName}>{paths}</g>;

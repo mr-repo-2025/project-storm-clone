@@ -96,23 +96,15 @@ export const DefaultLinkWidget = (props) => {
                 }
             }, j));
         }
-        if (renderPoints()) {
-            for (let i = 1; i < points.length - 1; i++) {
-                paths.push(generatePoint(points[i]));
-            }
-            if (props.link.getTargetPort() !== null) {
-                console.log('entrando a arrow');
-                paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
-            }
-            else {
-                paths.push(generatePoint(points[points.length - 1]));
-            }
+        for (let i = 1; i < points.length - 1; i++) {
+            paths.push(generatePoint(points[i]));
+        }
+        if (props.link.getTargetPort() !== null) {
+            console.log('entrando a arrow');
+            paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
         }
         else {
-            if (props.link.getTargetPort() !== null) {
-                console.log('entrando a arrow');
-                paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
-            }
+            paths.push(generatePoint(points[points.length - 1]));
         }
     }
     return React.createElement("g", { "data-default-link-test": props.link.getOptions().testName }, paths);
