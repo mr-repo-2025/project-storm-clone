@@ -138,24 +138,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 	const paths = [];
 	refPaths.current = []; // Reset the refPaths for the current render
 
-	if (points.length === 2) {
-		paths.push(
-			generateLink(
-				props.link.getSVGPath(),
-				{
-					onMouseDown: (event: MouseEvent) => {
-						props.selected?.(event);
-						addPointToLink(event, 1);
-					}
-				},
-				'0'
-			)
-		);
-
-		if (props.link.getTargetPort() == null) {
-			paths.push(generatePoint(points[1]));
-		}
-	} else {
+	 
 		for (let j = 0; j < points.length - 1; j++) {
 			paths.push(
 				generateLink(
@@ -186,9 +169,6 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 				paths.push(generatePoint(points[points.length - 1]));
 			}
 		  console.log('paths',paths);
-		  
-		
-	}
 
 	return <g data-default-link-test={props.link.getOptions().testName}>{paths}</g>;
 };

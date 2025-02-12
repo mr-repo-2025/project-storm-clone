@@ -72,43 +72,29 @@ export const DefaultLinkWidget = (props) => {
     const points = props.link.getPoints();
     const paths = [];
     refPaths.current = []; // Reset the refPaths for the current render
-    if (points.length === 2) {
-        paths.push(generateLink(props.link.getSVGPath(), {
+    for (let j = 0; j < points.length - 1; j++) {
+        paths.push(generateLink(LinkWidget.generateLinePath(points[j], points[j + 1]), {
+            'data-linkid': props.link.getID(),
+            'data-point': j,
             onMouseDown: (event) => {
                 var _a;
                 (_a = props.selected) === null || _a === void 0 ? void 0 : _a.call(props, event);
-                addPointToLink(event, 1);
+                addPointToLink(event, j + 1);
             }
-        }, '0'));
-        if (props.link.getTargetPort() == null) {
-            paths.push(generatePoint(points[1]));
-        }
+        }, j));
+    }
+    for (let i = 1; i < points.length - 1; i++) {
+        paths.push(generatePoint(points[i]));
+    }
+    if (props.link.getTargetPort() !== null) {
+        console.log('entrando a arrow');
+        paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
     }
     else {
-        for (let j = 0; j < points.length - 1; j++) {
-            paths.push(generateLink(LinkWidget.generateLinePath(points[j], points[j + 1]), {
-                'data-linkid': props.link.getID(),
-                'data-point': j,
-                onMouseDown: (event) => {
-                    var _a;
-                    (_a = props.selected) === null || _a === void 0 ? void 0 : _a.call(props, event);
-                    addPointToLink(event, j + 1);
-                }
-            }, j));
-        }
-        for (let i = 1; i < points.length - 1; i++) {
-            paths.push(generatePoint(points[i]));
-        }
-        if (props.link.getTargetPort() !== null) {
-            console.log('entrando a arrow');
-            paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
-        }
-        else {
-            console.log('entrando a points');
-            paths.push(generatePoint(points[points.length - 1]));
-        }
-        console.log('paths', paths);
+        console.log('entrando a points');
+        paths.push(generatePoint(points[points.length - 1]));
     }
+    console.log('paths', paths);
     return React.createElement("g", { "data-default-link-test": props.link.getOptions().testName }, paths);
 };
 //# sourceMappingURL=DefaultLinkWidget.js.map
