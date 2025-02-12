@@ -179,10 +179,16 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 			}
 
 			if (props.link.getTargetPort() !== null) {
+				console.log('entrando a arrow');
 				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
 			} else {
 				paths.push(generatePoint(points[points.length - 1]));
 			}
+		}else{
+			if (props.link.getTargetPort() !== null) {
+				console.log('entrando a arrow');
+				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
+			} 
 		}
 	}
 
