@@ -38,8 +38,9 @@ export class DefaultLabelWidget extends React.Component {
             return { x: labelCoordinates.x, y: labelCoordinates.y };
         };
     }
+    //   x={this.calpos().x} y={this.calpos().y} 
     render() {
-        return React.createElement(S.Label, { x: this.calpos().x, y: this.calpos().y }, this.props.model.getOptions().label);
+        return React.createElement(S.Label, null, this.props.model.getOptions().label);
     }
 }
 //# sourceMappingURL=DefaultLabelWidget.js.map

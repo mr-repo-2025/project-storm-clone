@@ -48,7 +48,8 @@ export class DefaultLabelWidget extends React.Component<DefaultLabelWidgetProps>
 	 
 		return {x: labelCoordinates.x , y :labelCoordinates.y}; 
 	  }
+	//   x={this.calpos().x} y={this.calpos().y} 
 	render() {
-		return <S.Label  x={this.calpos().x} y={this.calpos().y}   >{this.props.model.getOptions().label}</S.Label>;
+		return <S.Label    >{this.props.model.getOptions().label}</S.Label>;
 	}
 }
