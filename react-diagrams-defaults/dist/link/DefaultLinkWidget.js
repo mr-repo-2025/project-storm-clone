@@ -104,8 +104,10 @@ export const DefaultLinkWidget = (props) => {
             paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
         }
         else {
+            console.log('entrando a points');
             paths.push(generatePoint(points[points.length - 1]));
         }
+        console.log('paths', paths);
     }
     return React.createElement("g", { "data-default-link-test": props.link.getOptions().testName }, paths);
 };

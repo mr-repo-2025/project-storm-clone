@@ -182,9 +182,11 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 				console.log('entrando a arrow');
 				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
 			} else {
+				console.log('entrando a points');
 				paths.push(generatePoint(points[points.length - 1]));
 			}
-		 
+		  console.log('paths',paths);
+		  
 		
 	}
 
