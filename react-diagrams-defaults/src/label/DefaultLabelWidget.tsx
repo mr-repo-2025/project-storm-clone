@@ -18,8 +18,9 @@ namespace S {
 		padding: 4px 8px;
 		font-family: sans-serif;
 		user-select: none;
-		 transform : translate(${(p:Props)  =>  p.x}px, ${(p:Props)  =>  p.y}px) 
+	
 	`;
+	// 	 transform : translate(${(p:Props)  =>  p.x}px, ${(p:Props)  =>  p.y}px) 
 }
 
 export class DefaultLabelWidget extends React.Component<DefaultLabelWidgetProps> {

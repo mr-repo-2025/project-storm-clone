@@ -64,7 +64,7 @@ export const DefaultLinkWidget = (props) => {
         return (React.createElement(DefaultLinkPointWidget, { key: point.getID(), point: point, colorSelected: (_a = props.link.getOptions().selectedColor) !== null && _a !== void 0 ? _a : '', color: props.link.getOptions().color }));
     };
     const generateLink = (path, extraProps, id) => {
-        return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps }));
+        return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps, propsE: props }));
     };
     const generateArrow = (point, previousPoint, points) => {
         return (React.createElement(CustomLinkArrowWidget, { key: point.getID(), point: point, points: points, previousPoint: previousPoint, colorSelected: props.link.getOptions().selectedColor, color: props.link.getOptions().color }));

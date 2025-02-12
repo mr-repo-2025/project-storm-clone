@@ -10,8 +10,9 @@ var S;
 		padding: 4px 8px;
 		font-family: sans-serif;
 		user-select: none;
-		 transform : translate(${(p) => p.x}px, ${(p) => p.y}px) 
+	
 	`;
+    // 	 transform : translate(${(p:Props)  =>  p.x}px, ${(p:Props)  =>  p.y}px) 
 })(S || (S = {}));
 export class DefaultLabelWidget extends React.Component {
     constructor() {

@@ -12,6 +12,7 @@ export interface DefaultLinkSegmentWidgetProps {
 	diagramEngine: DiagramEngine;
 	onSelection: (selected: boolean) => any;
 	extras: object;
+	propsE: object;
 }
  const displayTooltip = (e,props) => {
 	const { link,propsE } = props;

@@ -119,6 +119,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 				forwardRef={generateRef()}
 				onSelection={setSelected}
 				extras={extraProps}
+				propsE={props}
 			/>
 		);
 	};
