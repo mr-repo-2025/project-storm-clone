@@ -35,12 +35,14 @@ export class DefaultLinkFactory<Link extends DefaultLinkModel = DefaultLinkModel
 	DiagramEngine
 > {
 	propst: Object;
-	constructor(type = 'default',propst) {
+	constructor(type = 'default',propst={}) {
 		super(type);
 		this.propst = propst;
 	}
 
 	generateReactWidget(event): JSX.Element {
+		console.log('f rec',this.propst);
+		
 		return <DefaultLinkWidget link={event.model} diagramEngine={this.engine} propst={this.propst}/>;
 	}
 

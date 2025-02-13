@@ -27,11 +27,12 @@ var S;
 	`;
 })(S || (S = {}));
 export class DefaultLinkFactory extends AbstractReactFactory {
-    constructor(type = 'default', propst) {
+    constructor(type = 'default', propst = {}) {
         super(type);
         this.propst = propst;
     }
     generateReactWidget(event) {
+        console.log('f rec', this.propst);
         return React.createElement(DefaultLinkWidget, { link: event.model, diagramEngine: this.engine, propst: this.propst });
     }
     generateModel(event) {

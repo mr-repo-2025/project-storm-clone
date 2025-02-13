@@ -34,6 +34,8 @@ export interface DefaultLinkModelGenerics extends LinkModelGenerics {
 
 export class DefaultLinkModel extends LinkModel<DefaultLinkModelGenerics> {
 	constructor(options: DefaultLinkModelOptions = {},propst : Object = {}) {
+		console.log('rec1',propst);
+		
 		super({
 			type: 'default',
 			width: options.width || 3,
