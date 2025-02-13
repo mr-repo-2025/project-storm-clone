@@ -32,7 +32,6 @@ export class DefaultLinkFactory extends AbstractReactFactory {
         this.propst = propst;
     }
     generateReactWidget(event) {
-        console.log('f rec', this.propst);
         return React.createElement(DefaultLinkWidget, { link: event.model, diagramEngine: this.engine, propst: this.propst });
     }
     generateModel(event) {

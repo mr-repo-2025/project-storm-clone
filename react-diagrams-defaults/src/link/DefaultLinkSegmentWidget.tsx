@@ -16,7 +16,6 @@ export interface DefaultLinkSegmentWidgetProps {
 }
  const displayTooltip = (e,props) => {
 	const { link,propsE } = props;
-	console.log('propsE',propsE);
 	e.stopPropagation();
 	e.preventDefault();
 	

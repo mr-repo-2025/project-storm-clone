@@ -1,7 +1,6 @@
 import * as React from 'react';
 const displayTooltip = (e, props) => {
     const { link, propsE } = props;
-    console.log('propsE', propsE);
     e.stopPropagation();
     e.preventDefault();
     propsE.setLinkToRemove({

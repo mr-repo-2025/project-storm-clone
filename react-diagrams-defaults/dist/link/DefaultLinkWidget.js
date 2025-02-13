@@ -72,7 +72,6 @@ export const DefaultLinkWidget = (props) => {
     const points = props.link.getPoints();
     const paths = [];
     refPaths.current = []; // Reset the refPaths for the current render
-    console.log('w rec', props.propst);
     for (let j = 0; j < points.length - 1; j++) {
         paths.push(generateLink(LinkWidget.generateLinePath(points[j], points[j + 1]), {
             'data-linkid': props.link.getID(),

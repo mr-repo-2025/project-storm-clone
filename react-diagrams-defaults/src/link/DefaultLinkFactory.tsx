@@ -41,8 +41,6 @@ export class DefaultLinkFactory<Link extends DefaultLinkModel = DefaultLinkModel
 	}
 
 	generateReactWidget(event): JSX.Element {
-		console.log('f rec',this.propst);
-		
 		return <DefaultLinkWidget link={event.model} diagramEngine={this.engine} propst={this.propst}/>;
 	}
 
