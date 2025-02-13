@@ -17,11 +17,10 @@ export interface DefaultLinkSegmentWidgetProps {
  const displayTooltip = (e,props) => {
 	const { link,propsE } = props;
 	console.log('propsE',propsE);
-	const dispatch = propsE.useDispatch();
 	e.stopPropagation();
 	e.preventDefault();
 	
-	dispatch(propsE.setLinkToRemove({
+	 propsE.setLinkToRemove({
 	  id: link.options.id,
 	  clientX: e.clientX,
 	  clientY: e.clientY,
@@ -33,7 +32,7 @@ export interface DefaultLinkSegmentWidgetProps {
 		link.targetPort.parent.title +
 		'_' +
 		link.targetPort.parent.order,
-	}));
+	});
   };
 export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegmentWidgetProps> {
 	render() {
