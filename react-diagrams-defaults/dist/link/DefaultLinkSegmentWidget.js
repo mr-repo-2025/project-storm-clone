@@ -2,9 +2,10 @@ import * as React from 'react';
 const displayTooltip = (e, props) => {
     const { link, propsE } = props;
     console.log('propsE', propsE);
+    const dispatch = propsE.useDispatch();
     e.stopPropagation();
     e.preventDefault();
-    propsE.setLinkToRemove({
+    dispatch(propsE.setLinkToRemove({
         id: link.options.id,
         clientX: e.clientX,
         clientY: e.clientY,
@@ -15,7 +16,7 @@ const displayTooltip = (e, props) => {
             link.targetPort.parent.title +
             '_' +
             link.targetPort.parent.order,
-    });
+    }));
 };
 export class DefaultLinkSegmentWidget extends React.Component {
     render() {
