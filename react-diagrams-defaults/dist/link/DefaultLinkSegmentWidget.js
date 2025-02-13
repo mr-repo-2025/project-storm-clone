@@ -1,6 +1,7 @@
 import * as React from 'react';
 const displayTooltip = (e, props) => {
     const { link, propsE } = props;
+    console.log('propsE', propsE);
     e.stopPropagation();
     e.preventDefault();
     propsE.setLinkToRemove({
@@ -28,6 +29,12 @@ export class DefaultLinkSegmentWidget extends React.Component {
             } }, this.props.extras), { ref: null, 'data-linkid': this.props.link.getID(), strokeOpacity: this.props.selected ? 0.1 : 0, strokeWidth: 20, fill: 'none', onDoubleClick: (e) => {
                 if (!this.props.link.isLocked()) {
                     this.props.link.remove();
+                }
+            }, onContextMenu: (e) => {
+                if (!this.props.link.isLocked()) {
+                    e.preventDefault();
+                    // this.props.link.remove();
+                    displayTooltip(e, this.props);
                 }
             } }));
         return (React.createElement("g", null,

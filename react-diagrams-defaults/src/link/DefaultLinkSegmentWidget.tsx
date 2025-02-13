@@ -16,6 +16,8 @@ export interface DefaultLinkSegmentWidgetProps {
 }
  const displayTooltip = (e,props) => {
 	const { link,propsE } = props;
+	console.log('propsE',propsE);
+	
 	e.stopPropagation();
 	e.preventDefault();
 
@@ -65,13 +67,13 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 					this.props.link.remove();
 				}
 			},
-			// onContextMenu: (e) => {
-			// 	if (!this.props.link.isLocked()) {
-			// 		e.preventDefault();
-			// 		// this.props.link.remove();
-			// 		displayTooltip(e,this.props);
-			// 	}
-			// }
+			onContextMenu: (e) => {
+				if (!this.props.link.isLocked()) {
+					e.preventDefault();
+					// this.props.link.remove();
+					displayTooltip(e,this.props);
+				}
+			}
 		});
 
 		return (
