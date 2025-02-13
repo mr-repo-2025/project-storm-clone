@@ -27,14 +27,15 @@ var S;
 	`;
 })(S || (S = {}));
 export class DefaultLinkFactory extends AbstractReactFactory {
-    constructor(type = 'default') {
+    constructor(type = 'default', propst) {
         super(type);
+        this.propst = propst;
     }
     generateReactWidget(event) {
-        return React.createElement(DefaultLinkWidget, { link: event.model, diagramEngine: this.engine });
+        return React.createElement(DefaultLinkWidget, { link: event.model, diagramEngine: this.engine, propst: this.propst });
     }
     generateModel(event) {
-        return new DefaultLinkModel();
+        return new DefaultLinkModel({}, this.propst);
     }
     generateLinkSegment(model, selected, path) {
         return (React.createElement(S.Path, { selected: selected, stroke: selected ? model.getOptions().selectedColor : model.getOptions().color, strokeWidth: model.getOptions().width, d: path }));

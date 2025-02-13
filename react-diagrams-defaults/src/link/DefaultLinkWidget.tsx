@@ -12,6 +12,7 @@ export interface DefaultLinkProps {
 	pointAdded?: (point: PointModel, event: MouseEvent) => any;
 	renderPoints?: boolean;
 	selected?: (event: MouseEvent) => any;
+	propst : Object;
 }
 
 
@@ -107,7 +108,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 		);
 	};
 
-	const generateLink = (path: string, extraProps: any, id: string | number): JSX.Element => {
+	const generateLink = (path: string, extraProps: any, id: string | number, propst : Object): JSX.Element => {
 		return (
 			<DefaultLinkSegmentWidget
 				key={`link-${id}`}
@@ -119,7 +120,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 				forwardRef={generateRef()}
 				onSelection={setSelected}
 				extras={extraProps}
-				propsE={props}
+				propsE={propst}
 			/>
 		);
 	};
@@ -142,7 +143,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 	const paths = [];
 	refPaths.current = []; // Reset the refPaths for the current render
 
-	 
+ 
 		for (let j = 0; j < points.length - 1; j++) {
 			paths.push(
 				generateLink(
@@ -155,7 +156,8 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 							addPointToLink(event, j + 1);
 						}
 					},
-					j
+					j,
+					props.propst
 				)
 			);
 		}

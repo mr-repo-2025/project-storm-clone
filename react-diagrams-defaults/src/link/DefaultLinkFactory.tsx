@@ -34,16 +34,18 @@ export class DefaultLinkFactory<Link extends DefaultLinkModel = DefaultLinkModel
 	Link,
 	DiagramEngine
 > {
-	constructor(type = 'default') {
+	propst: Object;
+	constructor(type = 'default',propst) {
 		super(type);
+		this.propst = propst;
 	}
 
 	generateReactWidget(event): JSX.Element {
-		return <DefaultLinkWidget link={event.model} diagramEngine={this.engine} />;
+		return <DefaultLinkWidget link={event.model} diagramEngine={this.engine} propst={this.propst}/>;
 	}
 
 	generateModel(event): Link {
-		return new DefaultLinkModel() as Link;
+		return new DefaultLinkModel({},this.propst) as Link;
 	}
 
 	generateLinkSegment(model: Link, selected: boolean, path: string) {

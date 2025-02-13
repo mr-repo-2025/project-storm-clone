@@ -63,8 +63,8 @@ export const DefaultLinkWidget = (props) => {
         var _a;
         return (React.createElement(DefaultLinkPointWidget, { key: point.getID(), point: point, colorSelected: (_a = props.link.getOptions().selectedColor) !== null && _a !== void 0 ? _a : '', color: props.link.getOptions().color }));
     };
-    const generateLink = (path, extraProps, id) => {
-        return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps, propsE: props }));
+    const generateLink = (path, extraProps, id, propst) => {
+        return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps, propsE: propst }));
     };
     const generateArrow = (point, previousPoint, points) => {
         return (React.createElement(CustomLinkArrowWidget, { key: point.getID(), point: point, points: points, previousPoint: previousPoint, colorSelected: props.link.getOptions().selectedColor, color: props.link.getOptions().color }));
@@ -81,7 +81,7 @@ export const DefaultLinkWidget = (props) => {
                 (_a = props.selected) === null || _a === void 0 ? void 0 : _a.call(props, event);
                 addPointToLink(event, j + 1);
             }
-        }, j));
+        }, j, props.propst));
     }
     for (let i = 1; i < points.length - 1; i++) {
         paths.push(generatePoint(points[i]));
