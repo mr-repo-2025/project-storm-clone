@@ -2,22 +2,22 @@
 	"files": [],
 	"references": [
 		{
-			"path": "./packages/geometry"
+			"path": "./geometry"
 		},
 		{
-			"path": "./packages/react-canvas-core"
+			"path": "./react-canvas-core"
 		},
 		{
-			"path": "./packages/react-diagrams"
+			"path": "./react-diagrams"
 		},
 		{
-			"path": "./packages/react-diagrams-core"
+			"path": "./react-diagrams-core"
 		},
 		{
-			"path": "./packages/react-diagrams-defaults"
+			"path": "./react-diagrams-defaults"
 		},
 		{
-			"path": "./packages/react-diagrams-routing"
+			"path": "./react-diagrams-routing"
 		}
 	]
 }

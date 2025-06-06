@@ -12,8 +12,27 @@ export interface DefaultLinkSegmentWidgetProps {
 	diagramEngine: DiagramEngine;
 	onSelection: (selected: boolean) => any;
 	extras: object;
+	propsE: object;
 }
-
+ const displayTooltip = (e,props) => {
+	const { link,propsE } = props;
+	e.stopPropagation();
+	e.preventDefault();
+	
+	 propsE.setLinkToRemove({
+	  id: link.options.id,
+	  clientX: e.clientX,
+	  clientY: e.clientY,
+	  publicId:
+		link.sourcePort.parent.title +
+		'_' +
+		link.sourcePort.parent.order +
+		'_' +
+		link.targetPort.parent.title +
+		'_' +
+		link.targetPort.parent.order,
+	});
+  };
 export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegmentWidgetProps> {
 	render() {
 		const Bottom = React.cloneElement(
@@ -41,10 +60,16 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			strokeOpacity: this.props.selected ? 0.1 : 0,
 			strokeWidth: 20,
 			fill: 'none',
-			onContextMenu: () => {
+			onDoubleClick : (e) => {
 				if (!this.props.link.isLocked()) {
-					event.preventDefault();
 					this.props.link.remove();
+				}
+			},
+			onContextMenu: (e) => {
+				if (!this.props.link.isLocked()) {
+					e.preventDefault();
+					// this.props.link.remove();
+					displayTooltip(e,this.props);
 				}
 			}
 		});

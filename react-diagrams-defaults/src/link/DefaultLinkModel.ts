@@ -24,6 +24,7 @@ export interface DefaultLinkModelOptions extends BaseModelOptions {
 	curvyness?: number;
 	type?: string;
 	testName?: string;
+	propst?: Object;
 }
 
 export interface DefaultLinkModelGenerics extends LinkModelGenerics {
@@ -32,16 +33,20 @@ export interface DefaultLinkModelGenerics extends LinkModelGenerics {
 }
 
 export class DefaultLinkModel extends LinkModel<DefaultLinkModelGenerics> {
-	constructor(options: DefaultLinkModelOptions = {}) {
+	constructor(options: DefaultLinkModelOptions = {},propst : Object = {}) {
+		console.log('rec1',propst);
+		
 		super({
 			type: 'default',
 			width: options.width || 3,
 			color: options.color || 'gray',
 			selectedColor: options.selectedColor || 'rgb(0,192,255)',
 			curvyness: 1,
+			propst: propst,
 			...options
 		});
 	}
+	 
 
 	calculateControlOffset(port: PortModel): [number, number] {
 		if (port.getOptions().alignment === PortModelAlignment.RIGHT) {

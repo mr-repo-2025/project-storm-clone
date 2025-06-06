@@ -15,8 +15,8 @@ const CustomLinkArrowWidget = (props) => {
     }
     return (React.createElement("g", { className: "arrow", transform: 'translate(' + (distancer.x) + ', ' + (distancer.y) + ')' },
         React.createElement("g", { style: { transform: 'rotate(' + angle + 'deg)' } },
-            React.createElement("g", { transform: 'translate(-10, -15)' },
-                React.createElement("path", { d: "M4.14645 4.85355C4.34171 5.04882 4.65829 5.04882 4.85355 4.85355L8.03553 1.67157C8.2308 1.47631 8.2308 1.15973 8.03553 0.964466C7.84027 0.769204 7.52369 0.769204 7.32843 0.964466L4.5 3.79289L1.67157 0.964466C1.47631 0.769204 1.15973 0.769204 0.964466 0.964466C0.769204 1.15973 0.769204 1.47631 0.964466 1.67157L4.14645 4.85355ZM4 3.5V4.5H5V3.5H4Z", fill: "#ACACAC" })))));
+            React.createElement("g", { transform: 'translate(-10, 0)' },
+                React.createElement("path", { d: "M8.58779 10.6148C9.09159 11.1284 9.90841 11.1284 10.4122 10.6148L18.6221 2.24512C19.126 1.73152 19.126 0.898812 18.6221 0.385203C18.1183 -0.128401 17.3015 -0.128401 16.7977 0.385203C16.7977 0.385203 10.4122 7.78405 9.5 7.82489C8.58779 7.86574 2.20227 0.385203 2.20227 0.385203C1.69848 -0.128401 0.881658 -0.128401 0.377851 0.385203C-0.12595 0.898812 -0.12595 1.73152 0.377851 2.24512L8.58779 10.6148Z", fill: "#ACACAC" })))));
 };
 const calculate = (point1, point2) => {
     const dx = point2.position.x - point1.position.x;
@@ -63,8 +63,8 @@ export const DefaultLinkWidget = (props) => {
         var _a;
         return (React.createElement(DefaultLinkPointWidget, { key: point.getID(), point: point, colorSelected: (_a = props.link.getOptions().selectedColor) !== null && _a !== void 0 ? _a : '', color: props.link.getOptions().color }));
     };
-    const generateLink = (path, extraProps, id) => {
-        return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps }));
+    const generateLink = (path, extraProps, id, propst) => {
+        return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps, propsE: propst }));
     };
     const generateArrow = (point, previousPoint, points) => {
         return (React.createElement(CustomLinkArrowWidget, { key: point.getID(), point: point, points: points, previousPoint: previousPoint, colorSelected: props.link.getOptions().selectedColor, color: props.link.getOptions().color }));
@@ -72,41 +72,25 @@ export const DefaultLinkWidget = (props) => {
     const points = props.link.getPoints();
     const paths = [];
     refPaths.current = []; // Reset the refPaths for the current render
-    if (points.length === 2) {
-        paths.push(generateLink(props.link.getSVGPath(), {
+    for (let j = 0; j < points.length - 1; j++) {
+        paths.push(generateLink(LinkWidget.generateLinePath(points[j], points[j + 1]), {
+            'data-linkid': props.link.getID(),
+            'data-point': j,
             onMouseDown: (event) => {
                 var _a;
                 (_a = props.selected) === null || _a === void 0 ? void 0 : _a.call(props, event);
-                addPointToLink(event, 1);
+                addPointToLink(event, j + 1);
             }
-        }, '0'));
-        if (props.link.getTargetPort() == null) {
-            paths.push(generatePoint(points[1]));
-        }
+        }, j, props.propst));
+    }
+    for (let i = 1; i < points.length - 1; i++) {
+        paths.push(generatePoint(points[i]));
+    }
+    if (props.link.getTargetPort() !== null) {
+        paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
     }
     else {
-        for (let j = 0; j < points.length - 1; j++) {
-            paths.push(generateLink(LinkWidget.generateLinePath(points[j], points[j + 1]), {
-                'data-linkid': props.link.getID(),
-                'data-point': j,
-                onMouseDown: (event) => {
-                    var _a;
-                    (_a = props.selected) === null || _a === void 0 ? void 0 : _a.call(props, event);
-                    addPointToLink(event, j + 1);
-                }
-            }, j));
-        }
-        if (renderPoints()) {
-            for (let i = 1; i < points.length - 1; i++) {
-                paths.push(generatePoint(points[i]));
-            }
-            if (props.link.getTargetPort() !== null) {
-                paths.push(generateArrow(points[points.length - 1], points[points.length - 2], points));
-            }
-            else {
-                paths.push(generatePoint(points[points.length - 1]));
-            }
-        }
+        paths.push(generatePoint(points[points.length - 1]));
     }
     return React.createElement("g", { "data-default-link-test": props.link.getOptions().testName }, paths);
 };
