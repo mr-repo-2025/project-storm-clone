@@ -2,7 +2,7 @@
 	"name": "@projectstorm/react-diagrams",
 	"author": "dylanvorster (Modificado STB - Mario Rojas)",
 	"private": true,
-	"version" : "1.0.26",
+	"version" : "1.0.27",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/projectstorm/react-diagrams.git"
