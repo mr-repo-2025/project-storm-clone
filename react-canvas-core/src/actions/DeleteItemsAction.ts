@@ -18,7 +18,7 @@ export interface DeleteItemsActionOptions {
  */
 export class DeleteItemsAction extends Action {
 	constructor(options: DeleteItemsActionOptions = {}) {
-		const keyCodes = options.keyCodes || [46, 8];
+		const keyCodes = options.keyCodes  ;
 		const modifiers = {
 			ctrlKey: false,
 			shiftKey: false,

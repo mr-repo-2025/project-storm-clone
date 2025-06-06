@@ -6,7 +6,7 @@ import _isEqual from 'lodash/isEqual';
  */
 export class DeleteItemsAction extends Action {
     constructor(options = {}) {
-        const keyCodes = options.keyCodes || [46, 8];
+        const keyCodes = options.keyCodes;
         const modifiers = Object.assign({ ctrlKey: false, shiftKey: false, altKey: false, metaKey: false }, options.modifiers);
         super({
             type: InputType.KEY_DOWN,
