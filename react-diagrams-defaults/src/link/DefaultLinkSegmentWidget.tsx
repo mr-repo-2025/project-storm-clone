@@ -19,7 +19,8 @@ export interface DefaultLinkSegmentWidgetProps {
 	e.stopPropagation();
 	e.preventDefault();
 	
-	 propsE.setLinkToRemove({
+	try {
+		 propsE?.setLinkToRemove({
 	  id: link.options.id,
 	  clientX: e.clientX,
 	  clientY: e.clientY,
@@ -32,6 +33,11 @@ export interface DefaultLinkSegmentWidgetProps {
 		'_' +
 		link.targetPort.parent.order,
 	});
+	} catch (error) {
+		console.log('error',error);
+		
+	}
+	
   };
 export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegmentWidgetProps> {
 	render() {

@@ -3,18 +3,23 @@ const displayTooltip = (e, props) => {
     const { link, propsE } = props;
     e.stopPropagation();
     e.preventDefault();
-    propsE.setLinkToRemove({
-        id: link.options.id,
-        clientX: e.clientX,
-        clientY: e.clientY,
-        publicId: link.sourcePort.parent.title +
-            '_' +
-            link.sourcePort.parent.order +
-            '_' +
-            link.targetPort.parent.title +
-            '_' +
-            link.targetPort.parent.order,
-    });
+    try {
+        propsE === null || propsE === void 0 ? void 0 : propsE.setLinkToRemove({
+            id: link.options.id,
+            clientX: e.clientX,
+            clientY: e.clientY,
+            publicId: link.sourcePort.parent.title +
+                '_' +
+                link.sourcePort.parent.order +
+                '_' +
+                link.targetPort.parent.title +
+                '_' +
+                link.targetPort.parent.order,
+        });
+    }
+    catch (error) {
+        console.log('error', error);
+    }
 };
 export class DefaultLinkSegmentWidget extends React.Component {
     render() {
