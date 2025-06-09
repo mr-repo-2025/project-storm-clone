@@ -19,12 +19,13 @@ namespace S {
 	const selected = css`
 		 stroke: #c9c9c9;
 	`;
+	 
 	//se elimina animacion 
 	// animation: ${Keyframes} 1s linear infinite;
 	// stroke-dasharray: 10, 2;
 
 	export const Path = styled.path<{ selected: boolean }>`
-		${(p) => p.selected && selected};
+		${(p) => p.selected };
 		fill: none;
 		pointer-events: auto;
 	`;
@@ -51,7 +52,7 @@ export class DefaultLinkFactory<Link extends DefaultLinkModel = DefaultLinkModel
 	generateLinkSegment(model: Link, selected: boolean, path: string) {
 		return (
 			<S.Path
-				selected={selected}
+				selected={selected }
 				stroke={selected ? model.getOptions().selectedColor : model.getOptions().color}
 				strokeWidth={model.getOptions().width}
 				d={path}

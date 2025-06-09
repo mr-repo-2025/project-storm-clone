@@ -21,7 +21,7 @@ var S;
     // animation: ${Keyframes} 1s linear infinite;
     // stroke-dasharray: 10, 2;
     S.Path = styled.path `
-		${(p) => p.selected && selected};
+		${(p) => p.selected};
 		fill: none;
 		pointer-events: auto;
 	`;
