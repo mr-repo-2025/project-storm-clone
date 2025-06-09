@@ -57,8 +57,8 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			...this.props.extras,
 			ref: null,
 			'data-linkid': this.props.link.getID(),
-			strokeOpacity: this.props.selected ? 0.1 : 1,
-			strokeWidth: 20,
+			strokeOpacity: this.props.selected ? 0.1 : 0,
+			strokeWidth: 1,
 			fill: 'none',
 			onDoubleClick : (e) => {
 				if (!this.props.link.isLocked()) {
