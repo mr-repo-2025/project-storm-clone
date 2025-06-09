@@ -3,7 +3,7 @@ import { DefaultLinkModel } from './DefaultLinkModel';
 import { DefaultLinkWidget } from './DefaultLinkWidget';
 import styled from '@emotion/styled';
 import { AbstractReactFactory } from '@projectstorm/react-canvas-core';
-import { css, keyframes } from '@emotion/react';
+import { keyframes } from '@emotion/react';
 var S;
 (function (S) {
     S.Keyframes = keyframes `
@@ -14,14 +14,12 @@ var S;
 			stroke-dashoffset: 0;
 		}
 	`;
-    const selected = css `
-		 stroke: #c9c9c9;
-	`;
     //se elimina animacion 
     // animation: ${Keyframes} 1s linear infinite;
     // stroke-dasharray: 10, 2;
+    // ${(p) => p.selected ? '' };
     S.Path = styled.path `
-		${(p) => p.selected};
+	    stroke: ${(p) => (p.selected ? '#706f6f' : '#c9c9c9')};
 		fill: none;
 		pointer-events: auto;
 	`;

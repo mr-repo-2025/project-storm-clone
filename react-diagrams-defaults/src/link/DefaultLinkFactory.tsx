@@ -15,17 +15,13 @@ namespace S {
 			stroke-dashoffset: 0;
 		}
 	`;
-
-	const selected = css`
-		 stroke: #c9c9c9;
-	`;
-	 
+ 
 	//se elimina animacion 
 	// animation: ${Keyframes} 1s linear infinite;
 	// stroke-dasharray: 10, 2;
-
+    // ${(p) => p.selected ? '' };
 	export const Path = styled.path<{ selected: boolean }>`
-		${(p) => p.selected };
+	    stroke: ${(p) => (p.selected ? '#706f6f' : '#c9c9c9')};
 		fill: none;
 		pointer-events: auto;
 	`;
