@@ -40,14 +40,20 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 			new Action({
 				type: InputType.MOUSE_DOWN,
 				fire: (event: ActionEvent<MouseEvent, PortModel>) => {
-					this.port = this.engine.getMouseElement(event.event) as PortModel;
+					// this.port = this.engine.getMouseElement(event.event) as PortModel;
+					const element = this.engine.getMouseElement(event.event);
 					if (!this.config.allowLinksFromLockedPorts && this.port.isLocked()) {
 						this.eject();
 						return;
 					}
+					if (!(element instanceof PortModel)) {
+						this.eject();
+						return;
+					}
+					this.port = element;
 					// this.link = this.port.createLinkModel();
 
-					// // if no link is given, just eject the state
+					// if no link is given, just eject the state
 					// if (!this.link) {
 					// 	this.eject();
 					// 	return;
@@ -55,7 +61,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					// this.link.setSelected(true);
 					// this.link.setSourcePort(this.port);
 					// this.engine.getModel().addLink(this.link);
-					// this.port.reportPosition();
+					this.port.reportPosition();
 				}
 			})
 		);
@@ -68,10 +74,12 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					// check to see if we connected to a new port
 					if (model instanceof PortModel) {
 						if (this.port.canLinkToPort(model)) {
-							this.link.setTargetPort(model);
-							model.reportPosition();
-							this.engine.repaintCanvas();
-							return;
+							if (this.link) {
+								this.link.setTargetPort(model);
+								model.reportPosition();
+								this.engine.repaintCanvas();
+								return;
+							}
 						} else {
 							if (this.link) {
 								this.link.remove();
@@ -99,14 +107,18 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 	 * as the possible engine offset
 	 */
 	fireMouseMoved(event: AbstractDisplacementStateEvent): any {
-		if (!this.link) {
+		if (!this.link && this.port) {
 			this.link = this.port.createLinkModel();
+
 			if (!this.link) return;
 
 			this.link.setSourcePort(this.port);
 			this.link.setSelected(true);
 			this.engine.getModel().addLink(this.link);
 		}
+
+		if (!this.link || !this.port) return;
+
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
 		const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
@@ -115,9 +127,8 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		const initialYRelative = this.initialYRelative / zoomLevelPercentage;
 		const linkNextX = portPos.x - engineOffsetX + (initialXRelative - portPos.x) + event.virtualDisplacementX;
 		const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y) + event.virtualDisplacementY;
-		if (event.virtualDisplacementX === 0 && event.virtualDisplacementY === 0) {
-			return;
-		}
+		if (event.virtualDisplacementX === 0 && event.virtualDisplacementY === 0) return;
+
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();
 	}
