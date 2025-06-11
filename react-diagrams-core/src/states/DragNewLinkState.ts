@@ -45,17 +45,17 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 						this.eject();
 						return;
 					}
-					this.link = this.port.createLinkModel();
+					// this.link = this.port.createLinkModel();
 
-					// if no link is given, just eject the state
-					if (!this.link) {
-						this.eject();
-						return;
-					}
-					this.link.setSelected(true);
-					this.link.setSourcePort(this.port);
-					this.engine.getModel().addLink(this.link);
-					this.port.reportPosition();
+					// // if no link is given, just eject the state
+					// if (!this.link) {
+					// 	this.eject();
+					// 	return;
+					// }
+					// this.link.setSelected(true);
+					// this.link.setSourcePort(this.port);
+					// this.engine.getModel().addLink(this.link);
+					// this.port.reportPosition();
 				}
 			})
 		);
@@ -94,6 +94,14 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 	 * as the possible engine offset
 	 */
 	fireMouseMoved(event: AbstractDisplacementStateEvent): any {
+		if (!this.link) {
+			this.link = this.port.createLinkModel();
+			if (!this.link) return;
+
+			this.link.setSourcePort(this.port);
+			this.link.setSelected(true);
+			this.engine.getModel().addLink(this.link);
+		}
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
 		const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
@@ -103,7 +111,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		const linkNextX = portPos.x - engineOffsetX + (initialXRelative - portPos.x) + event.virtualDisplacementX;
 		const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y) + event.virtualDisplacementY;
 		if (event.virtualDisplacementX === 0 && event.virtualDisplacementY === 0) {
-		return;
+			return;
 		}
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();

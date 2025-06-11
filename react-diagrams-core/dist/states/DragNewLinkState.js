@@ -12,16 +12,16 @@ export class DragNewLinkState extends AbstractDisplacementState {
                     this.eject();
                     return;
                 }
-                this.link = this.port.createLinkModel();
-                // if no link is given, just eject the state
-                if (!this.link) {
-                    this.eject();
-                    return;
-                }
-                this.link.setSelected(true);
-                this.link.setSourcePort(this.port);
-                this.engine.getModel().addLink(this.link);
-                this.port.reportPosition();
+                // this.link = this.port.createLinkModel();
+                // // if no link is given, just eject the state
+                // if (!this.link) {
+                // 	this.eject();
+                // 	return;
+                // }
+                // this.link.setSelected(true);
+                // this.link.setSourcePort(this.port);
+                // this.engine.getModel().addLink(this.link);
+                // this.port.reportPosition();
             }
         }));
         this.registerAction(new Action({
@@ -55,6 +55,14 @@ export class DragNewLinkState extends AbstractDisplacementState {
      * as the possible engine offset
      */
     fireMouseMoved(event) {
+        if (!this.link) {
+            this.link = this.port.createLinkModel();
+            if (!this.link)
+                return;
+            this.link.setSourcePort(this.port);
+            this.link.setSelected(true);
+            this.engine.getModel().addLink(this.link);
+        }
         const portPos = this.port.getPosition();
         const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
         const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
