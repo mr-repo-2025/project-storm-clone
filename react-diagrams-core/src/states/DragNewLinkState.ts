@@ -54,6 +54,9 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					}
 					this.link.setSelected(true);
 					this.link.setSourcePort(this.port);
+					console.log('this.port',this.port);
+					console.log('this.this.engine.getMouseElement(event.event)',this.engine.getMouseElement(event.event));
+					
 					this.engine.getModel().addLink(this.link);
 					this.port.reportPosition();
 				}
