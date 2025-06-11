@@ -102,7 +102,9 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		const initialYRelative = this.initialYRelative / zoomLevelPercentage;
 		const linkNextX = portPos.x - engineOffsetX + (initialXRelative - portPos.x) + event.virtualDisplacementX;
 		const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y) + event.virtualDisplacementY;
-
+		if (event.virtualDisplacementX === 0 && event.virtualDisplacementY === 0) {
+		return;
+		}
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();
 	}
