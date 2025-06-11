@@ -54,20 +54,18 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					}
 					this.link.setSelected(true);
 					this.link.setSourcePort(this.port);
-					console.log('this.port',this.port);
-					console.log('this.this.engine.getMouseElement(event.event)',this.engine.getMouseElement(event.event));
 
-		const portPos = this.port.getPosition();
-		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
-		const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
-		const engineOffsetY = this.engine.getModel().getOffsetY() / zoomLevelPercentage;
-		const initialXRelative = this.initialXRelative / zoomLevelPercentage;
-		const initialYRelative = this.initialYRelative / zoomLevelPercentage;
-		const linkNextX = portPos.x - engineOffsetX + (initialXRelative - portPos.x)  ;
-		const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y)  ;
+					const portPos = this.port.getPosition();
+					const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
+					const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
+					const engineOffsetY = this.engine.getModel().getOffsetY() / zoomLevelPercentage;
+					const initialXRelative = this.initialXRelative / zoomLevelPercentage;
+					const initialYRelative = this.initialYRelative / zoomLevelPercentage;
+					const linkNextX = portPos.x - engineOffsetX + (initialXRelative - portPos.x);
+					const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y);
 
-		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
-					
+					this.link.getLastPoint().setPosition(linkNextX, linkNextY);
+
 					this.engine.getModel().addLink(this.link);
 					this.port.reportPosition();
 				}
@@ -110,8 +108,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 	fireMouseMoved(event: AbstractDisplacementStateEvent): any {
 
 		this.port.reportPosition();
-		console.log('this.port.getPosition()',this.port.getPosition());
-		
+
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
 		const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
