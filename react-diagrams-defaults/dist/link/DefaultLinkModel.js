@@ -3,7 +3,7 @@ import { DefaultLabelModel } from '../label/DefaultLabelModel';
 import { BezierCurve } from '@projectstorm/geometry';
 export class DefaultLinkModel extends LinkModel {
     constructor(options = {}, propst = {}) {
-        super(Object.assign({ type: 'default', width: options.width || 3, color: options.color || 'gray', selectedColor: options.selectedColor || 'rgb(0,192,255)', curvyness: 1, propst: propst }, options));
+        super(Object.assign({ type: 'default', width: options.width || 1, color: options.color || 'gray', selectedColor: options.selectedColor || 'rgb(0,192,255)', curvyness: 1, propst: propst }, options));
     }
     calculateControlOffset(port) {
         if (port.getOptions().alignment === PortModelAlignment.RIGHT) {

@@ -37,7 +37,7 @@ export class DefaultLinkModel extends LinkModel<DefaultLinkModelGenerics> {
 		
 		super({
 			type: 'default',
-			width: options.width || 3,
+			width: options.width || 1,
 			color: options.color || 'gray',
 			selectedColor: options.selectedColor || 'rgb(0,192,255)',
 			curvyness: 1,
