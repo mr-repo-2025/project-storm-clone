@@ -17,6 +17,14 @@ export class DragNewLinkState extends AbstractDisplacementState {
                     this.eject();
                     return;
                 }
+                if (!this.link && this.port) {
+                    this.link = this.port.createLinkModel();
+                    if (!this.link)
+                        return;
+                    this.link.setSourcePort(this.port);
+                    this.link.setSelected(true);
+                    this.engine.getModel().addLink(this.link);
+                }
                 // No se crea el link aún
                 this.port.reportPosition();
             }
@@ -76,8 +84,7 @@ export class DragNewLinkState extends AbstractDisplacementState {
         const initialYRelative = this.initialYRelative / zoomLevelPercentage;
         const linkNextX = portPos.x - engineOffsetX + (initialXRelative - portPos.x) + event.virtualDisplacementX;
         const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y) + event.virtualDisplacementY;
-        if (event.virtualDisplacementX === 0 && event.virtualDisplacementY === 0)
-            return;
+        // if (event.virtualDisplacementX === 0 && event.virtualDisplacementY === 0) return;
         this.link.getLastPoint().setPosition(linkNextX, linkNextY);
         this.engine.repaintCanvas();
     }
