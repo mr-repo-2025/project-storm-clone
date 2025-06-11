@@ -40,27 +40,19 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 			new Action({
 				type: InputType.MOUSE_DOWN,
 				fire: (event: ActionEvent<MouseEvent, PortModel>) => {
-					// this.port = this.engine.getMouseElement(event.event) as PortModel;
 					const element = this.engine.getMouseElement(event.event);
-					if (!this.config.allowLinksFromLockedPorts && this.port.isLocked()) {
-						this.eject();
-						return;
-					}
 					if (!(element instanceof PortModel)) {
 						this.eject();
 						return;
 					}
 					this.port = element;
-					// this.link = this.port.createLinkModel();
 
-					// if no link is given, just eject the state
-					// if (!this.link) {
-					// 	this.eject();
-					// 	return;
-					// }
-					// this.link.setSelected(true);
-					// this.link.setSourcePort(this.port);
-					// this.engine.getModel().addLink(this.link);
+					if (!this.config.allowLinksFromLockedPorts && this.port.isLocked()) {
+						this.eject();
+						return;
+					}
+
+					// No se crea el link aún
 					this.port.reportPosition();
 				}
 			})
