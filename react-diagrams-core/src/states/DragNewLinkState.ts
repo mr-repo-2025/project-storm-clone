@@ -55,14 +55,13 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					if (!this.link && this.port) {
 						this.link = this.port.createLinkModel();
 
-						if (!this.link) return;
+						// if (!this.link) return;
 
 						this.link.setSourcePort(this.port);
 						this.link.setSelected(true);
 						this.engine.getModel().addLink(this.link);
 					}
-					
-					// No se crea el link aún
+
 					this.port.reportPosition();
 				}
 			})
@@ -76,27 +75,27 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					// check to see if we connected to a new port
 					if (model instanceof PortModel) {
 						if (this.port.canLinkToPort(model)) {
-							if (this.link) {
+							// if (this.link) {
 								this.link.setTargetPort(model);
 								model.reportPosition();
 								this.engine.repaintCanvas();
 								return;
-							}
+							// }
 						} else {
-							if (this.link) {
+							// if (this.link) {
 								this.link.remove();
 								this.engine.repaintCanvas();
 								return;
-							}
+							// }
 
 						}
 					}
 
 					if (!this.config.allowLooseLinks) {
-						if (this.link) {
+						// if (this.link) {
 							this.link.remove();
 							this.engine.repaintCanvas();
-						}
+						// }
 					}
 				}
 			})
@@ -112,14 +111,14 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		if (!this.link && this.port) {
 			this.link = this.port.createLinkModel();
 
-			if (!this.link) return;
+			// if (!this.link) return;
 
 			this.link.setSourcePort(this.port);
 			this.link.setSelected(true);
 			this.engine.getModel().addLink(this.link);
 		}
 
-		if (!this.link || !this.port) return;
+		// if (!this.link || !this.port) return;
 
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
