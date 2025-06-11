@@ -37,14 +37,18 @@ export class DragNewLinkState extends AbstractDisplacementState {
                         return;
                     }
                     else {
-                        this.link.remove();
-                        this.engine.repaintCanvas();
-                        return;
+                        if (this.link) {
+                            this.link.remove();
+                            this.engine.repaintCanvas();
+                            return;
+                        }
                     }
                 }
                 if (!this.config.allowLooseLinks) {
-                    this.link.remove();
-                    this.engine.repaintCanvas();
+                    if (this.link) {
+                        this.link.remove();
+                        this.engine.repaintCanvas();
+                    }
                 }
             }
         }));
