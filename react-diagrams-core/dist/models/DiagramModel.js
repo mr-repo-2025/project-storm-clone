@@ -12,8 +12,8 @@ import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeLayerModel());
+        this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeWLayerModel());
     }
     deserialize(event) {
@@ -22,14 +22,14 @@ export class DiagramModel extends CanvasModel {
     }
     addLayer(layer) {
         super.addLayer(layer);
-        if (layer instanceof NodeLayerModel) {
-            this.activeNodeLayer = layer;
-        }
         if (layer instanceof NodeWLayerModel) {
             this.activeNodeWLayer = layer;
         }
         if (layer instanceof LinkLayerModel) {
             this.activeLinkLayer = layer;
+        }
+        if (layer instanceof NodeLayerModel) {
+            this.activeNodeLayer = layer;
         }
     }
     getLinkLayers() {

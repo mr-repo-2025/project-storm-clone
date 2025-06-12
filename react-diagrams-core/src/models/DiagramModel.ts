@@ -35,8 +35,8 @@ export class DiagramModel<G extends DiagramModelGenerics = DiagramModelGenerics>
 
 	constructor(options: G['OPTIONS'] = {}) {
 		super(options);
-		this.addLayer(new LinkLayerModel());
 		this.addLayer(new NodeLayerModel());
+		this.addLayer(new LinkLayerModel());
 		this.addLayer(new NodeWLayerModel());
 	}
 
@@ -47,17 +47,15 @@ export class DiagramModel<G extends DiagramModelGenerics = DiagramModelGenerics>
 
 	addLayer(layer: LayerModel): void {
 		super.addLayer(layer);
-		if (layer instanceof NodeLayerModel) {
-			this.activeNodeLayer = layer;
-		}
 		if (layer instanceof NodeWLayerModel) {
 			this.activeNodeWLayer = layer;
 		}
 		if (layer instanceof LinkLayerModel) {
 			this.activeLinkLayer = layer;
 		}
-
-		
+		if (layer instanceof NodeLayerModel) {
+			this.activeNodeLayer = layer;
+		}
 	}
 
 	getLinkLayers(): LinkLayerModel[] {
@@ -163,6 +161,8 @@ export class DiagramModel<G extends DiagramModelGenerics = DiagramModelGenerics>
 		);
 		return link;
 	}
+
+ 
 
 	addNode(node: NodeModel): NodeModel {
 		this.getActiveNodeLayer().addModel(node);
