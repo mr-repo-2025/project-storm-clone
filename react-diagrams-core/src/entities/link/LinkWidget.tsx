@@ -107,9 +107,7 @@ export class LinkWidget extends React.Component<LinkProps, LinkState> {
 					return (
 						<g 
 						data-linkid={this.props.link.getID()}
-						onContextMenu={(e)=>{
-							console.log('context',e);
-						}}>
+						 >
 							{this.props.diagramEngine.generateWidgetForLink(link)}
 							{_map(this.props.link.getLabels(), (labelModel, index) => {
 								return (

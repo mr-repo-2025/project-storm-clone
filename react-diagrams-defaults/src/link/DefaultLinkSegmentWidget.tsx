@@ -39,6 +39,15 @@ export interface DefaultLinkSegmentWidgetProps {
 	}
 	
   };
+ const displayTooltipCustom = (e,props) => {
+	// const { link,propsE } = props;
+	e.stopPropagation();
+	e.preventDefault();
+
+
+ }
+
+  
 export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegmentWidgetProps> {
 	render() {
 		const Bottom = React.cloneElement(
@@ -75,6 +84,7 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 				if (!this.props.link.isLocked()) {
 					e.preventDefault();
 					// this.props.link.remove();
+					console.log('this.props',this.props);
 					displayTooltip(e,this.props);
 				}
 			}

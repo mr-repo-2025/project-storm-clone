@@ -21,6 +21,11 @@ const displayTooltip = (e, props) => {
         console.log('error', error);
     }
 };
+const displayTooltipCustom = (e, props) => {
+    // const { link,propsE } = props;
+    e.stopPropagation();
+    e.preventDefault();
+};
 export class DefaultLinkSegmentWidget extends React.Component {
     render() {
         const Bottom = React.cloneElement(this.props.factory.generateLinkSegment(this.props.link, this.props.selected || this.props.link.isSelected(), this.props.path), {
@@ -38,6 +43,7 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 if (!this.props.link.isLocked()) {
                     e.preventDefault();
                     // this.props.link.remove();
+                    console.log('this.props', this.props);
                     displayTooltip(e, this.props);
                 }
             } }));
