@@ -31,7 +31,6 @@
 	"dependencies": {
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.*",
-		"@mui/material": "^7.1.1",
 		"@projectstorm/geometry": "workspace:*",
 		"@projectstorm/react-canvas-core": "workspace:*",
 		"@projectstorm/react-diagrams-core": "workspace:*",

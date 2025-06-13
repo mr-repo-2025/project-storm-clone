@@ -2,7 +2,6 @@ import * as React from 'react';
 import { DefaultLinkFactory } from './DefaultLinkFactory';
 import { DiagramEngine } from '@projectstorm/react-diagrams-core';
 import { DefaultLinkModel } from './DefaultLinkModel';
-import { Menu, MenuItem, Button } from '@mui/material';
 
 export interface DefaultLinkSegmentWidgetProps {
 	path: string;
@@ -16,23 +15,22 @@ export interface DefaultLinkSegmentWidgetProps {
 	propsE: object;
 }
 const displayTooltip = (e, props) => {
-	const { link, propsE } = props;
 	e.stopPropagation();
 	e.preventDefault();
 
 	try {
-		propsE?.setLinkToRemove({
-			id: link.options.id,
+		props?.setLinkToRemove({
+			id: props.link.options.id,
 			clientX: e.clientX,
 			clientY: e.clientY,
 			publicId:
-				link.sourcePort.parent.title +
+				props.link.sourcePort.parent.title +
 				'_' +
-				link.sourcePort.parent.order +
+				props.link.sourcePort.parent.order +
 				'_' +
-				link.targetPort.parent.title +
+				props.link.targetPort.parent.title +
 				'_' +
-				link.targetPort.parent.order,
+				props.link.targetPort.parent.order,
 		});
 	} catch (error) {
 		console.log('error', error);
@@ -40,14 +38,7 @@ const displayTooltip = (e, props) => {
 	}
 
 };
-const displayTooltipCustom = (e, props) => {
-	// const { link,propsE } = props;
-	e.stopPropagation();
-	e.preventDefault();
-
-
-}
-
+ 
 
 export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegmentWidgetProps> {
 	render() {
@@ -61,23 +52,7 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 				ref: this.props.forwardRef
 			}
 		);
-		const [contextMenu, setContextMenu] = React.useState<{
-			mouseX: number;
-			mouseY: number;
-		} | null>(null);
-
-		// const handleContextMenu = (event: React.MouseEvent) => {
-		// 	event.preventDefault(); // Evita el menú del navegador
-		// 	setContextMenu(
-		// 		contextMenu === null
-		// 			? {
-		// 				mouseX: event.clientX + 2,
-		// 				mouseY: event.clientY - 6,
-		// 			}
-		// 			: // Reabrir en la misma posición
-		// 			null,
-		// 	);
-		// };
+	 
 
 		const Top = React.cloneElement(Bottom, {
 			strokeLinecap: 'round',
@@ -103,46 +78,16 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 					e.preventDefault();
 					// this.props.link.remove();
 					// console.log('this.props', this.props);
-					// displayTooltip(e, this.props);
-						setContextMenu(
-							contextMenu === null
-								? {
-									mouseX: e.clientX + 2,
-									mouseY: e.clientY - 6,
-								}
-								: // Reabrir en la misma posición
-								null,
-						);
+					displayTooltip(e, this.props.propsE);
 				}
 			}
 		});
 
 		return (
-			<>
 				<g>
 					{Bottom}
 					{Top}
 				</g>
-				<Menu
-					open={contextMenu !== null}
-					// onClose={handleClose}
-					anchorReference="anchorPosition"
-					anchorPosition={
-						contextMenu !== null
-							? { top: contextMenu.mouseY, left: contextMenu.mouseX }
-							: undefined
-					}
-				>
-					<MenuItem onClick={()=>{
-						if (!this.props.link.isLocked()) {
-						  this.props.link.remove();
-						}
-					}}>Opción 1</MenuItem>
-		 
-				</Menu>
-
-			</>
-
 		);
 	}
 }
