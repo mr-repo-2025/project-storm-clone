@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Menu, MenuItem } from '@mui/material';
 const displayTooltip = (e, props) => {
     const { link, propsE } = props;
     e.stopPropagation();
@@ -31,6 +32,19 @@ export class DefaultLinkSegmentWidget extends React.Component {
         const Bottom = React.cloneElement(this.props.factory.generateLinkSegment(this.props.link, this.props.selected || this.props.link.isSelected(), this.props.path), {
             ref: this.props.forwardRef
         });
+        const [contextMenu, setContextMenu] = React.useState(null);
+        // const handleContextMenu = (event: React.MouseEvent) => {
+        // 	event.preventDefault(); // Evita el menú del navegador
+        // 	setContextMenu(
+        // 		contextMenu === null
+        // 			? {
+        // 				mouseX: event.clientX + 2,
+        // 				mouseY: event.clientY - 6,
+        // 			}
+        // 			: // Reabrir en la misma posición
+        // 			null,
+        // 	);
+        // };
         const Top = React.cloneElement(Bottom, Object.assign(Object.assign({ strokeLinecap: 'round', onMouseLeave: () => {
                 this.props.onSelection(false);
             }, onMouseEnter: () => {
@@ -43,13 +57,31 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 if (!this.props.link.isLocked()) {
                     e.preventDefault();
                     // this.props.link.remove();
-                    console.log('this.props', this.props);
-                    displayTooltip(e, this.props);
+                    // console.log('this.props', this.props);
+                    // displayTooltip(e, this.props);
+                    setContextMenu(contextMenu === null
+                        ? {
+                            mouseX: e.clientX + 2,
+                            mouseY: e.clientY - 6,
+                        }
+                        : // Reabrir en la misma posición
+                            null);
                 }
             } }));
-        return (React.createElement("g", null,
-            Bottom,
-            Top));
+        return (React.createElement(React.Fragment, null,
+            React.createElement("g", null,
+                Bottom,
+                Top),
+            React.createElement(Menu, { open: contextMenu !== null, 
+                // onClose={handleClose}
+                anchorReference: "anchorPosition", anchorPosition: contextMenu !== null
+                    ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
+                    : undefined },
+                React.createElement(MenuItem, { onClick: () => {
+                        if (!this.props.link.isLocked()) {
+                            this.props.link.remove();
+                        }
+                    } }, "Opci\u00F3n 1"))));
     }
 }
 //# sourceMappingURL=DefaultLinkSegmentWidget.js.map
