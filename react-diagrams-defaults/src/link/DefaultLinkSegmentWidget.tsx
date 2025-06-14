@@ -14,24 +14,23 @@ export interface DefaultLinkSegmentWidgetProps {
 	extras: object;
 	propsE: object;
 }
-const displayTooltip = (e, props) => {
+const displayTooltip = (e, props,propsdef) => {
 	e.stopPropagation();
 	e.preventDefault();
-	console.log('props ls',props);
 	
 	try {
 		props?.setLinkToRemove({
-			id: props.options.id,
+			id: propsdef.link.getID(),
 			clientX: e.clientX,
 			clientY: e.clientY,
 			publicId:
-				props.sourcePort.parent.title +
+				propsdef.link.sourcePort.parent.title +
 				'_' +
-				props.sourcePort.parent.order +
+				propsdef.link.sourcePort.parent.order +
 				'_' +
-				props.targetPort.parent.title +
+				propsdef.link.targetPort.parent.title +
 				'_' +
-				props.targetPort.parent.order,
+				propsdef.link.targetPort.parent.order,
 		});
 	} catch (error) {
 		console.log('error', error);
@@ -78,8 +77,7 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 				if (!this.props.link.isLocked()) {
 					e.preventDefault();
 					// this.props.link.remove();
-					console.log('this.props a', this.props);
-					displayTooltip(e, this.props.propsE);
+					displayTooltip(e, this.props.propsE,this.props);
 				}
 			}
 		});
