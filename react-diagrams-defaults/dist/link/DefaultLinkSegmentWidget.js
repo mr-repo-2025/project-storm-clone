@@ -1,19 +1,19 @@
 import * as React from 'react';
-const displayTooltip = (e, props, propsdef) => {
+const displayTooltip = (e, props) => {
     e.stopPropagation();
     e.preventDefault();
     try {
-        props === null || props === void 0 ? void 0 : props.setLinkToRemove({
-            id: propsdef.link.getID(),
+        props.link.propsE.setLinkToRemove({
+            id: props.link.getID(),
             clientX: e.clientX,
             clientY: e.clientY,
-            publicId: propsdef.link.sourcePort.parent.title +
+            publicId: props.link.sourcePort.parent.title +
                 '_' +
-                propsdef.link.sourcePort.parent.order +
+                props.link.sourcePort.parent.order +
                 '_' +
-                propsdef.link.targetPort.parent.title +
+                props.link.targetPort.parent.title +
                 '_' +
-                propsdef.link.targetPort.parent.order,
+                props.link.targetPort.parent.order,
         });
     }
     catch (error) {
@@ -37,7 +37,7 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 if (!this.props.link.isLocked()) {
                     e.preventDefault();
                     // this.props.link.remove();
-                    displayTooltip(e, this.props.propsE, this.props);
+                    displayTooltip(e, this.props);
                 }
             } }));
         return (React.createElement("g", null,
