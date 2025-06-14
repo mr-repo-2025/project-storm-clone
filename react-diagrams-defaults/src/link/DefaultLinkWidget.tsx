@@ -63,6 +63,8 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 	const [selected, setSelected] = React.useState(false);
 	const refPaths = useRef<React.RefObject<SVGPathElement>[]>([]);
 
+		console.log('principal prost',props);
+		
 	const renderPoints = () => {
 		return props.renderPoints ?? true;
 	};
@@ -109,6 +111,8 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 	};
 
 	const generateLink = (path: string, extraProps: any, id: string | number, propst : Object): JSX.Element => {
+	console.log('props ls propst',propst);
+
 		return (
 			<DefaultLinkSegmentWidget
 				key={`link-${id}`}
@@ -143,7 +147,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 	const paths = [];
 	refPaths.current = []; // Reset the refPaths for the current render
 
-		
+
 		for (let j = 0; j < points.length - 1; j++) {
 			paths.push(
 				generateLink(

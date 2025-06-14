@@ -30,6 +30,7 @@ const calculate = (point1, point2) => {
 export const DefaultLinkWidget = (props) => {
     const [selected, setSelected] = React.useState(false);
     const refPaths = useRef([]);
+    console.log('principal prost', props);
     const renderPoints = () => {
         var _a;
         return (_a = props.renderPoints) !== null && _a !== void 0 ? _a : true;
@@ -64,6 +65,7 @@ export const DefaultLinkWidget = (props) => {
         return (React.createElement(DefaultLinkPointWidget, { key: point.getID(), point: point, colorSelected: (_a = props.link.getOptions().selectedColor) !== null && _a !== void 0 ? _a : '', color: props.link.getOptions().color }));
     };
     const generateLink = (path, extraProps, id, propst) => {
+        console.log('props ls propst', propst);
         return (React.createElement(DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: selected, diagramEngine: props.diagramEngine, factory: props.diagramEngine.getFactoryForLink(props.link), link: props.link, forwardRef: generateRef(), onSelection: setSelected, extras: extraProps, propsE: propst }));
     };
     const generateArrow = (point, previousPoint, points) => {

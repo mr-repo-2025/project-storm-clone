@@ -2,6 +2,7 @@ import * as React from 'react';
 const displayTooltip = (e, props) => {
     e.stopPropagation();
     e.preventDefault();
+    console.log('props ls', props);
     try {
         props === null || props === void 0 ? void 0 : props.setLinkToRemove({
             id: props.options.id,
@@ -37,7 +38,7 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 if (!this.props.link.isLocked()) {
                     e.preventDefault();
                     // this.props.link.remove();
-                    // console.log('this.props', this.props);
+                    console.log('this.props a', this.props);
                     displayTooltip(e, this.props.propsE);
                 }
             } }));

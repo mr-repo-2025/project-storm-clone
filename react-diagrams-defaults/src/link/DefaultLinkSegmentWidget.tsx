@@ -17,7 +17,8 @@ export interface DefaultLinkSegmentWidgetProps {
 const displayTooltip = (e, props) => {
 	e.stopPropagation();
 	e.preventDefault();
-
+	console.log('props ls',props);
+	
 	try {
 		props?.setLinkToRemove({
 			id: props.options.id,
@@ -77,7 +78,7 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 				if (!this.props.link.isLocked()) {
 					e.preventDefault();
 					// this.props.link.remove();
-					// console.log('this.props', this.props);
+					console.log('this.props a', this.props);
 					displayTooltip(e, this.props.propsE);
 				}
 			}
