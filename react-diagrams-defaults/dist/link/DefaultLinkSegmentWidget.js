@@ -4,16 +4,16 @@ const displayTooltip = (e, props) => {
     e.preventDefault();
     try {
         props === null || props === void 0 ? void 0 : props.setLinkToRemove({
-            id: props.link.options.id,
+            id: props.options.id,
             clientX: e.clientX,
             clientY: e.clientY,
-            publicId: props.link.sourcePort.parent.title +
+            publicId: props.sourcePort.parent.title +
                 '_' +
-                props.link.sourcePort.parent.order +
+                props.sourcePort.parent.order +
                 '_' +
-                props.link.targetPort.parent.title +
+                props.targetPort.parent.title +
                 '_' +
-                props.link.targetPort.parent.order,
+                props.targetPort.parent.order,
         });
     }
     catch (error) {

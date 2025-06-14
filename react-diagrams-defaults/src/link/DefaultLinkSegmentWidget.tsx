@@ -20,17 +20,17 @@ const displayTooltip = (e, props) => {
 
 	try {
 		props?.setLinkToRemove({
-			id: props.link.options.id,
+			id: props.options.id,
 			clientX: e.clientX,
 			clientY: e.clientY,
 			publicId:
-				props.link.sourcePort.parent.title +
+				props.sourcePort.parent.title +
 				'_' +
-				props.link.sourcePort.parent.order +
+				props.sourcePort.parent.order +
 				'_' +
-				props.link.targetPort.parent.title +
+				props.targetPort.parent.title +
 				'_' +
-				props.link.targetPort.parent.order,
+				props.targetPort.parent.order,
 		});
 	} catch (error) {
 		console.log('error', error);
