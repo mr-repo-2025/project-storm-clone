@@ -69,9 +69,9 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			strokeWidth: 20,
 			fill: 'none',
 			onDoubleClick: (e) => {
-				if (!this.props.link.isLocked()) {
-					this.props.link.remove();
-				}
+				// if (!this.props.link.isLocked()) {
+				// 	this.props.link.remove();
+				// }
 			},
 			onContextMenu: (e) => {
 				if (!this.props.link.isLocked()) {
