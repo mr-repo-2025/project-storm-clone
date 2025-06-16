@@ -13,7 +13,6 @@ export interface DefaultLinkSegmentWidgetProps {
 	onSelection: (selected: boolean) => any;
 	extras: object;
 	propsE: object;
-	eventR : object;
 }
 const displayTooltip = (e, props) => {
 	e.stopPropagation();
@@ -76,9 +75,11 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			},
 			onContextMenu: (e) => {
 				if (!this.props.link.isLocked()) {
-					e.preventDefault();
+					// e.preventDefault();
 					// this.props.link.remove();
 					displayTooltip(e, this.props);
+					let linka  =this.props.link;
+					this.props.link.fireEvent({ mouseEvent: e, linka }, 'onContextMenu');
 				}
 			}
 		});

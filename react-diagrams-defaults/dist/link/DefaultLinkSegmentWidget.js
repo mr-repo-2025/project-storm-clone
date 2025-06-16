@@ -35,9 +35,11 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 // }
             }, onContextMenu: (e) => {
                 if (!this.props.link.isLocked()) {
-                    e.preventDefault();
+                    // e.preventDefault();
                     // this.props.link.remove();
                     displayTooltip(e, this.props);
+                    let linka = this.props.link;
+                    this.props.link.fireEvent({ mouseEvent: e, linka }, 'onContextMenu');
                 }
             } }));
         return (React.createElement("g", null,
