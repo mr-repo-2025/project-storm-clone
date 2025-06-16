@@ -19,7 +19,7 @@ const displayTooltip = (e, props) => {
 	e.preventDefault();
 	
 	try {
-		props.link.propsE = {
+		props.link.propsE.setLinkToRemove({
 			id: props.link.getID(),
 			clientX: e.clientX,
 			clientY: e.clientY,
@@ -31,7 +31,7 @@ const displayTooltip = (e, props) => {
 				props.link.targetPort.parent.title +
 				'_' +
 				props.link.targetPort.parent.order,
-		};
+		});
 	} catch (error) {
 		console.log('error', error);
 
