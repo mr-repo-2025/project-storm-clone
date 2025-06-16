@@ -120,5 +120,10 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();
+
+		if (!this.config.allowLooseLinks) {
+              this.link.remove();
+              this.engine.repaintCanvas();
+         }
 	}
 }
