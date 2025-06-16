@@ -75,10 +75,10 @@ export class DragNewLinkState extends AbstractDisplacementState {
         const linkNextY = portPos.y - engineOffsetY + (initialYRelative - portPos.y) + event.virtualDisplacementY;
         this.link.getLastPoint().setPosition(linkNextX, linkNextY);
         this.engine.repaintCanvas();
-        if (!this.config.allowLooseLinks) {
-            this.link.remove();
-            this.engine.repaintCanvas();
-        }
+        // if (!this.config.allowLooseLinks) {
+        //       this.link.remove();
+        //       this.engine.repaintCanvas();
+        //  }
     }
 }
 //# sourceMappingURL=DragNewLinkState.js.map

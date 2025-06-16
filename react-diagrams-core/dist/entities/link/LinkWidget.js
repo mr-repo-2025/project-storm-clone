@@ -74,9 +74,7 @@ export class LinkWidget extends React.Component {
         }
         //generate links
         return (React.createElement(PeformanceWidget, { model: this.props.link, serialized: this.props.link.serialize() }, () => {
-            return (React.createElement("g", { "data-linkid": this.props.link.getID(), onContextMenu: (e) => {
-                    console.log('context', e);
-                } },
+            return (React.createElement("g", { "data-linkid": this.props.link.getID() },
                 this.props.diagramEngine.generateWidgetForLink(link),
                 _map(this.props.link.getLabels(), (labelModel, index) => {
                     return (React.createElement(LabelWidget, { key: labelModel.getID(), engine: this.props.diagramEngine, label: labelModel, index: index }));

@@ -33,6 +33,7 @@ export interface DefaultLinkModelGenerics extends LinkModelGenerics {
 }
 
 export class DefaultLinkModel extends LinkModel<DefaultLinkModelGenerics> {
+	dataclick: boolean;
 	constructor(options: DefaultLinkModelOptions = {},propst : Object = {}) {
 		
 		super({
