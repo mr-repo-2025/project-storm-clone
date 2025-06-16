@@ -68,6 +68,14 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 
 					this.engine.getModel().addLink(this.link);
 					this.port.reportPosition();
+
+					const targetPort = this.link.getTargetPort();
+					if (!this.config.allowLooseLinks && !targetPort) {
+						this.engine.getModel().removeLink(this.link);
+						this.eject(); // Sale del estado actual
+						this.engine.repaintCanvas();
+						return;
+					}
 				}
 			})
 		);
@@ -121,13 +129,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();
 
-		const targetPort = this.link.getTargetPort();
-		if (!this.config.allowLooseLinks && !targetPort) {
-			this.engine.getModel().removeLink(this.link);
-			this.eject(); // Sale del estado actual
-			this.engine.repaintCanvas();
-			return;
-		}
+
 
 	}
 }
