@@ -31,6 +31,10 @@ export class DragNewLinkState extends AbstractDisplacementState {
                 this.link.getLastPoint().setPosition(linkNextX, linkNextY);
                 this.engine.getModel().addLink(this.link);
                 this.port.reportPosition();
+                if (!this.config.allowLooseLinks) {
+                    this.link.remove();
+                    this.engine.repaintCanvas();
+                }
             }
         }));
         this.registerAction(new Action({
