@@ -75,7 +75,7 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 		const engine = this.props.engine;
 		const model = engine.getModel();
 
-		
+		console.log('model.getLayers()',model.getLayers())
 		return (
 			<S.Canvas
 				className={this.props.className}
@@ -103,6 +103,7 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 				}}
 			>
 				   
+					
 					{model.getLayers()[2] &&
 					<TransformLayerWidget layer={model.getLayers()[2]} key={model.getLayers()[2].getID()}>
 							<SmartLayerWidget layer={model.getLayers()[2]} engine={this.props.engine} key={model.getLayers()[2].getID()} />
