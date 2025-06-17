@@ -29,9 +29,9 @@ export interface DiagramModelGenerics extends CanvasModelGenerics {
 }
 
 export class DiagramModel<G extends DiagramModelGenerics = DiagramModelGenerics> extends CanvasModel<G> {
-	protected activeNodeLayer: NodeLayerModel;
 	protected activeNodeWLayer: NodeWLayerModel;
 	protected activeLinkLayer: LinkLayerModel;
+	protected activeNodeLayer: NodeLayerModel;
 
 	constructor(options: G['OPTIONS'] = {}) {
 		super(options);

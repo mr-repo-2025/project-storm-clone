@@ -102,14 +102,13 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 					this.props.engine.getActionEventBus().fireAction({ event });
 				}}
 			>
+				   <TransformLayerWidget layer={model.getLayers()[0]} key={model.getLayers()[0].getID()}>
+							<SmartLayerWidget layer={model.getLayers()[0]} engine={this.props.engine} key={model.getLayers()[0].getID()} />
+					</TransformLayerWidget>
 					{model.getLayers()[2] &&
 					<TransformLayerWidget layer={model.getLayers()[2]} key={model.getLayers()[2].getID()}>
 							<SmartLayerWidget layer={model.getLayers()[2]} engine={this.props.engine} key={model.getLayers()[2].getID()} />
 					</TransformLayerWidget>}
-					
-					<TransformLayerWidget layer={model.getLayers()[0]} key={model.getLayers()[0].getID()}>
-							<SmartLayerWidget layer={model.getLayers()[0]} engine={this.props.engine} key={model.getLayers()[0].getID()} />
-					</TransformLayerWidget>
 					<TransformLayerWidget layer={model.getLayers()[1]} key={model.getLayers()[1].getID()}>
 							<SmartLayerWidget layer={model.getLayers()[1]} engine={this.props.engine} key={model.getLayers()[1].getID()} />
 					</TransformLayerWidget>
