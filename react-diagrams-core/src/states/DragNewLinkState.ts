@@ -69,11 +69,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					this.engine.getModel().addLink(this.link);
 					this.port.reportPosition();
 
-					 
-					if (!this.config.allowLooseLinks) {
-						this.link.remove();
-						this.engine.repaintCanvas();
-					}
+					
 				}
 			})
 		);
