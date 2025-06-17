@@ -75,7 +75,7 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 		const engine = this.props.engine;
 		const model = engine.getModel();
 
-		console.log('model.getLayers()',model.getLayers())
+		console.log('model.getLayers()', model.getLayers())
 		return (
 			<S.Canvas
 				className={this.props.className}
@@ -102,9 +102,22 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 					this.props.engine.getActionEventBus().fireAction({ event });
 				}}
 			>
-				   
-					
-					{model.getLayers()[2] &&
+				{model.getLayers().map((l) => {
+					const type = l.getOptions().type;
+					const validTypes = ["diagram-nodes-w", "diagram-links", "diagram-nodes"];
+
+					if (validTypes.includes(type)) {
+						return (
+							<TransformLayerWidget layer={l} key={l.getID()}>
+								<SmartLayerWidget layer={l} engine={this.props.engine} />
+							</TransformLayerWidget>
+						);
+					}
+
+					return null;
+				})}
+
+				{/* {model.getLayers()[2] && model.getLayers() &&
 					<TransformLayerWidget layer={model.getLayers()[2]} key={model.getLayers()[2].getID()}>
 							<SmartLayerWidget layer={model.getLayers()[2]} engine={this.props.engine} key={model.getLayers()[2].getID()} />
 					</TransformLayerWidget>}
@@ -113,8 +126,8 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 					</TransformLayerWidget>
 					<TransformLayerWidget layer={model.getLayers()[1]} key={model.getLayers()[1].getID()}>
 							<SmartLayerWidget layer={model.getLayers()[1]} engine={this.props.engine} key={model.getLayers()[1].getID()} />
-					</TransformLayerWidget>
-				  
+					</TransformLayerWidget> */}
+
 			</S.Canvas>
 		);
 	}
