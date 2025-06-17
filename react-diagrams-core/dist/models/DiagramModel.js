@@ -12,9 +12,9 @@ import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 export class DiagramModel extends CanvasModel {
     constructor(options = {}) {
         super(options);
-        this.addLayer(new NodeLayerModel());
-        this.addLayer(new LinkLayerModel());
         this.addLayer(new NodeWLayerModel());
+        this.addLayer(new LinkLayerModel());
+        this.addLayer(new NodeLayerModel());
     }
     deserialize(event) {
         this.layers = [];

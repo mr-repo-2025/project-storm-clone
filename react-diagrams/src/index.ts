@@ -26,9 +26,10 @@ export default (options: CanvasEngineOptions = {}): DiagramEngine => {
 	const engine = new DiagramEngine(options);
 
 	// register model factories
-	engine.getLayerFactories().registerFactory(new NodeLayerFactory());
 	engine.getLayerFactories().registerFactory(new NodeWLayerFactory());
 	engine.getLayerFactories().registerFactory(new LinkLayerFactory());
+	engine.getLayerFactories().registerFactory(new NodeLayerFactory());
+
 	engine.getLayerFactories().registerFactory(new SelectionBoxLayerFactory());
 
 	engine.getLabelFactories().registerFactory(new DefaultLabelFactory());

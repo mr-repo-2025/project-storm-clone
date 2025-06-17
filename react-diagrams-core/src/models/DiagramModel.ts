@@ -35,9 +35,9 @@ export class DiagramModel<G extends DiagramModelGenerics = DiagramModelGenerics>
 
 	constructor(options: G['OPTIONS'] = {}) {
 		super(options);
-		this.addLayer(new NodeLayerModel());
-		this.addLayer(new LinkLayerModel());
 		this.addLayer(new NodeWLayerModel());
+		this.addLayer(new LinkLayerModel());
+		this.addLayer(new NodeLayerModel());
 	}
 
 	deserialize(event: DeserializeEvent<this>) {
