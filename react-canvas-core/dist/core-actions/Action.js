@@ -4,6 +4,7 @@ export var InputType;
     InputType["MOUSE_DOWN"] = "mouse-down";
     InputType["MOUSE_UP"] = "mouse-up";
     InputType["MOUSE_MOVE"] = "mouse-move";
+    InputType["MOUSE_LEAVE"] = "mouse-leave";
     InputType["MOUSE_WHEEL"] = "mouse-wheel";
     InputType["KEY_DOWN"] = "key-down";
     InputType["KEY_UP"] = "key-up";

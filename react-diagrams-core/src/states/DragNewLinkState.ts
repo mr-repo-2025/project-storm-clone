@@ -38,6 +38,20 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 
 		this.registerAction(
 			new Action({
+				type: InputType.MOUSE_LEAVE,
+				fire: (event: ActionEvent<MouseEvent>) => {
+					if (!this.config.allowLooseLinks && this.link) {
+						console.log('[🧹] Mouse salió del canvas con link sin conectar. Eliminando...');
+						this.link.remove();
+						this.engine.repaintCanvas();
+						this.eject(); // salir del estado actual
+					}
+				}
+			})
+		);
+
+		this.registerAction(
+			new Action({
 				type: InputType.MOUSE_DOWN,
 				fire: (event: ActionEvent<MouseEvent, PortModel>) => {
 					this.port = this.engine.getMouseElement(event.event) as PortModel;
@@ -69,7 +83,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 					this.engine.getModel().addLink(this.link);
 					this.port.reportPosition();
 
-					
+
 				}
 			})
 		);
@@ -97,10 +111,9 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 						this.link.remove();
 						this.engine.repaintCanvas();
 					}
-					
-					console.log('event MOUSE_UP',event);
-					
-					 
+
+
+
 				}
 			})
 		);
@@ -114,8 +127,8 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 	fireMouseMoved(event: AbstractDisplacementStateEvent): any {
 
 		this.port.reportPosition();
-		console.log('event fireMouseMoved',event);
-		
+		console.log('event fireMouseMoved', event);
+
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
 		const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
@@ -128,7 +141,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();
 
-        
+
 
 	}
 }

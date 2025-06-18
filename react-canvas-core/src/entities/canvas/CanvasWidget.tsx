@@ -91,6 +91,9 @@ export class CanvasWidget extends React.Component<DiagramProps> {
 				onMouseMove={(event) => {
 					this.props.engine.getActionEventBus().fireAction({ event });
 				}}
+				onMouseLeave={(event) => {
+					this.props.engine.getActionEventBus().fireAction({ event });
+				}}
 				onTouchStart={(event) => {
 					this.props.engine.getActionEventBus().fireAction({ event });
 				}}

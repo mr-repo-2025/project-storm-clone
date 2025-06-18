@@ -53,6 +53,9 @@ export class ActionEventBus {
         else if (event.type === 'mousemove') {
             return this.getActionsForType(InputType.MOUSE_MOVE);
         }
+        else if (event.type === 'mouseleave') {
+            return this.getActionsForType(InputType.MOUSE_LEAVE);
+        }
         else if (event.type === 'wheel') {
             return this.getActionsForType(InputType.MOUSE_WHEEL);
         }
