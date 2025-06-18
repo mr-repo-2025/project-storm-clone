@@ -172,7 +172,9 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 			if (props.link.getTargetPort() !== null) {
 				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
 			} else {
-				paths.push(generatePoint(points[points.length - 1]));
+			    props.diagramEngine.getModel().removeLink(props.link);
+			    props.diagramEngine.repaintCanvas();
+				// paths.push(generatePoint(points[points.length - 1]));
 			}
 
 	return <g data-default-link-test={props.link.getOptions().testName}>{paths}</g>;
