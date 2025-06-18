@@ -55,16 +55,6 @@ export class DragNewLinkState extends AbstractDisplacementState {
                     this.link.remove();
                     this.engine.repaintCanvas();
                 }
-                const targetPort = this.link.getTargetPort();
-                this.link.getPoints().forEach((point) => {
-                    if (!point.isSelected()) {
-                        if (!targetPort) {
-                            this.link.remove();
-                            this.engine.repaintCanvas();
-                            return;
-                        }
-                    }
-                });
             }
         }));
     }

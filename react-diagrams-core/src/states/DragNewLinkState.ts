@@ -98,16 +98,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 						this.engine.repaintCanvas();
 					}
 
-					const targetPort = this.link.getTargetPort();
-						this.link.getPoints().forEach((point) => {
-						if (!point.isSelected()) {
-							if (  !targetPort)  {
-								this.link.remove();
-								this.engine.repaintCanvas();
-								return;
-							}
-						}
-			        }); 
+					 
 				}
 			})
 		);
