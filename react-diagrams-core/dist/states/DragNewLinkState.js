@@ -5,6 +5,17 @@ export class DragNewLinkState extends AbstractDisplacementState {
         super({ name: 'drag-new-link' });
         this.config = Object.assign({ allowLooseLinks: true, allowLinksFromLockedPorts: false }, options);
         this.registerAction(new Action({
+            type: InputType.MOUSE_LEAVE,
+            fire: (event) => {
+                if (!this.config.allowLooseLinks && this.link) {
+                    console.log('[🧹] Mouse salió del canvas con link sin conectar. Eliminando...');
+                    this.link.remove();
+                    this.engine.repaintCanvas();
+                    this.eject(); // salir del estado actual
+                }
+            }
+        }));
+        this.registerAction(new Action({
             type: InputType.MOUSE_DOWN,
             fire: (event) => {
                 this.port = this.engine.getMouseElement(event.event);
@@ -55,7 +66,6 @@ export class DragNewLinkState extends AbstractDisplacementState {
                     this.link.remove();
                     this.engine.repaintCanvas();
                 }
-                console.log('event MOUSE_UP', event);
             }
         }));
     }
