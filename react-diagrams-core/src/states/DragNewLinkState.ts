@@ -41,7 +41,6 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 				type: InputType.MOUSE_LEAVE,
 				fire: (event: ActionEvent<MouseEvent>) => {
 					if (!this.config.allowLooseLinks && this.link) {
-						console.log('[🧹] Mouse salió del canvas con link sin conectar. Eliminando...');
 						this.link.remove();
 						this.engine.repaintCanvas();
 						this.eject(); // salir del estado actual

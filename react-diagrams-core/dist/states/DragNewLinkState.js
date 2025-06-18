@@ -8,7 +8,6 @@ export class DragNewLinkState extends AbstractDisplacementState {
             type: InputType.MOUSE_LEAVE,
             fire: (event) => {
                 if (!this.config.allowLooseLinks && this.link) {
-                    console.log('[🧹] Mouse salió del canvas con link sin conectar. Eliminando...');
                     this.link.remove();
                     this.engine.repaintCanvas();
                     this.eject(); // salir del estado actual
