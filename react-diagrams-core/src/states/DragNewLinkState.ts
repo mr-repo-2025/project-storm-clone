@@ -97,6 +97,17 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 						this.link.remove();
 						this.engine.repaintCanvas();
 					}
+
+					const targetPort = this.link.getTargetPort();
+						this.link.getPoints().forEach((point) => {
+						if (!point.isSelected()) {
+							if (  !targetPort)  {
+								this.link.remove();
+								this.engine.repaintCanvas();
+								return;
+							}
+						}
+			        }); 
 				}
 			})
 		);
@@ -123,7 +134,7 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 		this.link.getLastPoint().setPosition(linkNextX, linkNextY);
 		this.engine.repaintCanvas();
 
-
+        
 
 	}
 }
