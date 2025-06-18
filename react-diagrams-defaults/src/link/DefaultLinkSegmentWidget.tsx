@@ -63,8 +63,7 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 				this.props.onSelection(true);
 			},
 			onMouseUp : (e)=>{
-				let linka  =this.props.link;
-				this.props.link.fireEvent({ mouseEvent: e, linka }, 'onMouseUp');
+				this.props.link.fireEvent({ mouseEvent: e, function: 'onMouseUp' }, 'eventDidFire');
 			},
 			...this.props.extras,
 			ref: null,
