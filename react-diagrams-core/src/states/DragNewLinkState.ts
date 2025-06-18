@@ -97,7 +97,9 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 						this.link.remove();
 						this.engine.repaintCanvas();
 					}
-
+					
+					console.log('event MOUSE_UP',event);
+					
 					 
 				}
 			})
@@ -112,7 +114,8 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 	fireMouseMoved(event: AbstractDisplacementStateEvent): any {
 
 		this.port.reportPosition();
-
+		console.log('event fireMouseMoved',event);
+		
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
 		const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;

@@ -20,7 +20,6 @@ import { NodeWLayerModel } from '../entities/node-layer-w/NodeWLayerModel';
 
 export interface DiagramListener extends BaseEntityListener {
 	nodesUpdated?(event: BaseEntityEvent & { node: NodeModel; isCreated: boolean }): void;
-
 	linksUpdated?(event: BaseEntityEvent & { link: LinkModel; isCreated: boolean }): void;
 }
 
