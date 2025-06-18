@@ -126,7 +126,6 @@ export class DragNewLinkState<E extends DiagramEngine = DiagramEngine> extends A
 	fireMouseMoved(event: AbstractDisplacementStateEvent): any {
 
 		this.port.reportPosition();
-		console.log('event fireMouseMoved', event);
 
 		const portPos = this.port.getPosition();
 		const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;

@@ -75,7 +75,6 @@ export class DragNewLinkState extends AbstractDisplacementState {
      */
     fireMouseMoved(event) {
         this.port.reportPosition();
-        console.log('event fireMouseMoved', event);
         const portPos = this.port.getPosition();
         const zoomLevelPercentage = this.engine.getModel().getZoomLevel() / 100;
         const engineOffsetX = this.engine.getModel().getOffsetX() / zoomLevelPercentage;
