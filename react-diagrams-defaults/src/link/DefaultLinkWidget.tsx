@@ -173,6 +173,7 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
 			} else {
 				paths.push(generatePoint(points[points.length - 1]));
+				paths.push(generateArrow(points[points.length - 1], points[points.length - 2],points));
 			}
 
 	return <g data-default-link-test={props.link.getOptions().testName}>{paths}</g>;
