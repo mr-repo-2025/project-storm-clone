@@ -32,7 +32,7 @@ export class DefaultLinkSegmentWidget extends React.Component {
             }, onMouseUp: (e) => {
                 this.props.link.fireEvent({ mouseEvent: e, function: 'onMouseUp' }, 'eventDidFire');
             }, onKeyUp: (e) => {
-                this.props.link.fireEvent({ mouseEvent: e, function: 'onKeyUp', key: e.key }, 'eventDidFire');
+                this.props.link.fireEvent({ keyEvent: e, function: 'onKeyUp' }, 'custom-event');
             } }, this.props.extras), { ref: null, 'data-linkid': this.props.link.getID(), strokeOpacity: this.props.selected ? 0.1 : 0, strokeWidth: 20, fill: 'none', onDoubleClick: (e) => {
                 // if (!this.props.link.isLocked()) {
                 // 	this.props.link.remove();
