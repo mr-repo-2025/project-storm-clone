@@ -156,11 +156,8 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 						onMouseDown: (event: MouseEvent) => {
 							props.selected?.(event);
 							addPointToLink(event, j + 1);
-						},
-						onkeyup : (event : KeyboardEvent) =>{
-							console.log('probando key ls',event);
-							
 						}
+						 
 					},
 					j,
 					props.propst

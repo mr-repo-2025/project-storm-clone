@@ -65,11 +65,13 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			onMouseUp : (e)=>{
 				this.props.link.fireEvent({ mouseEvent: e, function: 'onMouseUp' }, 'eventDidFire');
 			},
-			onKeyUp : (e)=>{
-				 this.props.link.fireEvent({ keyEvent: e, function: 'onKeyUp' }, 'custom-event');
+			onClick: (e) => {
+			e.currentTarget.focus(); // forzar foco en el <path>
 			},
 			...this.props.extras,
-			ref: null,
+			onKeyUp: (e) => {
+			this.props.link.fireEvent({ keyEvent: e, function: 'onKeyUp' }, 'eventDidFire');
+			},
 			'data-linkid': this.props.link.getID(),
 			strokeOpacity: this.props.selected ? 0.1 : 0,
 			strokeWidth: 20,
