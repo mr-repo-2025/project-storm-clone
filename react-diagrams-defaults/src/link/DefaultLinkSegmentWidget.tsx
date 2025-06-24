@@ -65,6 +65,9 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			onMouseUp : (e)=>{
 				this.props.link.fireEvent({ mouseEvent: e, function: 'onMouseUp' }, 'eventDidFire');
 			},
+			onKeyUp : (e)=>{
+				this.props.link.fireEvent({ mouseEvent: e, function: 'onKeyUp', key: e.key }, 'eventDidFire');
+			},
 			...this.props.extras,
 			ref: null,
 			'data-linkid': this.props.link.getID(),
