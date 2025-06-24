@@ -80,6 +80,9 @@ export const DefaultLinkWidget = (props) => {
                 var _a;
                 (_a = props.selected) === null || _a === void 0 ? void 0 : _a.call(props, event);
                 addPointToLink(event, j + 1);
+            },
+            onkeyup: (event) => {
+                console.log('probando key ls', event);
             }
         }, j, props.propst));
     }

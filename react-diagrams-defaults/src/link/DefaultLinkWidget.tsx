@@ -1,6 +1,6 @@
 import { DiagramEngine, LinkWidget, PointModel } from '@projectstorm/react-diagrams-core';
 import * as React from 'react';
-import { MouseEvent, useEffect, useRef } from 'react';
+import { MouseEvent, useEffect, useRef,KeyboardEvent } from 'react';
 import { DefaultLinkModel } from './DefaultLinkModel';
 import { DefaultLinkPointWidget } from './DefaultLinkPointWidget';
 import { DefaultLinkSegmentWidget } from './DefaultLinkSegmentWidget';
@@ -156,6 +156,10 @@ export const DefaultLinkWidget: React.FC<DefaultLinkProps> = (props) => {
 						onMouseDown: (event: MouseEvent) => {
 							props.selected?.(event);
 							addPointToLink(event, j + 1);
+						},
+						onkeyup : (event : KeyboardEvent) =>{
+							console.log('probando key ls',event);
+							
 						}
 					},
 					j,
