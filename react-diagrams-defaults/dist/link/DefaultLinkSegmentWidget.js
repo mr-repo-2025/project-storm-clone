@@ -35,13 +35,13 @@ export class DefaultLinkSegmentWidget extends React.Component {
                 // }
             }, onContextMenu: (e) => {
                 e.preventDefault();
-                if (!this.props.link.isLocked()) {
-                    console.log('captura onContextMenu', e);
-                    // this.props.link.remove();
-                    // displayTooltip(e, this.props);
-                    // let linka  =this.props.link;
-                    this.props.link.fireEvent({ mouseEvent: e, link: this.props.link }, 'onContextMenu');
-                }
+                // if (!this.props.link.isLocked()) {
+                console.log('captura onContextMenu', e);
+                // this.props.link.remove();
+                // displayTooltip(e, this.props);
+                // let linka  =this.props.link;
+                this.props.link.fireEvent({ mouseEvent: e, link: this.props.link }, 'onContextMenu');
+                // }
             } }));
         return (React.createElement("g", null,
             Bottom,
