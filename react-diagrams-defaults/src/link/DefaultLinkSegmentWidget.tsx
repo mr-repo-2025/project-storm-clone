@@ -73,8 +73,10 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 				// }
 			},
 			onContextMenu: (e) => {
+				console.log('captura onContextMenu',e);
+				
+				e.preventDefault(); 
 				if (!this.props.link.isLocked()) {
-					// e.preventDefault();
 					// this.props.link.remove();
 					displayTooltip(e, this.props);
 					let linka  =this.props.link;
