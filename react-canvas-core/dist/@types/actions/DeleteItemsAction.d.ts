@@ -1,6 +1,6 @@
 import { Action } from '../core-actions/Action';
 export interface DeleteItemsActionOptions {
-    keyCodes?: number[];
+    keys?: string[];
     modifiers?: {
         ctrlKey?: boolean;
         shiftKey?: boolean;
