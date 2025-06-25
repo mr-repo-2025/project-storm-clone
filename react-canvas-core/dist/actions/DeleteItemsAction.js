@@ -1,4 +1,6 @@
 import { Action, InputType } from '../core-actions/Action';
+import _forEach from 'lodash/forEach';
+import _isEqual from 'lodash/isEqual';
 /**
  * Deletes all selected items
  */
@@ -10,15 +12,15 @@ export class DeleteItemsAction extends Action {
             type: InputType.KEY_DOWN,
             fire: (event) => {
                 const { keyCode, ctrlKey, shiftKey, altKey, metaKey } = event.event;
-                // if (  _isEqual({ ctrlKey, shiftKey, altKey, metaKey }, modifiers)) {
-                // 	_forEach(this.engine.getModel().getSelectedEntities(), (model) => {
-                // 		// only delete items which are not locked
-                // 		if (!model.isLocked()) {
-                // 			// model.remove();
-                // 		}
-                // 	});
-                // 	this.engine.repaintCanvas();
-                // }
+                if (_isEqual({ ctrlKey, shiftKey, altKey, metaKey }, modifiers)) {
+                    _forEach(this.engine.getModel().getSelectedEntities(), (model) => {
+                        // only delete items which are not locked
+                        if (!model.isLocked()) {
+                            model.remove();
+                        }
+                    });
+                    this.engine.repaintCanvas();
+                }
             }
         });
     }
