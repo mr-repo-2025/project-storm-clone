@@ -22,7 +22,7 @@ export interface DeleteItemsActionOptions {
 
 export class DeleteItemsAction extends Action {
     constructor(options: DeleteItemsActionOptions = {}) {
-        const keyCodes = options.keys || ['Delete', 'Backspace'];
+        const keyCodes = options.keys || ['Delete'];
         const modifiers = {
             ctrlKey: false,
             shiftKey: false,
@@ -35,15 +35,19 @@ export class DeleteItemsAction extends Action {
             type: InputType.KEY_DOWN,
             fire: (event: ActionEvent<KeyboardEvent>) => {
                 const { key, ctrlKey, shiftKey, altKey, metaKey } = event.event;
-
+                console.log('key',key);
+                console.log('event.event',event.event);
+                
                 if (keyCodes.indexOf(key) && _isEqual({ ctrlKey, shiftKey, altKey, metaKey }, modifiers)) {
-                    _forEach(this.engine.getModel().getSelectedEntities(), (model) => {
-                        // only delete items which are not locked
-                        if (!model.isLocked()) {
-                            model.remove();
-                        }
-                    });
-                    this.engine.repaintCanvas();
+                    if (this.engine.getModel().getSelectedEntities().length > 0) {
+                        _forEach(this.engine.getModel().getSelectedEntities(), (model) => {
+                            // only delete items which are not locked
+                            if (!model.isLocked()) {
+                                model.remove();
+                            }
+                        });
+                        this.engine.repaintCanvas();
+                    }
                 }
             }
         });

@@ -6,20 +6,24 @@ import _isEqual from 'lodash/isEqual';
  */
 export class DeleteItemsAction extends Action {
     constructor(options = {}) {
-        const keyCodes = options.keys || ['Delete', 'Backspace'];
+        const keyCodes = options.keys || ['Delete'];
         const modifiers = Object.assign({ ctrlKey: false, shiftKey: false, altKey: false, metaKey: false }, options.modifiers);
         super({
             type: InputType.KEY_DOWN,
             fire: (event) => {
                 const { key, ctrlKey, shiftKey, altKey, metaKey } = event.event;
+                console.log('key', key);
+                console.log('event.event', event.event);
                 if (keyCodes.indexOf(key) && _isEqual({ ctrlKey, shiftKey, altKey, metaKey }, modifiers)) {
-                    _forEach(this.engine.getModel().getSelectedEntities(), (model) => {
-                        // only delete items which are not locked
-                        if (!model.isLocked()) {
-                            model.remove();
-                        }
-                    });
-                    this.engine.repaintCanvas();
+                    if (this.engine.getModel().getSelectedEntities().length > 0) {
+                        _forEach(this.engine.getModel().getSelectedEntities(), (model) => {
+                            // only delete items which are not locked
+                            if (!model.isLocked()) {
+                                model.remove();
+                            }
+                        });
+                        this.engine.repaintCanvas();
+                    }
                 }
             }
         });
