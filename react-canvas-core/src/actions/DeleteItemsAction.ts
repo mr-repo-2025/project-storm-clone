@@ -35,10 +35,10 @@ export class DeleteItemsAction extends Action {
             type: InputType.KEY_DOWN,
             fire: (event: ActionEvent<KeyboardEvent>) => {
                 const { key, ctrlKey, shiftKey, altKey, metaKey } = event.event;
-                console.log('key',key);
-                console.log('event.event',event.event);
+                // console.log('key',key);
+                // console.log('event.event',event.event);
                 
-                if (keyCodes.indexOf(key) && _isEqual({ ctrlKey, shiftKey, altKey, metaKey }, modifiers)) {
+                if (key === 'Delete' && _isEqual({ ctrlKey, shiftKey, altKey, metaKey }, modifiers)) {
                     if (this.engine.getModel().getSelectedEntities().length > 0) {
                         _forEach(this.engine.getModel().getSelectedEntities(), (model) => {
                             // only delete items which are not locked
