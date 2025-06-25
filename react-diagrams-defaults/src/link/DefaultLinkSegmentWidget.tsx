@@ -62,12 +62,7 @@ export class DefaultLinkSegmentWidget extends React.Component<DefaultLinkSegment
 			onMouseEnter: () => {
 				this.props.onSelection(true);
 			},
-			onMouseUp : (e)=>{
-				this.props.link.fireEvent({ mouseEvent: e, function: 'onMouseUp' }, 'eventDidFire');
-			},
-			
 			...this.props.extras,
-			
 			'data-linkid': this.props.link.getID(),
 			strokeOpacity: this.props.selected ? 0.1 : 0,
 			strokeWidth: 20,
