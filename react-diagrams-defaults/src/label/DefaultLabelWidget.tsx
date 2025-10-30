@@ -76,7 +76,7 @@ render() {
                 transform: 'translate(-50%, -50%)'
             }}
         >
-            {this.props.model.getOptions().label}
+          {'ms...'} {this.props.model.getOptions().label}
         </S.Label>
     );
 }

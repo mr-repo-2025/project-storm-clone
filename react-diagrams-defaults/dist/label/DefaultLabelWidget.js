@@ -53,7 +53,10 @@ export class DefaultLabelWidget extends React.Component {
                 left: pos.x,
                 top: pos.y,
                 transform: 'translate(-50%, -50%)'
-            } }, this.props.model.getOptions().label));
+            } },
+            'ms...',
+            " ",
+            this.props.model.getOptions().label));
     }
 }
 //# sourceMappingURL=DefaultLabelWidget.js.map
