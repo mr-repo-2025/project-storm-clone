@@ -17,7 +17,7 @@ export class MoveItemsState extends AbstractDisplacementState {
                 }
                 const isModifierPressed = event.event.shiftKey || event.event.ctrlKey || event.event.metaKey;
                 if (isModifierPressed) {
-                    element.setSelected(!element.isSelected());
+                    element.setSelected(true);
                 }
                 else {
                     if (!element.isSelected() ||
