@@ -1,24 +1,33 @@
-import { AbstractDisplacementState } from '../core-state/AbstractDisplacementState';
-import { Action, InputType } from '../core-actions/Action';
-import { BasePositionModel } from '../core-models/BasePositionModel';
+import { AbstractDisplacementState, } from "../core-state/AbstractDisplacementState";
+import { Action, InputType } from "../core-actions/Action";
+import { BasePositionModel } from "../core-models/BasePositionModel";
 export class MoveItemsState extends AbstractDisplacementState {
     constructor() {
         super({
-            name: 'move-items'
+            name: "move-items",
         });
         this.registerAction(new Action({
             type: InputType.MOUSE_DOWN,
             fire: (event) => {
-                const element = this.engine.getActionEventBus().getModelForEvent(event);
+                const element = this.engine
+                    .getActionEventBus()
+                    .getModelForEvent(event);
                 if (!element) {
                     return;
                 }
-                if (!element.isSelected()) {
-                    this.engine.getModel().clearSelection();
+                const isModifierPressed = event.event.shiftKey || event.event.ctrlKey || event.event.metaKey;
+                if (isModifierPressed) {
+                    element.setSelected(!element.isSelected());
                 }
-                element.setSelected(true);
+                else {
+                    if (!element.isSelected() ||
+                        this.engine.getModel().getSelectedEntities().length > 1) {
+                        this.engine.getModel().clearSelection();
+                    }
+                    element.setSelected(true);
+                }
                 this.engine.repaintCanvas();
-            }
+            },
         }));
     }
     activated(previous) {
@@ -36,7 +45,7 @@ export class MoveItemsState extends AbstractDisplacementState {
                 if (!this.initialPositions[item.getID()]) {
                     this.initialPositions[item.getID()] = {
                         point: item.getPosition(),
-                        item: item
+                        item: item,
                     };
                 }
                 const pos = this.initialPositions[item.getID()].point;
