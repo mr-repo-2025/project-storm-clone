@@ -32,23 +32,10 @@ export class MoveItemsState<
           if (!element) {
             return;
           }
-
-          const isModifierPressed =
-            event.event.shiftKey || event.event.ctrlKey || event.event.metaKey;
-
-          if (isModifierPressed) {
-            element.setSelected(true);
-          } else {
-            if (
-              !element.isSelected() ||
-              this.engine.getModel().getSelectedEntities().length > 1
-            ) {
-              this.engine.getModel().clearSelection();
-            }
-
-            element.setSelected(true);
+          if (!element.isSelected()) {
+            this.engine.getModel().clearSelection();
           }
-
+          element.setSelected(true);
           this.engine.repaintCanvas();
         },
       })
