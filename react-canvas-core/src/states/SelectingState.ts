@@ -11,7 +11,7 @@ export class SelectingState<
     super({
       name: "selecting",
     });
-    this.keys = ["shift"];
+    this.keys = ["shifte"];
 
     this.registerAction(
       new Action({

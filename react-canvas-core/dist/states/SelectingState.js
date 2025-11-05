@@ -6,7 +6,7 @@ export class SelectingState extends State {
         super({
             name: "selecting",
         });
-        this.keys = ["shift"];
+        this.keys = ["shifte"];
         this.registerAction(new Action({
             type: InputType.MOUSE_DOWN,
             fire: (event) => {
