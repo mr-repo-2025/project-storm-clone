@@ -6,20 +6,24 @@ export class SelectingState extends State {
         super({
             name: "selecting",
         });
-        this.keys = ["ctrl"];
+        this.keys = ["shift"];
         this.registerAction(new Action({
             type: InputType.MOUSE_DOWN,
             fire: (event) => {
                 const element = this.engine
                     .getActionEventBus()
                     .getModelForEvent(event);
-                // go into a selection box on the canvas state
-                if (!element) {
-                    this.transitionWithEvent(new SelectionBoxState(), event);
-                }
-                else {
-                    element.setSelected(true);
-                    this.engine.repaintCanvas();
+                console.log("event.event", event.event);
+                console.log("event.event2", this.keys);
+                if (event.event.ctrlKey || event.event.metaKey) {
+                    // go into a selection box on the canvas state
+                    if (!element) {
+                        this.transitionWithEvent(new SelectionBoxState(), event);
+                    }
+                    else {
+                        element.setSelected(true);
+                        this.engine.repaintCanvas();
+                    }
                 }
             },
         }));
