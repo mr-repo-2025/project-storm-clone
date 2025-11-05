@@ -11,8 +11,7 @@ export class SelectingState<
     super({
       name: "selecting",
     });
-    // this.keys = ["shift"];
-    this.keys = ["ctrlKey"];
+    this.keys = ["shift"];
 
     this.registerAction(
       new Action({
@@ -21,8 +20,6 @@ export class SelectingState<
           const element = this.engine
             .getActionEventBus()
             .getModelForEvent(event);
-          console.log("event.event", event.event);
-          console.log("event.event2", this.keys);
 
           // go into a selection box on the canvas state
           if (!element) {
