@@ -12,6 +12,7 @@ export class SelectingState<
       name: "selecting",
     });
     // this.keys = ["shift"];
+    this.keys = ["ctrlKey"];
 
     this.registerAction(
       new Action({

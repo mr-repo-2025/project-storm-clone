@@ -7,6 +7,7 @@ export class SelectingState extends State {
             name: "selecting",
         });
         // this.keys = ["shift"];
+        this.keys = ["ctrlKey"];
         this.registerAction(new Action({
             type: InputType.MOUSE_DOWN,
             fire: (event) => {
