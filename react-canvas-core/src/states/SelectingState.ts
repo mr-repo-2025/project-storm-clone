@@ -11,7 +11,7 @@ export class SelectingState<
     super({
       name: "selecting",
     });
-    this.keys = ["shift"];
+    // this.keys = ["shift"];
 
     this.registerAction(
       new Action({
@@ -22,14 +22,13 @@ export class SelectingState<
             .getModelForEvent(event);
           console.log("event.event", event.event);
           console.log("event.event2", this.keys);
-          if (event.event.ctrlKey || event.event.metaKey) {
-            // go into a selection box on the canvas state
-            if (!element) {
-              this.transitionWithEvent(new SelectionBoxState(), event);
-            } else {
-              element.setSelected(true);
-              this.engine.repaintCanvas();
-            }
+
+          // go into a selection box on the canvas state
+          if (!element) {
+            this.transitionWithEvent(new SelectionBoxState(), event);
+          } else {
+            element.setSelected(true);
+            this.engine.repaintCanvas();
           }
         },
       })
