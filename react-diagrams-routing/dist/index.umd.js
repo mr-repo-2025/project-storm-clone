@@ -564,7 +564,10 @@ class PathFindingLinkFactory extends _projectstorm_react_diagrams_defaults__WEBP
         return this.canvasMatrix;
     }
     calculateCanvasMatrix() {
-        const { width: canvasWidth, hAdjustmentFactor, height: canvasHeight, vAdjustmentFactor } = this.calculateMatrixDimensions();
+        const dimensions = this.calculateMatrixDimensions();
+        if (!dimensions)
+            return;
+        const { width: canvasWidth, hAdjustmentFactor, height: canvasHeight, vAdjustmentFactor } = dimensions;
         this.hAdjustmentFactor = hAdjustmentFactor;
         this.vAdjustmentFactor = vAdjustmentFactor;
         const matrixWidth = Math.ceil(canvasWidth / this.ROUTING_SCALING_FACTOR);

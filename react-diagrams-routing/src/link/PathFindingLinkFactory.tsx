@@ -108,12 +108,15 @@ export class PathFindingLinkFactory extends DefaultLinkFactory<PathFindingLinkMo
 		return this.canvasMatrix;
 	}
 	calculateCanvasMatrix() {
+		const dimensions = this.calculateMatrixDimensions();
+		if (!dimensions) return;  
+	
 		const {
 			width: canvasWidth,
 			hAdjustmentFactor,
 			height: canvasHeight,
 			vAdjustmentFactor
-		} = this.calculateMatrixDimensions();
+		} = dimensions;
 
 		this.hAdjustmentFactor = hAdjustmentFactor;
 		this.vAdjustmentFactor = vAdjustmentFactor;
