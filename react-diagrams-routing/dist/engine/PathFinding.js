@@ -1,15 +1,18 @@
-import * as PF from 'pathfinding';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PathFinding = void 0;
+var PF = require("pathfinding");
 /*
 it can be very expensive to calculate routes when every single pixel on the canvas
 is individually represented. Using the factor below, we combine values in order
 to achieve the best trade-off between accuracy and performance.
 */
-const pathFinderInstance = new PF.JumpPointFinder({
+var pathFinderInstance = new PF.JumpPointFinder({
     heuristic: PF.Heuristic.manhattan,
     diagonalMovement: PF.DiagonalMovement.Never
 });
-export class PathFinding {
-    constructor(factory) {
+var PathFinding = /** @class */ (function () {
+    function PathFinding(factory) {
         this.instance = pathFinderInstance;
         this.factory = factory;
     }
@@ -17,29 +20,29 @@ export class PathFinding {
      * Taking as argument a fully unblocked walking matrix, this method
      * finds a direct path from point A to B.
      */
-    calculateDirectPath(from, to) {
-        const matrix = this.factory.getCanvasMatrix();
-        const grid = new PF.Grid(matrix);
+    PathFinding.prototype.calculateDirectPath = function (from, to) {
+        var matrix = this.factory.getCanvasMatrix();
+        var grid = new PF.Grid(matrix);
         return pathFinderInstance.findPath(this.factory.translateRoutingX(Math.floor(from.getX() / this.factory.ROUTING_SCALING_FACTOR)), this.factory.translateRoutingY(Math.floor(from.getY() / this.factory.ROUTING_SCALING_FACTOR)), this.factory.translateRoutingX(Math.floor(to.getX() / this.factory.ROUTING_SCALING_FACTOR)), this.factory.translateRoutingY(Math.floor(to.getY() / this.factory.ROUTING_SCALING_FACTOR)), grid);
-    }
+    };
     /**
      * Using @link{#calculateDirectPath}'s result as input, we here
      * determine the first walkable point found in the matrix that includes
      * blocked paths.
      */
-    calculateLinkStartEndCoords(matrix, path) {
-        const startIndex = path.findIndex((point) => {
+    PathFinding.prototype.calculateLinkStartEndCoords = function (matrix, path) {
+        var startIndex = path.findIndex(function (point) {
             if (matrix[point[1]])
                 return matrix[point[1]][point[0]] === 0;
             else
                 return false;
         });
-        const endIndex = path.length -
+        var endIndex = path.length -
             1 -
             path
                 .slice()
                 .reverse()
-                .findIndex((point) => {
+                .findIndex(function (point) {
                 if (matrix[point[1]])
                     return matrix[point[1]][point[0]] === 0;
                 else
@@ -50,8 +53,8 @@ export class PathFinding {
         if (startIndex === -1 || endIndex === -1) {
             return undefined;
         }
-        const pathToStart = path.slice(0, startIndex);
-        const pathToEnd = path.slice(endIndex);
+        var pathToStart = path.slice(0, startIndex);
+        var pathToEnd = path.slice(endIndex);
         return {
             start: {
                 x: path[startIndex][0],
@@ -61,26 +64,28 @@ export class PathFinding {
                 x: path[endIndex][0],
                 y: path[endIndex][1]
             },
-            pathToStart,
-            pathToEnd
+            pathToStart: pathToStart,
+            pathToEnd: pathToEnd
         };
-    }
+    };
     /**
      * Puts everything together: merges the paths from/to the centre of the ports,
      * with the path calculated around other elements.
      */
-    calculateDynamicPath(routingMatrix, start, end, pathToStart, pathToEnd) {
+    PathFinding.prototype.calculateDynamicPath = function (routingMatrix, start, end, pathToStart, pathToEnd) {
+        var _this = this;
         // generate the path based on the matrix with obstacles
-        const grid = new PF.Grid(routingMatrix);
-        const dynamicPath = pathFinderInstance.findPath(start.x, start.y, end.x, end.y, grid);
+        var grid = new PF.Grid(routingMatrix);
+        var dynamicPath = pathFinderInstance.findPath(start.x, start.y, end.x, end.y, grid);
         // aggregate everything to have the calculated path ready for rendering
-        const pathCoords = pathToStart
+        var pathCoords = pathToStart
             .concat(dynamicPath, pathToEnd)
-            .map((coords) => [
-            this.factory.translateRoutingX(coords[0], true),
-            this.factory.translateRoutingY(coords[1], true)
-        ]);
+            .map(function (coords) { return [
+            _this.factory.translateRoutingX(coords[0], true),
+            _this.factory.translateRoutingY(coords[1], true)
+        ]; });
         return PF.Util.compressPath(pathCoords);
-    }
-}
-//# sourceMappingURL=PathFinding.js.map
+    };
+    return PathFinding;
+}());
+exports.PathFinding = PathFinding;

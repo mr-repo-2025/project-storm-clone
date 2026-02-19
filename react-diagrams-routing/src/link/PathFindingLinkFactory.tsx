@@ -207,6 +207,9 @@ export class PathFindingLinkFactory extends DefaultLinkFactory<PathFindingLinkMo
 		const sumProps = (object, props) => _reduce(props, (acc, prop) => acc + _get(object, prop, 0), 0);
 
 		const canvas = this.engine.getCanvas() as HTMLDivElement;
+		if (!canvas) {
+			return null;
+		}
 		const concatedCoords = _concat(allNodesCoords, allPortsCoords, allPointsCoords);
 		const minX =
 			Math.floor(Math.min(_get(_minBy(concatedCoords, 'x'), 'x', 0), 0) / this.ROUTING_SCALING_FACTOR) *
