@@ -40,6 +40,9 @@ export class LabelWidget extends React.Component {
             if (!found) {
                 return;
             }
+            if (!this.ref.current) {
+                return;
+            }
             const { path, position } = found;
             const labelDimensions = {
                 width: this.ref.current.offsetWidth,
