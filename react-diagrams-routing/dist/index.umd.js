@@ -9,35 +9,53 @@
 		root["projectstorm/react-diagrams-routing"] = factory();
 })(self, () => {
 return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./dist/dagre/DagreEngine.js":
 /*!***********************************!*\
   !*** ./dist/dagre/DagreEngine.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DagreEngine: () => (/* binding */ DagreEngine)
+/* harmony export */ });
+/* harmony import */ var _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams-core */ "@projectstorm/react-diagrams-core");
+/* harmony import */ var _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dagre__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dagre */ "dagre");
+/* harmony import */ var dagre__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dagre__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_every__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/every */ "lodash/every");
+/* harmony import */ var lodash_every__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_every__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_findIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/findIndex */ "lodash/findIndex");
+/* harmony import */ var lodash_findIndex__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_findIndex__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_forEach__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/forEach */ "lodash/forEach");
+/* harmony import */ var lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_forEach__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/map */ "lodash/map");
+/* harmony import */ var lodash_map__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_map__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var lodash_range__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/range */ "lodash/range");
+/* harmony import */ var lodash_range__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_range__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var lodash_sortBy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/sortBy */ "lodash/sortBy");
+/* harmony import */ var lodash_sortBy__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_sortBy__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @projectstorm/geometry */ "@projectstorm/geometry");
+/* harmony import */ var _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8__);
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DagreEngine = void 0;
-var react_diagrams_core_1 = __webpack_require__(/*! @projectstorm/react-diagrams-core */ "@projectstorm/react-diagrams-core");
-var dagre = __webpack_require__(/*! dagre */ "dagre");
-var every_1 = __webpack_require__(/*! lodash/every */ "lodash/every");
-var findIndex_1 = __webpack_require__(/*! lodash/findIndex */ "lodash/findIndex");
-var forEach_1 = __webpack_require__(/*! lodash/forEach */ "lodash/forEach");
-var map_1 = __webpack_require__(/*! lodash/map */ "lodash/map");
-var range_1 = __webpack_require__(/*! lodash/range */ "lodash/range");
-var sortBy_1 = __webpack_require__(/*! lodash/sortBy */ "lodash/sortBy");
-var geometry_1 = __webpack_require__(/*! @projectstorm/geometry */ "@projectstorm/geometry");
-var DagreEngine = /** @class */ (function () {
-    function DagreEngine(options) {
-        if (options === void 0) { options = {}; }
+
+
+
+
+
+
+
+
+class DagreEngine {
+    constructor(options = {}) {
         this.options = options;
     }
-    DagreEngine.prototype.redistribute = function (model) {
+    redistribute(model) {
         // Create a new directed graph
-        var g = new dagre.graphlib.Graph({
+        var g = new dagre__WEBPACK_IMPORTED_MODULE_1__.graphlib.Graph({
             multigraph: true,
             compound: true
         });
@@ -46,10 +64,10 @@ var DagreEngine = /** @class */ (function () {
             return {};
         });
         // set nodes
-        (0, forEach_1.default)(model.getNodes(), function (node) {
+        lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(model.getNodes(), (node) => {
             g.setNode(node.getID(), { width: node.width, height: node.height });
         });
-        (0, forEach_1.default)(model.getLinks(), function (link) {
+        lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(model.getLinks(), (link) => {
             // set edges
             if (link.getSourcePort() && link.getTargetPort()) {
                 g.setEdge({
@@ -60,86 +78,86 @@ var DagreEngine = /** @class */ (function () {
             }
         });
         // layout the graph
-        dagre.layout(g);
-        g.nodes().forEach(function (v) {
-            var node = g.node(v);
+        dagre__WEBPACK_IMPORTED_MODULE_1__.layout(g);
+        g.nodes().forEach((v) => {
+            const node = g.node(v);
             model.getNode(v).setPosition(node.x - node.width / 2, node.y - node.height / 2);
         });
         // also include links?
         if (this.options.includeLinks) {
-            g.edges().forEach(function (e) {
-                var edge = g.edge(e);
-                var link = model.getLink(e.name);
-                var points = [link.getFirstPoint()];
-                for (var i = 1; i < edge.points.length - 1; i++) {
-                    points.push(new react_diagrams_core_1.PointModel({ link: link, position: new geometry_1.Point(edge.points[i].x, edge.points[i].y) }));
+            g.edges().forEach((e) => {
+                const edge = g.edge(e);
+                const link = model.getLink(e.name);
+                const points = [link.getFirstPoint()];
+                for (let i = 1; i < edge.points.length - 1; i++) {
+                    points.push(new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__.PointModel({ link: link, position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8__.Point(edge.points[i].x, edge.points[i].y) }));
                 }
                 link.setPoints(points.concat(link.getLastPoint()));
             });
         }
-    };
+    }
     /**
      * TODO cleanup this method into smaller methods
      */
-    DagreEngine.prototype.refreshLinks = function (diagram) {
-        var nodeMargin = this.options.nodeMargin;
-        var nodes = diagram.getNodes();
-        var links = diagram.getLinks();
-        var maxChunkRowIndex = -1;
+    refreshLinks(diagram) {
+        const { nodeMargin } = this.options;
+        const nodes = diagram.getNodes();
+        const links = diagram.getLinks();
+        let maxChunkRowIndex = -1;
         // build the chunk matrix
-        var chunks = {}; // true: occupied, false: blank
-        var NodeXColumnIndexDictionary = {};
-        var verticalLines = [];
-        (0, forEach_1.default)(nodes, function (node) {
+        const chunks = {}; // true: occupied, false: blank
+        const NodeXColumnIndexDictionary = {};
+        let verticalLines = [];
+        lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(nodes, (node) => {
             // find vertical lines. vertical lines go through maximum number of nodes located under each other.
-            var nodeColumnCenter = node.getX() + node.width / 2;
-            if ((0, every_1.default)(verticalLines, function (vLine) {
+            const nodeColumnCenter = node.getX() + node.width / 2;
+            if (lodash_every__WEBPACK_IMPORTED_MODULE_2___default()(verticalLines, (vLine) => {
                 return Math.abs(nodeColumnCenter - vLine) > nodeMargin;
             })) {
                 verticalLines.push(nodeColumnCenter);
             }
         });
         // sort chunk columns
-        verticalLines = verticalLines.sort(function (a, b) { return a - b; });
-        (0, forEach_1.default)(verticalLines, function (line, index) {
+        verticalLines = verticalLines.sort((a, b) => a - b);
+        lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(verticalLines, (line, index) => {
             chunks[index] = {};
             chunks[index + 0.5] = {};
         });
         // set occupied chunks
-        (0, forEach_1.default)(nodes, function (node) {
-            var nodeColumnCenter = node.getX() + node.width / 2;
-            var startChunkIndex = Math.floor(node.getY() / nodeMargin);
-            var endChunkIndex = Math.floor((node.getY() + node.height) / nodeMargin);
+        lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(nodes, (node) => {
+            const nodeColumnCenter = node.getX() + node.width / 2;
+            const startChunkIndex = Math.floor(node.getY() / nodeMargin);
+            const endChunkIndex = Math.floor((node.getY() + node.height) / nodeMargin);
             // find max ChunkRowIndex
             if (endChunkIndex > maxChunkRowIndex)
                 maxChunkRowIndex = endChunkIndex;
-            var nodeColumnIndex = (0, findIndex_1.default)(verticalLines, function (vLine) {
+            const nodeColumnIndex = lodash_findIndex__WEBPACK_IMPORTED_MODULE_3___default()(verticalLines, (vLine) => {
                 return Math.abs(nodeColumnCenter - vLine) <= nodeMargin;
             });
-            (0, forEach_1.default)((0, range_1.default)(startChunkIndex, endChunkIndex + 1), function (chunkIndex) {
+            lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(lodash_range__WEBPACK_IMPORTED_MODULE_6___default()(startChunkIndex, endChunkIndex + 1), (chunkIndex) => {
                 chunks[nodeColumnIndex][chunkIndex] = true;
             });
             NodeXColumnIndexDictionary[node.getX()] = nodeColumnIndex;
         });
         // sort links based on their distances
-        var edges = (0, map_1.default)(links, function (link) {
+        const edges = lodash_map__WEBPACK_IMPORTED_MODULE_5___default()(links, (link) => {
             if (link.getSourcePort() && link.getTargetPort()) {
-                var source = link.getSourcePort().getNode();
-                var target = link.getTargetPort().getNode();
-                var sourceIndex = NodeXColumnIndexDictionary[source.getX()];
-                var targetIndex = NodeXColumnIndexDictionary[target.getX()];
+                const source = link.getSourcePort().getNode();
+                const target = link.getTargetPort().getNode();
+                const sourceIndex = NodeXColumnIndexDictionary[source.getX()];
+                const targetIndex = NodeXColumnIndexDictionary[target.getX()];
                 return sourceIndex > targetIndex
                     ? {
-                        link: link,
-                        sourceIndex: sourceIndex,
+                        link,
+                        sourceIndex,
                         sourceY: source.getY() + source.height / 2,
-                        source: source,
-                        targetIndex: targetIndex,
+                        source,
+                        targetIndex,
                         targetY: target.getY() + source.height / 2,
-                        target: target
+                        target
                     }
                     : {
-                        link: link,
+                        link,
                         sourceIndex: targetIndex,
                         sourceY: target.getY() + target.height / 2,
                         source: target,
@@ -149,86 +167,84 @@ var DagreEngine = /** @class */ (function () {
                     };
             }
         });
-        var sortedEdges = (0, sortBy_1.default)(edges, function (link) {
+        const sortedEdges = lodash_sortBy__WEBPACK_IMPORTED_MODULE_7___default()(edges, (link) => {
             return Math.abs(link.targetIndex - link.sourceIndex);
         });
         // set link points
         if (this.options.includeLinks) {
-            (0, forEach_1.default)(sortedEdges, function (edge) {
-                var link = diagram.getLink(edge.link.getID());
+            lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(sortedEdges, (edge) => {
+                const link = diagram.getLink(edge.link.getID());
                 // re-draw
                 if (Math.abs(edge.sourceIndex - edge.targetIndex) > 1) {
                     // get the length of link in column
-                    var columns = (0, range_1.default)(edge.sourceIndex - 1, edge.targetIndex);
-                    var chunkIndex = Math.floor(edge.sourceY / nodeMargin);
-                    var targetChunkIndex = Math.floor(edge.targetY / nodeMargin);
+                    const columns = lodash_range__WEBPACK_IMPORTED_MODULE_6___default()(edge.sourceIndex - 1, edge.targetIndex);
+                    const chunkIndex = Math.floor(edge.sourceY / nodeMargin);
+                    const targetChunkIndex = Math.floor(edge.targetY / nodeMargin);
                     // check upper paths
-                    var northCost = 1;
-                    var aboveRowIndex_1 = chunkIndex;
-                    for (; aboveRowIndex_1 >= 0; aboveRowIndex_1--, northCost++) {
-                        if ((0, every_1.default)(columns, function (columnIndex) {
-                            return !(chunks[columnIndex][aboveRowIndex_1] ||
-                                chunks[columnIndex + 0.5][aboveRowIndex_1] ||
-                                chunks[columnIndex - 0.5][aboveRowIndex_1]);
+                    let northCost = 1;
+                    let aboveRowIndex = chunkIndex;
+                    for (; aboveRowIndex >= 0; aboveRowIndex--, northCost++) {
+                        if (lodash_every__WEBPACK_IMPORTED_MODULE_2___default()(columns, (columnIndex) => {
+                            return !(chunks[columnIndex][aboveRowIndex] ||
+                                chunks[columnIndex + 0.5][aboveRowIndex] ||
+                                chunks[columnIndex - 0.5][aboveRowIndex]);
                         })) {
                             break;
                         }
                     }
                     // check lower paths
-                    var southCost = 0;
-                    var belowRowIndex_1 = chunkIndex;
-                    for (; belowRowIndex_1 <= maxChunkRowIndex; belowRowIndex_1++, southCost++) {
-                        if ((0, every_1.default)(columns, function (columnIndex) {
-                            return !(chunks[columnIndex][belowRowIndex_1] ||
-                                chunks[columnIndex + 0.5][belowRowIndex_1] ||
-                                chunks[columnIndex - 0.5][belowRowIndex_1]);
+                    let southCost = 0;
+                    let belowRowIndex = chunkIndex;
+                    for (; belowRowIndex <= maxChunkRowIndex; belowRowIndex++, southCost++) {
+                        if (lodash_every__WEBPACK_IMPORTED_MODULE_2___default()(columns, (columnIndex) => {
+                            return !(chunks[columnIndex][belowRowIndex] ||
+                                chunks[columnIndex + 0.5][belowRowIndex] ||
+                                chunks[columnIndex - 0.5][belowRowIndex]);
                         })) {
                             break;
                         }
                     }
                     // pick the cheapest path
-                    var pathRowIndex_1 = southCost + (belowRowIndex_1 - targetChunkIndex) < northCost + (targetChunkIndex - aboveRowIndex_1)
-                        ? belowRowIndex_1 + 1
-                        : aboveRowIndex_1 - 1;
+                    const pathRowIndex = southCost + (belowRowIndex - targetChunkIndex) < northCost + (targetChunkIndex - aboveRowIndex)
+                        ? belowRowIndex + 1
+                        : aboveRowIndex - 1;
                     // Finally update the link points
-                    var points_1 = [link.getFirstPoint()];
-                    points_1.push(new react_diagrams_core_1.PointModel({
+                    const points = [link.getFirstPoint()];
+                    points.push(new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__.PointModel({
                         link: link,
-                        position: new geometry_1.Point((verticalLines[columns[0]] + verticalLines[columns[0] + 1]) / 2, (pathRowIndex_1 + 0.5) * nodeMargin)
+                        position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8__.Point((verticalLines[columns[0]] + verticalLines[columns[0] + 1]) / 2, (pathRowIndex + 0.5) * nodeMargin)
                     }));
-                    (0, forEach_1.default)(columns, function (column) {
-                        points_1.push(new react_diagrams_core_1.PointModel({
+                    lodash_forEach__WEBPACK_IMPORTED_MODULE_4___default()(columns, (column) => {
+                        points.push(new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__.PointModel({
                             link: link,
-                            position: new geometry_1.Point(verticalLines[column], (pathRowIndex_1 + 0.5) * nodeMargin)
+                            position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8__.Point(verticalLines[column], (pathRowIndex + 0.5) * nodeMargin)
                         }));
-                        points_1.push(new react_diagrams_core_1.PointModel({
+                        points.push(new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_0__.PointModel({
                             link: link,
-                            position: new geometry_1.Point((verticalLines[column] + verticalLines[column - 1]) / 2, (pathRowIndex_1 + 0.5) * nodeMargin)
+                            position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_8__.Point((verticalLines[column] + verticalLines[column - 1]) / 2, (pathRowIndex + 0.5) * nodeMargin)
                         }));
-                        chunks[column][pathRowIndex_1] = true;
-                        chunks[column][pathRowIndex_1 + 1] = true;
-                        chunks[column + 0.5][pathRowIndex_1] = true;
-                        chunks[column + 0.5][pathRowIndex_1 + 1] = true;
+                        chunks[column][pathRowIndex] = true;
+                        chunks[column][pathRowIndex + 1] = true;
+                        chunks[column + 0.5][pathRowIndex] = true;
+                        chunks[column + 0.5][pathRowIndex + 1] = true;
                     });
-                    link.setPoints(points_1.concat(link.getLastPoint()));
+                    link.setPoints(points.concat(link.getLastPoint()));
                 }
                 else {
                     // refresh
                     link.setPoints([link.getFirstPoint(), link.getLastPoint()]);
-                    var columnIndex = (edge.sourceIndex + edge.targetIndex) / 2;
+                    const columnIndex = (edge.sourceIndex + edge.targetIndex) / 2;
                     if (!chunks[columnIndex]) {
                         chunks[columnIndex] = {};
                     }
-                    var rowIndex = Math.floor((edge.sourceY + edge.targetY) / 2 / nodeMargin);
+                    const rowIndex = Math.floor((edge.sourceY + edge.targetY) / 2 / nodeMargin);
                     chunks[columnIndex][rowIndex] = true;
                     chunks[columnIndex][rowIndex + 1] = true;
                 }
             });
         }
-    };
-    return DagreEngine;
-}());
-exports.DagreEngine = DagreEngine;
+    }
+}
 
 
 /***/ }),
@@ -237,24 +253,26 @@ exports.DagreEngine = DagreEngine;
 /*!************************************!*\
   !*** ./dist/engine/PathFinding.js ***!
   \************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PathFinding: () => (/* binding */ PathFinding)
+/* harmony export */ });
+/* harmony import */ var pathfinding__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pathfinding */ "pathfinding");
+/* harmony import */ var pathfinding__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pathfinding__WEBPACK_IMPORTED_MODULE_0__);
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.PathFinding = void 0;
-var PF = __webpack_require__(/*! pathfinding */ "pathfinding");
 /*
 it can be very expensive to calculate routes when every single pixel on the canvas
 is individually represented. Using the factor below, we combine values in order
 to achieve the best trade-off between accuracy and performance.
 */
-var pathFinderInstance = new PF.JumpPointFinder({
-    heuristic: PF.Heuristic.manhattan,
-    diagonalMovement: PF.DiagonalMovement.Never
+const pathFinderInstance = new pathfinding__WEBPACK_IMPORTED_MODULE_0__.JumpPointFinder({
+    heuristic: pathfinding__WEBPACK_IMPORTED_MODULE_0__.Heuristic.manhattan,
+    diagonalMovement: pathfinding__WEBPACK_IMPORTED_MODULE_0__.DiagonalMovement.Never
 });
-var PathFinding = /** @class */ (function () {
-    function PathFinding(factory) {
+class PathFinding {
+    constructor(factory) {
         this.instance = pathFinderInstance;
         this.factory = factory;
     }
@@ -262,29 +280,29 @@ var PathFinding = /** @class */ (function () {
      * Taking as argument a fully unblocked walking matrix, this method
      * finds a direct path from point A to B.
      */
-    PathFinding.prototype.calculateDirectPath = function (from, to) {
-        var matrix = this.factory.getCanvasMatrix();
-        var grid = new PF.Grid(matrix);
+    calculateDirectPath(from, to) {
+        const matrix = this.factory.getCanvasMatrix();
+        const grid = new pathfinding__WEBPACK_IMPORTED_MODULE_0__.Grid(matrix);
         return pathFinderInstance.findPath(this.factory.translateRoutingX(Math.floor(from.getX() / this.factory.ROUTING_SCALING_FACTOR)), this.factory.translateRoutingY(Math.floor(from.getY() / this.factory.ROUTING_SCALING_FACTOR)), this.factory.translateRoutingX(Math.floor(to.getX() / this.factory.ROUTING_SCALING_FACTOR)), this.factory.translateRoutingY(Math.floor(to.getY() / this.factory.ROUTING_SCALING_FACTOR)), grid);
-    };
+    }
     /**
      * Using @link{#calculateDirectPath}'s result as input, we here
      * determine the first walkable point found in the matrix that includes
      * blocked paths.
      */
-    PathFinding.prototype.calculateLinkStartEndCoords = function (matrix, path) {
-        var startIndex = path.findIndex(function (point) {
+    calculateLinkStartEndCoords(matrix, path) {
+        const startIndex = path.findIndex((point) => {
             if (matrix[point[1]])
                 return matrix[point[1]][point[0]] === 0;
             else
                 return false;
         });
-        var endIndex = path.length -
+        const endIndex = path.length -
             1 -
             path
                 .slice()
                 .reverse()
-                .findIndex(function (point) {
+                .findIndex((point) => {
                 if (matrix[point[1]])
                     return matrix[point[1]][point[0]] === 0;
                 else
@@ -295,8 +313,8 @@ var PathFinding = /** @class */ (function () {
         if (startIndex === -1 || endIndex === -1) {
             return undefined;
         }
-        var pathToStart = path.slice(0, startIndex);
-        var pathToEnd = path.slice(endIndex);
+        const pathToStart = path.slice(0, startIndex);
+        const pathToEnd = path.slice(endIndex);
         return {
             start: {
                 x: path[startIndex][0],
@@ -306,66 +324,28 @@ var PathFinding = /** @class */ (function () {
                 x: path[endIndex][0],
                 y: path[endIndex][1]
             },
-            pathToStart: pathToStart,
-            pathToEnd: pathToEnd
+            pathToStart,
+            pathToEnd
         };
-    };
+    }
     /**
      * Puts everything together: merges the paths from/to the centre of the ports,
      * with the path calculated around other elements.
      */
-    PathFinding.prototype.calculateDynamicPath = function (routingMatrix, start, end, pathToStart, pathToEnd) {
-        var _this = this;
+    calculateDynamicPath(routingMatrix, start, end, pathToStart, pathToEnd) {
         // generate the path based on the matrix with obstacles
-        var grid = new PF.Grid(routingMatrix);
-        var dynamicPath = pathFinderInstance.findPath(start.x, start.y, end.x, end.y, grid);
+        const grid = new pathfinding__WEBPACK_IMPORTED_MODULE_0__.Grid(routingMatrix);
+        const dynamicPath = pathFinderInstance.findPath(start.x, start.y, end.x, end.y, grid);
         // aggregate everything to have the calculated path ready for rendering
-        var pathCoords = pathToStart
+        const pathCoords = pathToStart
             .concat(dynamicPath, pathToEnd)
-            .map(function (coords) { return [
-            _this.factory.translateRoutingX(coords[0], true),
-            _this.factory.translateRoutingY(coords[1], true)
-        ]; });
-        return PF.Util.compressPath(pathCoords);
-    };
-    return PathFinding;
-}());
-exports.PathFinding = PathFinding;
-
-
-/***/ }),
-
-/***/ "./dist/index.js":
-/*!***********************!*\
-  !*** ./dist/index.js ***!
-  \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
+            .map((coords) => [
+            this.factory.translateRoutingX(coords[0], true),
+            this.factory.translateRoutingY(coords[1], true)
+        ]);
+        return pathfinding__WEBPACK_IMPORTED_MODULE_0__.Util.compressPath(pathCoords);
     }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-__exportStar(__webpack_require__(/*! ./link/PathFindingLinkFactory */ "./dist/link/PathFindingLinkFactory.js"), exports);
-__exportStar(__webpack_require__(/*! ./link/PathFindingLinkModel */ "./dist/link/PathFindingLinkModel.js"), exports);
-__exportStar(__webpack_require__(/*! ./link/PathFindingLinkWidget */ "./dist/link/PathFindingLinkWidget.js"), exports);
-__exportStar(__webpack_require__(/*! ./link/RightAngleLinkWidget */ "./dist/link/RightAngleLinkWidget.js"), exports);
-__exportStar(__webpack_require__(/*! ./link/RightAngleLinkFactory */ "./dist/link/RightAngleLinkFactory.js"), exports);
-__exportStar(__webpack_require__(/*! ./link/RightAngleLinkModel */ "./dist/link/RightAngleLinkModel.js"), exports);
-__exportStar(__webpack_require__(/*! ./engine/PathFinding */ "./dist/engine/PathFinding.js"), exports);
-__exportStar(__webpack_require__(/*! ./dagre/DagreEngine */ "./dist/dagre/DagreEngine.js"), exports);
+}
 
 
 /***/ }),
@@ -374,9 +354,275 @@ __exportStar(__webpack_require__(/*! ./dagre/DagreEngine */ "./dist/dagre/DagreE
 /*!*********************************************!*\
   !*** ./dist/link/PathFindingLinkFactory.js ***!
   \*********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module parse failed: Unexpected token (170:15)\nFile was processed with these loaders:\n * ../node_modules/source-map-loader/dist/cjs.js\nYou may need an additional loader to handle the result of these loaders.\n|     };\n|     PathFindingLinkFactory.prototype.generateReactWidget = function (event) {\n>         return <PathFindingLinkWidget_1.PathFindingLinkWidget diagramEngine={this.engine} link={event.model} factory={this}/>;\n|     };\n|     PathFindingLinkFactory.prototype.generateModel = function (event) {");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PathFindingLinkFactory: () => (/* binding */ PathFindingLinkFactory)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PathFindingLinkModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PathFindingLinkModel */ "./dist/link/PathFindingLinkModel.js");
+/* harmony import */ var _PathFindingLinkWidget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PathFindingLinkWidget */ "./dist/link/PathFindingLinkWidget.js");
+/* harmony import */ var lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/cloneDeep */ "lodash/cloneDeep");
+/* harmony import */ var lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_concat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/concat */ "lodash/concat");
+/* harmony import */ var lodash_concat__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_concat__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_defer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/defer */ "lodash/defer");
+/* harmony import */ var lodash_defer__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_defer__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var lodash_flatMap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/flatMap */ "lodash/flatMap");
+/* harmony import */ var lodash_flatMap__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_flatMap__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/get */ "lodash/get");
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash_minBy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lodash/minBy */ "lodash/minBy");
+/* harmony import */ var lodash_minBy__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash_minBy__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lodash/maxBy */ "lodash/maxBy");
+/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(lodash_maxBy__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var lodash_range__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lodash/range */ "lodash/range");
+/* harmony import */ var lodash_range__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(lodash_range__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var lodash_reduce__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lodash/reduce */ "lodash/reduce");
+/* harmony import */ var lodash_reduce__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(lodash_reduce__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var lodash_values__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lodash/values */ "lodash/values");
+/* harmony import */ var lodash_values__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(lodash_values__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var paths_js_path__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! paths-js/path */ "paths-js/path");
+/* harmony import */ var paths_js_path__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(paths_js_path__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @projectstorm/react-canvas-core */ "@projectstorm/react-canvas-core");
+/* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_15__);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class PathFindingLinkFactory extends _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_14__.DefaultLinkFactory {
+    constructor() {
+        super(PathFindingLinkFactory.NAME);
+        this.ROUTING_SCALING_FACTOR = 5;
+        // calculated only when smart routing is active
+        this.canvasMatrix = [];
+        this.routingMatrix = [];
+        // used when at least one element has negative coordinates
+        this.hAdjustmentFactor = 0;
+        this.vAdjustmentFactor = 0;
+        /**
+         * Despite being a long method, we simply iterate over all three collections (nodes, ports and points)
+         * to find the highest X and Y dimensions, so we can build the matrix large enough to contain all elements.
+         */
+        this.calculateMatrixDimensions = () => {
+            const allNodesCoords = lodash_values__WEBPACK_IMPORTED_MODULE_12___default()(this.engine.getModel().getNodes()).map((item) => ({
+                x: item.getX(),
+                width: item.width,
+                y: item.getY(),
+                height: item.height
+            }));
+            const allLinks = lodash_values__WEBPACK_IMPORTED_MODULE_12___default()(this.engine.getModel().getLinks());
+            const allPortsCoords = lodash_flatMap__WEBPACK_IMPORTED_MODULE_6___default()(allLinks.map((link) => [link.getSourcePort(), link.getTargetPort()]))
+                .filter((port) => port !== null)
+                .map((item) => ({
+                x: item.getX(),
+                width: item.width,
+                y: item.getY(),
+                height: item.height
+            }));
+            const allPointsCoords = lodash_flatMap__WEBPACK_IMPORTED_MODULE_6___default()(allLinks.map((link) => link.getPoints())).map((item) => ({
+                // points don't have width/height, so let's just use 0
+                x: item.getX(),
+                width: 0,
+                y: item.getY(),
+                height: 0
+            }));
+            const sumProps = (object, props) => lodash_reduce__WEBPACK_IMPORTED_MODULE_11___default()(props, (acc, prop) => acc + lodash_get__WEBPACK_IMPORTED_MODULE_7___default()(object, prop, 0), 0);
+            const canvas = this.engine.getCanvas();
+            if (!canvas) {
+                return null;
+            }
+            const concatedCoords = lodash_concat__WEBPACK_IMPORTED_MODULE_4___default()(allNodesCoords, allPortsCoords, allPointsCoords);
+            const minX = Math.floor(Math.min(lodash_get__WEBPACK_IMPORTED_MODULE_7___default()(lodash_minBy__WEBPACK_IMPORTED_MODULE_8___default()(concatedCoords, 'x'), 'x', 0), 0) / this.ROUTING_SCALING_FACTOR) *
+                this.ROUTING_SCALING_FACTOR;
+            const maxXElement = lodash_maxBy__WEBPACK_IMPORTED_MODULE_9___default()(concatedCoords, (item) => sumProps(item, ['x', 'width']));
+            const maxX = Math.max(sumProps(maxXElement, ['x', 'width']), canvas.offsetWidth);
+            const minYCoords = lodash_minBy__WEBPACK_IMPORTED_MODULE_8___default()(concatedCoords, 'y');
+            const minY = Math.floor(Math.min(lodash_get__WEBPACK_IMPORTED_MODULE_7___default()(minYCoords, 'y', 0), 0) / this.ROUTING_SCALING_FACTOR) * this.ROUTING_SCALING_FACTOR;
+            const maxYElement = lodash_maxBy__WEBPACK_IMPORTED_MODULE_9___default()(concatedCoords, (item) => sumProps(item, ['y', 'height']));
+            const maxY = Math.max(sumProps(maxYElement, ['y', 'height']), canvas.offsetHeight);
+            return {
+                width: Math.ceil(Math.abs(minX) + maxX),
+                hAdjustmentFactor: Math.abs(minX) / this.ROUTING_SCALING_FACTOR + 1,
+                height: Math.ceil(Math.abs(minY) + maxY),
+                vAdjustmentFactor: Math.abs(minY) / this.ROUTING_SCALING_FACTOR + 1
+            };
+        };
+        /**
+         * Updates (by reference) where nodes will be drawn on the matrix passed in.
+         */
+        this.markNodes = (matrix) => {
+            lodash_values__WEBPACK_IMPORTED_MODULE_12___default()(this.engine.getModel().getNodes()).forEach((node) => {
+                const startX = Math.floor(node.getX() / this.ROUTING_SCALING_FACTOR);
+                const endX = Math.ceil((node.getX() + node.width) / this.ROUTING_SCALING_FACTOR);
+                const startY = Math.floor(node.getY() / this.ROUTING_SCALING_FACTOR);
+                const endY = Math.ceil((node.getY() + node.height) / this.ROUTING_SCALING_FACTOR);
+                for (let x = startX - 1; x <= endX + 1; x++) {
+                    for (let y = startY - 1; y < endY + 1; y++) {
+                        this.markMatrixPoint(matrix, this.translateRoutingX(x), this.translateRoutingY(y));
+                    }
+                }
+            });
+        };
+        /**
+         * Updates (by reference) where ports will be drawn on the matrix passed in.
+         */
+        this.markPorts = (matrix) => {
+            const allElements = lodash_flatMap__WEBPACK_IMPORTED_MODULE_6___default()(lodash_values__WEBPACK_IMPORTED_MODULE_12___default()(this.engine.getModel().getLinks()).map((link) => [].concat(link.getSourcePort(), link.getTargetPort())));
+            allElements
+                .filter((port) => port !== null)
+                .forEach((port) => {
+                const startX = Math.floor(port.x / this.ROUTING_SCALING_FACTOR);
+                const endX = Math.ceil((port.x + port.width) / this.ROUTING_SCALING_FACTOR);
+                const startY = Math.floor(port.y / this.ROUTING_SCALING_FACTOR);
+                const endY = Math.ceil((port.y + port.height) / this.ROUTING_SCALING_FACTOR);
+                for (let x = startX - 1; x <= endX + 1; x++) {
+                    for (let y = startY - 1; y < endY + 1; y++) {
+                        this.markMatrixPoint(matrix, this.translateRoutingX(x), this.translateRoutingY(y));
+                    }
+                }
+            });
+        };
+        this.markMatrixPoint = (matrix, x, y) => {
+            if (matrix[y] !== undefined && matrix[y][x] !== undefined) {
+                matrix[y][x] = 1;
+            }
+        };
+    }
+    setDiagramEngine(engine) {
+        super.setDiagramEngine(engine);
+        // listen for drag changes
+        engine.getStateMachine().registerListener({
+            stateChanged: (event) => {
+                if (event.newState instanceof _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_15__.AbstractDisplacementState) {
+                    const deRegister = engine.getActionEventBus().registerAction(new _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_15__.Action({
+                        type: _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_15__.InputType.MOUSE_UP,
+                        fire: () => {
+                            this.calculateRoutingMatrix();
+                            engine.repaintCanvas();
+                            deRegister();
+                        }
+                    }));
+                }
+            }
+        });
+        this.listener = engine.registerListener({
+            canvasReady: () => {
+                lodash_defer__WEBPACK_IMPORTED_MODULE_5___default()(() => {
+                    this.calculateRoutingMatrix();
+                    engine.repaintCanvas();
+                });
+            }
+        });
+    }
+    setFactoryBank(bank) {
+        super.setFactoryBank(bank);
+        if (!bank && this.listener) {
+            this.listener.deregister();
+        }
+    }
+    generateReactWidget(event) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PathFindingLinkWidget__WEBPACK_IMPORTED_MODULE_2__.PathFindingLinkWidget, { diagramEngine: this.engine, link: event.model, factory: this });
+    }
+    generateModel(event) {
+        return new _PathFindingLinkModel__WEBPACK_IMPORTED_MODULE_1__.PathFindingLinkModel();
+    }
+    /**
+     * A representation of the canvas in the following format:
+     *
+     * +-----------------+
+     * | 0 0 0 0 0 0 0 0 |
+     * | 0 0 0 0 0 0 0 0 |
+     * | 0 0 0 0 0 0 0 0 |
+     * | 0 0 0 0 0 0 0 0 |
+     * | 0 0 0 0 0 0 0 0 |
+     * +-----------------+
+     *
+     * In which all walkable points are marked by zeros.
+     * It uses @link{#ROUTING_SCALING_FACTOR} to reduce the matrix dimensions and improve performance.
+     */
+    getCanvasMatrix() {
+        if (this.canvasMatrix.length === 0) {
+            this.calculateCanvasMatrix();
+        }
+        return this.canvasMatrix;
+    }
+    calculateCanvasMatrix() {
+        const { width: canvasWidth, hAdjustmentFactor, height: canvasHeight, vAdjustmentFactor } = this.calculateMatrixDimensions();
+        this.hAdjustmentFactor = hAdjustmentFactor;
+        this.vAdjustmentFactor = vAdjustmentFactor;
+        const matrixWidth = Math.ceil(canvasWidth / this.ROUTING_SCALING_FACTOR);
+        const matrixHeight = Math.ceil(canvasHeight / this.ROUTING_SCALING_FACTOR);
+        this.canvasMatrix = lodash_range__WEBPACK_IMPORTED_MODULE_10___default()(0, matrixHeight).map(() => {
+            return new Array(matrixWidth).fill(0);
+        });
+    }
+    /**
+     * A representation of the canvas in the following format:
+     *
+     * +-----------------+
+     * | 0 0 1 1 0 0 0 0 |
+     * | 0 0 1 1 0 0 1 1 |
+     * | 0 0 0 0 0 0 1 1 |
+     * | 1 1 0 0 0 0 0 0 |
+     * | 1 1 0 0 0 0 0 0 |
+     * +-----------------+
+     *
+     * In which all points blocked by a node (and its ports) are
+     * marked as 1; points were there is nothing (ie, free) receive 0.
+     */
+    getRoutingMatrix() {
+        if (this.routingMatrix.length === 0) {
+            this.calculateRoutingMatrix();
+        }
+        return this.routingMatrix;
+    }
+    calculateRoutingMatrix() {
+        const matrix = lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_3___default()(this.getCanvasMatrix());
+        // nodes need to be marked as blocked points
+        this.markNodes(matrix);
+        // same thing for ports
+        this.markPorts(matrix);
+        this.routingMatrix = matrix;
+    }
+    /**
+     * The routing matrix does not have negative indexes, but elements could be negatively positioned.
+     * We use the functions below to translate back and forth between these coordinates, relying on the
+     * calculated values of hAdjustmentFactor and vAdjustmentFactor.
+     */
+    translateRoutingX(x, reverse = false) {
+        return x + this.hAdjustmentFactor * (reverse ? -1 : 1);
+    }
+    translateRoutingY(y, reverse = false) {
+        return y + this.vAdjustmentFactor * (reverse ? -1 : 1);
+    }
+    generateDynamicPath(pathCoords) {
+        let path = paths_js_path__WEBPACK_IMPORTED_MODULE_13__();
+        path = path.moveto(pathCoords[0][0] * this.ROUTING_SCALING_FACTOR, pathCoords[0][1] * this.ROUTING_SCALING_FACTOR);
+        pathCoords.slice(1).forEach((coords) => {
+            path = path.lineto(coords[0] * this.ROUTING_SCALING_FACTOR, coords[1] * this.ROUTING_SCALING_FACTOR);
+        });
+        return path.print();
+    }
+}
+PathFindingLinkFactory.NAME = 'pathfinding';
+
 
 /***/ }),
 
@@ -384,52 +630,25 @@ throw new Error("Module parse failed: Unexpected token (170:15)\nFile was proces
 /*!*******************************************!*\
   !*** ./dist/link/PathFindingLinkModel.js ***!
   \*******************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PathFindingLinkModel: () => (/* binding */ PathFindingLinkModel)
+/* harmony export */ });
+/* harmony import */ var _PathFindingLinkFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PathFindingLinkFactory */ "./dist/link/PathFindingLinkFactory.js");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_1__);
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.PathFindingLinkModel = void 0;
-var PathFindingLinkFactory_1 = __webpack_require__(/*! ./PathFindingLinkFactory */ "./dist/link/PathFindingLinkFactory.js");
-var react_diagrams_defaults_1 = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
-var PathFindingLinkModel = /** @class */ (function (_super) {
-    __extends(PathFindingLinkModel, _super);
-    function PathFindingLinkModel(options) {
-        if (options === void 0) { options = {}; }
-        return _super.call(this, __assign({ type: PathFindingLinkFactory_1.PathFindingLinkFactory.NAME }, options)) || this;
+
+class PathFindingLinkModel extends _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_1__.DefaultLinkModel {
+    constructor(options = {}) {
+        super(Object.assign({ type: _PathFindingLinkFactory__WEBPACK_IMPORTED_MODULE_0__.PathFindingLinkFactory.NAME }, options));
     }
-    PathFindingLinkModel.prototype.performanceTune = function () {
+    performanceTune() {
         return false;
-    };
-    return PathFindingLinkModel;
-}(react_diagrams_defaults_1.DefaultLinkModel));
-exports.PathFindingLinkModel = PathFindingLinkModel;
+    }
+}
 
 
 /***/ }),
@@ -438,9 +657,78 @@ exports.PathFindingLinkModel = PathFindingLinkModel;
 /*!********************************************!*\
   !*** ./dist/link/PathFindingLinkWidget.js ***!
   \********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module parse failed: Unexpected token (52:16)\nFile was processed with these loaders:\n * ../node_modules/source-map-loader/dist/cjs.js\nYou may need an additional loader to handle the result of these loaders.\n|         var ref = React.createRef();\n|         this.refPaths.push(ref);\n>         return (<react_diagrams_defaults_1.DefaultLinkSegmentWidget key={\"link-\".concat(id)} path={path} selected={this.state.selected} diagramEngine={this.props.diagramEngine} factory={this.props.diagramEngine.getFactoryForLink(this.props.link)} link={this.props.link} forwardRef={ref} onSelection={function (selected) {\n|                 _this.setState({ selected: selected });\n|             }} extras={{}}/>);");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PathFindingLinkWidget: () => (/* binding */ PathFindingLinkWidget)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/first */ "lodash/first");
+/* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_first__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_last__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/last */ "lodash/last");
+/* harmony import */ var lodash_last__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_last__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _engine_PathFinding__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../engine/PathFinding */ "./dist/engine/PathFinding.js");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+class PathFindingLinkWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+    constructor(props) {
+        super(props);
+        this.refPaths = [];
+        this.state = {
+            selected: false
+        };
+        this.pathFinding = new _engine_PathFinding__WEBPACK_IMPORTED_MODULE_3__.PathFinding(this.props.factory);
+    }
+    componentDidUpdate() {
+        this.props.link.setRenderedPaths(this.refPaths.map((ref) => {
+            return ref.current;
+        }));
+    }
+    componentDidMount() {
+        this.props.link.setRenderedPaths(this.refPaths.map((ref) => {
+            return ref.current;
+        }));
+    }
+    componentWillUnmount() {
+        this.props.link.setRenderedPaths([]);
+    }
+    generateLink(path, id) {
+        const ref = react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+        this.refPaths.push(ref);
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_4__.DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: this.state.selected, diagramEngine: this.props.diagramEngine, factory: this.props.diagramEngine.getFactoryForLink(this.props.link), link: this.props.link, forwardRef: ref, onSelection: (selected) => {
+                this.setState({ selected: selected });
+            }, extras: {} }));
+    }
+    render() {
+        this.refPaths = [];
+        //ensure id is present for all points on the path
+        var points = this.props.link.getPoints();
+        var paths = [];
+        // first step: calculate a direct path between the points being linked
+        const directPathCoords = this.pathFinding.calculateDirectPath(lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(points), lodash_last__WEBPACK_IMPORTED_MODULE_2___default()(points));
+        const routingMatrix = this.props.factory.getRoutingMatrix();
+        // now we need to extract, from the routing matrix, the very first walkable points
+        // so they can be used as origin and destination of the link to be created
+        const smartLink = this.pathFinding.calculateLinkStartEndCoords(routingMatrix, directPathCoords);
+        if (smartLink) {
+            const { start, end, pathToStart, pathToEnd } = smartLink;
+            // second step: calculate a path avoiding hitting other elements
+            const simplifiedPath = this.pathFinding.calculateDynamicPath(routingMatrix, start, end, pathToStart, pathToEnd);
+            paths.push(
+            //smooth: boolean, extraProps: any, id: string | number, firstPoint: PointModel, lastPoint: PointModel
+            this.generateLink(this.props.factory.generateDynamicPath(simplifiedPath), '0'));
+        }
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, paths);
+    }
+}
+
 
 /***/ }),
 
@@ -448,9 +736,38 @@ throw new Error("Module parse failed: Unexpected token (52:16)\nFile was process
 /*!********************************************!*\
   !*** ./dist/link/RightAngleLinkFactory.js ***!
   \********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module parse failed: Unexpected token (35:15)\nFile was processed with these loaders:\n * ../node_modules/source-map-loader/dist/cjs.js\nYou may need an additional loader to handle the result of these loaders.\n|     };\n|     RightAngleLinkFactory.prototype.generateReactWidget = function (event) {\n>         return <RightAngleLinkWidget_1.RightAngleLinkWidget diagramEngine={this.engine} link={event.model} factory={this}/>;\n|     };\n|     RightAngleLinkFactory.NAME = 'rightAngle';");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   RightAngleLinkFactory: () => (/* binding */ RightAngleLinkFactory)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _RightAngleLinkWidget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RightAngleLinkWidget */ "./dist/link/RightAngleLinkWidget.js");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _RightAngleLinkModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RightAngleLinkModel */ "./dist/link/RightAngleLinkModel.js");
+
+
+
+
+/**
+ * @author Daniel Lazar
+ */
+class RightAngleLinkFactory extends _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2__.DefaultLinkFactory {
+    constructor() {
+        super(RightAngleLinkFactory.NAME);
+    }
+    generateModel(event) {
+        return new _RightAngleLinkModel__WEBPACK_IMPORTED_MODULE_3__.RightAngleLinkModel();
+    }
+    generateReactWidget(event) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RightAngleLinkWidget__WEBPACK_IMPORTED_MODULE_1__.RightAngleLinkWidget, { diagramEngine: this.engine, link: event.model, factory: this });
+    }
+}
+RightAngleLinkFactory.NAME = 'rightAngle';
+
 
 /***/ }),
 
@@ -458,55 +775,29 @@ throw new Error("Module parse failed: Unexpected token (35:15)\nFile was process
 /*!******************************************!*\
   !*** ./dist/link/RightAngleLinkModel.js ***!
   \******************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   RightAngleLinkModel: () => (/* binding */ RightAngleLinkModel)
+/* harmony export */ });
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _RightAngleLinkFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RightAngleLinkFactory */ "./dist/link/RightAngleLinkFactory.js");
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RightAngleLinkModel = void 0;
-var react_diagrams_defaults_1 = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
-var RightAngleLinkFactory_1 = __webpack_require__(/*! ./RightAngleLinkFactory */ "./dist/link/RightAngleLinkFactory.js");
-var RightAngleLinkModel = /** @class */ (function (_super) {
-    __extends(RightAngleLinkModel, _super);
-    function RightAngleLinkModel(options) {
-        if (options === void 0) { options = {}; }
-        var _this = _super.call(this, __assign({ type: RightAngleLinkFactory_1.RightAngleLinkFactory.NAME }, options)) || this;
-        _this.lastHoverIndexOfPath = 0;
-        _this._lastPathXdirection = false;
-        _this._firstPathXdirection = false;
-        return _this;
+
+class RightAngleLinkModel extends _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_0__.DefaultLinkModel {
+    constructor(options = {}) {
+        super(Object.assign({ type: _RightAngleLinkFactory__WEBPACK_IMPORTED_MODULE_1__.RightAngleLinkFactory.NAME }, options));
+        this.lastHoverIndexOfPath = 0;
+        this._lastPathXdirection = false;
+        this._firstPathXdirection = false;
     }
-    RightAngleLinkModel.prototype.setFirstAndLastPathsDirection = function () {
-        var points = this.getPoints();
-        for (var i = 1; i < points.length; i += points.length - 2) {
-            var dx = Math.abs(points[i].getX() - points[i - 1].getX());
-            var dy = Math.abs(points[i].getY() - points[i - 1].getY());
+    setFirstAndLastPathsDirection() {
+        let points = this.getPoints();
+        for (let i = 1; i < points.length; i += points.length - 2) {
+            let dx = Math.abs(points[i].getX() - points[i - 1].getX());
+            let dy = Math.abs(points[i].getY() - points[i - 1].getY());
             if (i - 1 === 0) {
                 this._firstPathXdirection = dx > dy;
             }
@@ -514,40 +805,37 @@ var RightAngleLinkModel = /** @class */ (function (_super) {
                 this._lastPathXdirection = dx > dy;
             }
         }
-    };
+    }
     // @ts-ignore
-    RightAngleLinkModel.prototype.addPoint = function (pointModel, index) {
-        if (index === void 0) { index = 1; }
+    addPoint(pointModel, index = 1) {
         // @ts-ignore
-        _super.prototype.addPoint.call(this, pointModel, index);
+        super.addPoint(pointModel, index);
         this.setFirstAndLastPathsDirection();
         return pointModel;
-    };
-    RightAngleLinkModel.prototype.deserialize = function (event) {
-        _super.prototype.deserialize.call(this, event);
+    }
+    deserialize(event) {
+        super.deserialize(event);
         this.setFirstAndLastPathsDirection();
-    };
-    RightAngleLinkModel.prototype.setManuallyFirstAndLastPathsDirection = function (first, last) {
+    }
+    setManuallyFirstAndLastPathsDirection(first, last) {
         this._firstPathXdirection = first;
         this._lastPathXdirection = last;
-    };
-    RightAngleLinkModel.prototype.getLastPathXdirection = function () {
+    }
+    getLastPathXdirection() {
         return this._lastPathXdirection;
-    };
-    RightAngleLinkModel.prototype.getFirstPathXdirection = function () {
+    }
+    getFirstPathXdirection() {
         return this._firstPathXdirection;
-    };
-    RightAngleLinkModel.prototype.setWidth = function (width) {
+    }
+    setWidth(width) {
         this.options.width = width;
-        this.fireEvent({ width: width }, 'widthChanged');
-    };
-    RightAngleLinkModel.prototype.setColor = function (color) {
+        this.fireEvent({ width }, 'widthChanged');
+    }
+    setColor(color) {
         this.options.color = color;
-        this.fireEvent({ color: color }, 'colorChanged');
-    };
-    return RightAngleLinkModel;
-}(react_diagrams_defaults_1.DefaultLinkModel));
-exports.RightAngleLinkModel = RightAngleLinkModel;
+        this.fireEvent({ color }, 'colorChanged');
+    }
+}
 
 
 /***/ }),
@@ -556,9 +844,240 @@ exports.RightAngleLinkModel = RightAngleLinkModel;
 /*!*******************************************!*\
   !*** ./dist/link/RightAngleLinkWidget.js ***!
   \*******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module parse failed: Unexpected token (70:16)\nFile was processed with these loaders:\n * ../node_modules/source-map-loader/dist/cjs.js\nYou may need an additional loader to handle the result of these loaders.\n|         var ref = React.createRef();\n|         this.refPaths.push(ref);\n>         return (<react_diagrams_defaults_1.DefaultLinkSegmentWidget key={\"link-\".concat(id)} path={path} selected={this.state.selected} diagramEngine={this.props.diagramEngine} factory={this.props.diagramEngine.getFactoryForLink(this.props.link)} link={this.props.link} forwardRef={ref} onSelection={function (selected) {\n|                 _this.setState({ selected: selected });\n|             }} extras={extraProps}/>);");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   RightAngleLinkWidget: () => (/* binding */ RightAngleLinkWidget)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @projectstorm/react-diagrams-core */ "@projectstorm/react-diagrams-core");
+/* harmony import */ var _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @projectstorm/react-diagrams-defaults */ "@projectstorm/react-diagrams-defaults");
+/* harmony import */ var _projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @projectstorm/geometry */ "@projectstorm/geometry");
+/* harmony import */ var _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+class RightAngleLinkWidget extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+    constructor(props) {
+        super(props);
+        this.handleMove = function (event) {
+            this.draggingEvent(event, this.dragging_index);
+        }.bind(this);
+        this.handleUp = function (event) {
+            // Unregister handlers to avoid multiple event handlers for other links
+            this.setState({ canDrag: false, selected: false });
+            window.removeEventListener('mousemove', this.handleMove);
+            window.removeEventListener('mouseup', this.handleUp);
+        }.bind(this);
+        this.refPaths = [];
+        this.state = {
+            selected: false,
+            canDrag: false
+        };
+        this.dragging_index = 0;
+    }
+    componentDidUpdate() {
+        this.props.link.setRenderedPaths(this.refPaths.map((ref) => {
+            return ref.current;
+        }));
+    }
+    componentDidMount() {
+        this.props.link.setRenderedPaths(this.refPaths.map((ref) => {
+            return ref.current;
+        }));
+    }
+    componentWillUnmount() {
+        this.props.link.setRenderedPaths([]);
+    }
+    generateLink(path, extraProps, id) {
+        const ref = react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+        this.refPaths.push(ref);
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_projectstorm_react_diagrams_defaults__WEBPACK_IMPORTED_MODULE_2__.DefaultLinkSegmentWidget, { key: `link-${id}`, path: path, selected: this.state.selected, diagramEngine: this.props.diagramEngine, factory: this.props.diagramEngine.getFactoryForLink(this.props.link), link: this.props.link, forwardRef: ref, onSelection: (selected) => {
+                this.setState({ selected: selected });
+            }, extras: extraProps }));
+    }
+    calculatePositions(points, event, index, coordinate) {
+        // If path is first or last add another point to keep node port on its position
+        if (index === 0) {
+            let point = new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__.PointModel({
+                link: this.props.link,
+                position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__.Point(points[index].getX(), points[index].getY())
+            });
+            this.props.link.addPoint(point, index);
+            this.dragging_index++;
+            return;
+        }
+        else if (index === points.length - 2) {
+            let point = new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__.PointModel({
+                link: this.props.link,
+                position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__.Point(points[index + 1].getX(), points[index + 1].getY())
+            });
+            this.props.link.addPoint(point, index + 1);
+            return;
+        }
+        // Merge two points if it is not close to node port and close to each other
+        if (index - 2 > 0) {
+            let _points = {
+                [index - 2]: points[index - 2].getPosition(),
+                [index + 1]: points[index + 1].getPosition(),
+                [index - 1]: points[index - 1].getPosition()
+            };
+            if (Math.abs(_points[index - 1][coordinate] - _points[index + 1][coordinate]) < 5) {
+                _points[index - 2][coordinate] = this.props.diagramEngine.getRelativeMousePoint(event)[coordinate];
+                _points[index + 1][coordinate] = this.props.diagramEngine.getRelativeMousePoint(event)[coordinate];
+                points[index - 2].setPosition(_points[index - 2]);
+                points[index + 1].setPosition(_points[index + 1]);
+                points[index - 1].remove();
+                points[index - 1].remove();
+                this.dragging_index--;
+                this.dragging_index--;
+                return;
+            }
+        }
+        // Merge two points if it is not close to node port
+        if (index + 2 < points.length - 2) {
+            let _points = {
+                [index + 3]: points[index + 3].getPosition(),
+                [index + 2]: points[index + 2].getPosition(),
+                [index + 1]: points[index + 1].getPosition(),
+                [index]: points[index].getPosition()
+            };
+            if (Math.abs(_points[index + 1][coordinate] - _points[index + 2][coordinate]) < 5) {
+                _points[index][coordinate] = this.props.diagramEngine.getRelativeMousePoint(event)[coordinate];
+                _points[index + 3][coordinate] = this.props.diagramEngine.getRelativeMousePoint(event)[coordinate];
+                points[index].setPosition(_points[index]);
+                points[index + 3].setPosition(_points[index + 3]);
+                points[index + 1].remove();
+                points[index + 1].remove();
+                return;
+            }
+        }
+        // If no condition above handled then just update path points position
+        let _points = {
+            [index]: points[index].getPosition(),
+            [index + 1]: points[index + 1].getPosition()
+        };
+        _points[index][coordinate] = this.props.diagramEngine.getRelativeMousePoint(event)[coordinate];
+        _points[index + 1][coordinate] = this.props.diagramEngine.getRelativeMousePoint(event)[coordinate];
+        points[index].setPosition(_points[index]);
+        points[index + 1].setPosition(_points[index + 1]);
+    }
+    draggingEvent(event, index) {
+        let points = this.props.link.getPoints();
+        // get moving difference. Index + 1 will work because links indexes has
+        // length = points.lenght - 1
+        let dx = Math.abs(points[index].getX() - points[index + 1].getX());
+        let dy = Math.abs(points[index].getY() - points[index + 1].getY());
+        // moving with y direction
+        if (dx === 0) {
+            this.calculatePositions(points, event, index, 'x');
+        }
+        else if (dy === 0) {
+            this.calculatePositions(points, event, index, 'y');
+        }
+        this.props.link.setFirstAndLastPathsDirection();
+    }
+    render() {
+        //ensure id is present for all points on the path
+        let points = this.props.link.getPoints();
+        let paths = [];
+        // Get points based on link orientation
+        let pointLeft = points[0];
+        let pointRight = points[points.length - 1];
+        let hadToSwitch = false;
+        if (pointLeft.getX() > pointRight.getX()) {
+            pointLeft = points[points.length - 1];
+            pointRight = points[0];
+            hadToSwitch = true;
+        }
+        let dy = Math.abs(points[0].getY() - points[points.length - 1].getY());
+        // When new link add one middle point to get everywhere 90° angle
+        if (this.props.link.getTargetPort() === null && points.length === 2) {
+            [...Array(2)].forEach((item) => {
+                this.props.link.addPoint(new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__.PointModel({
+                    link: this.props.link,
+                    position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__.Point(pointLeft.getX(), pointRight.getY())
+                }), 1);
+            });
+            this.props.link.setManuallyFirstAndLastPathsDirection(true, true);
+        }
+        // When new link is moving and not connected to target port move with middle point
+        // TODO: @DanielLazarLDAPPS This will be better to update in DragNewLinkState
+        //  in function fireMouseMoved to avoid calling this unexpectedly e.g. after Deserialize
+        else if (this.props.link.getTargetPort() === null && this.props.link.getSourcePort() !== null) {
+            points[1].setPosition(pointRight.getX() + (pointLeft.getX() - pointRight.getX()) / 2, !hadToSwitch ? pointLeft.getY() : pointRight.getY());
+            points[2].setPosition(pointRight.getX() + (pointLeft.getX() - pointRight.getX()) / 2, !hadToSwitch ? pointRight.getY() : pointLeft.getY());
+        }
+        // Render was called but link is not moved but user.
+        // Node is moved and in this case fix coordinates to get 90° angle.
+        // For loop just for first and last path
+        else if (!this.state.canDrag && points.length > 2) {
+            // Those points and its position only will be moved
+            for (let i = 1; i < points.length; i += points.length - 2) {
+                if (i - 1 === 0) {
+                    if (this.props.link.getFirstPathXdirection()) {
+                        points[i].setPosition(points[i].getX(), points[i - 1].getY());
+                    }
+                    else {
+                        points[i].setPosition(points[i - 1].getX(), points[i].getY());
+                    }
+                }
+                else {
+                    if (this.props.link.getLastPathXdirection()) {
+                        points[i - 1].setPosition(points[i - 1].getX(), points[i].getY());
+                    }
+                    else {
+                        points[i - 1].setPosition(points[i].getX(), points[i - 1].getY());
+                    }
+                }
+            }
+        }
+        // If there is existing link which has two points add one
+        // NOTE: It doesn't matter if check is for dy or dx
+        if (points.length === 2 && dy !== 0 && !this.state.canDrag) {
+            this.props.link.addPoint(new _projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__.PointModel({
+                link: this.props.link,
+                position: new _projectstorm_geometry__WEBPACK_IMPORTED_MODULE_3__.Point(pointLeft.getX(), pointRight.getY())
+            }));
+        }
+        for (let j = 0; j < points.length - 1; j++) {
+            paths.push(this.generateLink(_projectstorm_react_diagrams_core__WEBPACK_IMPORTED_MODULE_1__.LinkWidget.generateLinePath(points[j], points[j + 1]), {
+                'data-linkid': this.props.link.getID(),
+                'data-point': j,
+                onMouseDown: (event) => {
+                    if (event.button === 0) {
+                        this.setState({ canDrag: true });
+                        this.dragging_index = j;
+                        // Register mouse move event to track mouse position
+                        // On mouse up these events are unregistered check "this.handleUp"
+                        window.addEventListener('mousemove', this.handleMove);
+                        window.addEventListener('mouseup', this.handleUp);
+                    }
+                },
+                onMouseEnter: (event) => {
+                    this.setState({ selected: true });
+                    this.props.link.lastHoverIndexOfPath = j;
+                }
+            }, j));
+        }
+        this.refPaths = [];
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", { "data-default-link-test": this.props.link.getOptions().testName }, paths);
+    }
+}
+RightAngleLinkWidget.defaultProps = {
+    color: 'red',
+    width: 3,
+    link: null,
+    smooth: false,
+    diagramEngine: null,
+    factory: null
+};
+
 
 /***/ }),
 
@@ -568,8 +1087,17 @@ throw new Error("Module parse failed: Unexpected token (70:16)\nFile was process
   \*****************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("@projectstorm/geometry");
+
+/***/ }),
+
+/***/ "@projectstorm/react-canvas-core":
+/*!**************************************************!*\
+  !*** external "@projectstorm/react-canvas-core" ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = require("@projectstorm/react-canvas-core");
 
 /***/ }),
 
@@ -579,7 +1107,6 @@ module.exports = require("@projectstorm/geometry");
   \****************************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("@projectstorm/react-diagrams-core");
 
 /***/ }),
@@ -590,7 +1117,6 @@ module.exports = require("@projectstorm/react-diagrams-core");
   \********************************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("@projectstorm/react-diagrams-defaults");
 
 /***/ }),
@@ -601,8 +1127,37 @@ module.exports = require("@projectstorm/react-diagrams-defaults");
   \************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("dagre");
+
+/***/ }),
+
+/***/ "lodash/cloneDeep":
+/*!***********************************!*\
+  !*** external "lodash/cloneDeep" ***!
+  \***********************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/cloneDeep");
+
+/***/ }),
+
+/***/ "lodash/concat":
+/*!********************************!*\
+  !*** external "lodash/concat" ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/concat");
+
+/***/ }),
+
+/***/ "lodash/defer":
+/*!*******************************!*\
+  !*** external "lodash/defer" ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/defer");
 
 /***/ }),
 
@@ -612,7 +1167,6 @@ module.exports = require("dagre");
   \*******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("lodash/every");
 
 /***/ }),
@@ -623,8 +1177,27 @@ module.exports = require("lodash/every");
   \***********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("lodash/findIndex");
+
+/***/ }),
+
+/***/ "lodash/first":
+/*!*******************************!*\
+  !*** external "lodash/first" ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/first");
+
+/***/ }),
+
+/***/ "lodash/flatMap":
+/*!*********************************!*\
+  !*** external "lodash/flatMap" ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/flatMap");
 
 /***/ }),
 
@@ -634,8 +1207,27 @@ module.exports = require("lodash/findIndex");
   \*********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("lodash/forEach");
+
+/***/ }),
+
+/***/ "lodash/get":
+/*!*****************************!*\
+  !*** external "lodash/get" ***!
+  \*****************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/get");
+
+/***/ }),
+
+/***/ "lodash/last":
+/*!******************************!*\
+  !*** external "lodash/last" ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/last");
 
 /***/ }),
 
@@ -645,8 +1237,27 @@ module.exports = require("lodash/forEach");
   \*****************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("lodash/map");
+
+/***/ }),
+
+/***/ "lodash/maxBy":
+/*!*******************************!*\
+  !*** external "lodash/maxBy" ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/maxBy");
+
+/***/ }),
+
+/***/ "lodash/minBy":
+/*!*******************************!*\
+  !*** external "lodash/minBy" ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/minBy");
 
 /***/ }),
 
@@ -656,8 +1267,17 @@ module.exports = require("lodash/map");
   \*******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("lodash/range");
+
+/***/ }),
+
+/***/ "lodash/reduce":
+/*!********************************!*\
+  !*** external "lodash/reduce" ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/reduce");
 
 /***/ }),
 
@@ -667,8 +1287,17 @@ module.exports = require("lodash/range");
   \********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("lodash/sortBy");
+
+/***/ }),
+
+/***/ "lodash/values":
+/*!********************************!*\
+  !*** external "lodash/values" ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = require("lodash/values");
 
 /***/ }),
 
@@ -678,8 +1307,27 @@ module.exports = require("lodash/sortBy");
   \******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("pathfinding");
+
+/***/ }),
+
+/***/ "paths-js/path":
+/*!********************************!*\
+  !*** external "paths-js/path" ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = require("paths-js/path");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = require("react");
 
 /***/ })
 
@@ -703,19 +1351,90 @@ module.exports = require("pathfinding");
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
 /******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./dist/index.js");
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!***********************!*\
+  !*** ./dist/index.js ***!
+  \***********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DagreEngine: () => (/* reexport safe */ _dagre_DagreEngine__WEBPACK_IMPORTED_MODULE_7__.DagreEngine),
+/* harmony export */   PathFinding: () => (/* reexport safe */ _engine_PathFinding__WEBPACK_IMPORTED_MODULE_6__.PathFinding),
+/* harmony export */   PathFindingLinkFactory: () => (/* reexport safe */ _link_PathFindingLinkFactory__WEBPACK_IMPORTED_MODULE_0__.PathFindingLinkFactory),
+/* harmony export */   PathFindingLinkModel: () => (/* reexport safe */ _link_PathFindingLinkModel__WEBPACK_IMPORTED_MODULE_1__.PathFindingLinkModel),
+/* harmony export */   PathFindingLinkWidget: () => (/* reexport safe */ _link_PathFindingLinkWidget__WEBPACK_IMPORTED_MODULE_2__.PathFindingLinkWidget),
+/* harmony export */   RightAngleLinkFactory: () => (/* reexport safe */ _link_RightAngleLinkFactory__WEBPACK_IMPORTED_MODULE_4__.RightAngleLinkFactory),
+/* harmony export */   RightAngleLinkModel: () => (/* reexport safe */ _link_RightAngleLinkModel__WEBPACK_IMPORTED_MODULE_5__.RightAngleLinkModel),
+/* harmony export */   RightAngleLinkWidget: () => (/* reexport safe */ _link_RightAngleLinkWidget__WEBPACK_IMPORTED_MODULE_3__.RightAngleLinkWidget)
+/* harmony export */ });
+/* harmony import */ var _link_PathFindingLinkFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./link/PathFindingLinkFactory */ "./dist/link/PathFindingLinkFactory.js");
+/* harmony import */ var _link_PathFindingLinkModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./link/PathFindingLinkModel */ "./dist/link/PathFindingLinkModel.js");
+/* harmony import */ var _link_PathFindingLinkWidget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./link/PathFindingLinkWidget */ "./dist/link/PathFindingLinkWidget.js");
+/* harmony import */ var _link_RightAngleLinkWidget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./link/RightAngleLinkWidget */ "./dist/link/RightAngleLinkWidget.js");
+/* harmony import */ var _link_RightAngleLinkFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./link/RightAngleLinkFactory */ "./dist/link/RightAngleLinkFactory.js");
+/* harmony import */ var _link_RightAngleLinkModel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./link/RightAngleLinkModel */ "./dist/link/RightAngleLinkModel.js");
+/* harmony import */ var _engine_PathFinding__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./engine/PathFinding */ "./dist/engine/PathFinding.js");
+/* harmony import */ var _dagre_DagreEngine__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dagre/DagreEngine */ "./dist/dagre/DagreEngine.js");
+
+
+
+
+
+
+
+
+
+})();
+
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
